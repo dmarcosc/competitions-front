@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .app-main-button {
+    width: 160px;
+    background-color: #4974a5;
+    background-size: 400% 400%;
+    background-position: 0 0;
+    background-image:
+    linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+    border:none;
+    outline:none;
+    height: 49px;
+    border-radius: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    // margin: 10px 0;
+    cursor: pointer;
+    transition: all ease 1s;
+    text-align: center;
+  }
+  .app-main-button:hover {
+    background-position: 100% 50%;
+   background-image:
+   linear-gradient(to right, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+ }
+
+ .app-main-button.transparent {
+    margin: 0;
+    background: none;
+    border: 2px solid #444;
+    width: 130px;
+    height: 41px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color:#4974A5;
+    transition: 0.1s;
+}
+ .transparent:hover{
+    width: 132px;
+    height: 43px;
+    transition: 0.1s;
+  }
