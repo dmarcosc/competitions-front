@@ -6,7 +6,7 @@
         <BlueBall medium class="ball2" />
         <BlueBall small class="ball3" />
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form class="sign-in-form" @click.prevent>
             <h2 class="title">
               Login
             </h2>
@@ -41,7 +41,7 @@
               </a>
             </div>
           </form>
-          <form action="#" class="sign-up-form">
+          <form class="sign-up-form" @click.prevent>
             <h2 class="title">
               Register
             </h2>
@@ -119,6 +119,7 @@
 <script>
 import Button from '@/components/Button.vue'
 import BlueBall from '@/components/BlueBall.vue'
+
 export default {
   name: 'LoginPage',
   components: {
@@ -132,7 +133,7 @@ export default {
   },
   methods: {
     onContinue () {
-      console.log('logged')
+      this.$router.push('/dashboard')
     }
   }
 }
@@ -294,7 +295,7 @@ form.sign-in-form {
   position: relative;
   overflow: hidden;
   &:active{
-        transform: scale(1.1);
+        transform: scale(1.12);
       }
   &:after {
     content: '';

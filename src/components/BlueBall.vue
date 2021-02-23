@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 .blue-ball{
   position: absolute;
+  z-index: 1;
   width: 200px;
   height: 200px;
   border-radius: 50%;
