@@ -1,67 +1,78 @@
 <template>
-<div class="login-div">
-<div :class="{'container sign-up-mode' : this.signUpMode , 'container' : !this.signUpMode}">
+  <div class="login-div">
+    <div :class="{'container sign-up-mode' : signUpMode , 'container' : !signUpMode}">
       <div class="forms-container">
-        <div class="login-ball">&nbsp;</div>
-        <div class="login-ball small">&nbsp;</div>
+        <BlueBall big class="ball1" />
+        <BlueBall medium class="ball2" />
+        <BlueBall small class="ball3" />
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
-            <h2 class="title">Login</h2>
+            <h2 class="title">
+              Login
+            </h2>
             <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="text" placeholder="Email" />
+              <i class="fas fa-envelope" />
+              <input type="text" placeholder="Email">
             </div>
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <i class="fas fa-lock" />
+              <input type="password" placeholder="Password">
             </div>
             <div class="form-buttons">
-            <button @click="onContinue" class="app-main-button solid signin" >
-              login </button>
+              <Button primary @click="onContinue">
+                login
+              </Button>
             </div>
-            <p class="social-text">Or Sign in with social platforms</p>
+            <p class="social-text">
+              Or Sign in with social platforms
+            </p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
+                <i class="fab fa-google" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in" />
               </a>
             </div>
           </form>
           <form action="#" class="sign-up-form">
-            <h2 class="title">Register</h2>
+            <h2 class="title">
+              Register
+            </h2>
             <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <i class="fas fa-envelope" />
+              <input type="email" placeholder="Email">
             </div>
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <i class="fas fa-lock" />
+              <input type="password" placeholder="Password">
             </div>
             <div class="form-buttons">
-           <button @click="onContinue" class="app-main-button solid signin" >
-              sign up </button>
+              <Button primary @click="onContinue">
+                sign up
+              </Button>
             </div>
-            <p class="social-text">Or Sign up with social platforms</p>
+            <p class="social-text">
+              Or Sign up with social platforms
+            </p>
             <div class="social-media">
               <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
+                <i class="fab fa-google" />
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in" />
               </a>
             </div>
           </form>
@@ -75,13 +86,14 @@
               Create an account and start your journey today!
             </p>
             <div class="transparent-div">
-            <button class="app-main-button transparent" @click="signUpMode = !signUpMode"
-            id="sign-up-btn">
-              Register
-            </button>
+              <Button id="sign-up-btn" secondary
+                      @click="signUpMode = !signUpMode"
+              >
+                Register
+              </Button>
             </div>
           </div>
-          <img src="../assets/images/lost.svg" class="image" alt="" />
+          <img src="@/assets/images/lost.svg" class="image" alt="">
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -90,34 +102,40 @@
               Dont waste time and log in with your credentials
             </p>
             <div class="transparent-div">
-            <button class="app-main-button transparent"
-             @click="signUpMode = !signUpMode" id="sign-in-btn">
-              Login
-            </button>
+              <Button id="sign-in-btn"
+                      secondary @click="signUpMode = !signUpMode"
+              >
+                Login
+              </Button>
             </div>
           </div>
-          <img src="../assets/images/team.svg" class="image" alt="" />
+          <img src="@/assets/images/team.svg" class="image" alt="">
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
-
+import Button from '@/components/Button.vue'
+import BlueBall from '@/components/BlueBall.vue'
 export default {
   name: 'LoginPage',
-  data() {
+  components: {
+    Button,
+    BlueBall
+  },
+  data () {
     return {
-      signUpMode: false,
-    };
+      signUpMode: false
+    }
   },
   methods: {
-    onContinue() {
-      console.log('logged');
-    },
-  },
-};
+    onContinue () {
+      console.log('logged')
+    }
+  }
+}
 
 </script>
 
@@ -130,6 +148,7 @@ input {
 
 .container {
   position: relative;
+  max-width: 100%;
   width: 100%;
   background: #C9D6FF;
   background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
@@ -165,24 +184,23 @@ input {
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-.login-ball{
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: #4974a5;
-    background-image:
-    linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
-    top: 26%;
-    transform: translate(-50%, -50%);
-    left: 90%;
-    transition: 1.2s 0.6s ease-in-out;
+.ball1{
+  top: 26%;
+  transform: translate(-50%, -50%);
+  left: 90%;
+  transition: 1.2s 0.6s ease-in-out;
 }
-.small{
-  width: 100px;
-  height: 100px;
-  top: 76%;
-  left: 59%;
+.ball2{
+  top: 36%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  transition: 1.2s 0.6s ease-in-out;
+}
+.ball3{
+  top: 79%;
+  left: 89%;
+  transform: translate(-50%, -50%);
+  transition: 1.2s 0.6s ease-in-out;
 }
 form {
   display: flex;
@@ -254,8 +272,9 @@ form.sign-in-form {
 
 .social-media {
   display: flex;
-  height: 50px;
+  height: 55px;
   width: 260px;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -271,20 +290,61 @@ form.sign-in-form {
   border: 1px solid #333;
   text-decoration: none;
   font-size: 1.1rem;
-  transition: 0.3s;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  &:active{
+        transform: scale(1.1);
+      }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:transparent;
+    border-radius: 10rem;
+    z-index: -2;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 0%;
+    border-radius: 50rem;
+    background-size: 400% 400%;
+    background-position: 0 0;
+    background-image: linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+    transition: all .3s;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    background: none;
+    border: 2px solid #fff;
+    &:before {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
-.social-icon:hover {
-  color:  #4974a5;
-  border-color:  #4974a5;
-  height: 49px;
-  width: 48px;
-}
+// .social-icon:hover {
+//   color:  #4974a5;
+//   border-color:  #4974a5;
+//   height: 49px;
+//   width: 48px;
+// }
 .form-buttons{
   width: 100%;
   text-align: center;
   height: 60px;
-  margin-top:10px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .panels-container {
   position: absolute;
@@ -336,6 +396,7 @@ form.sign-in-form {
 
 .right-panel {
   pointer-events: none;
+  overflow: hidden;
   padding: 3rem 12% 2rem 17%;
 }
 
@@ -356,7 +417,10 @@ form.sign-in-form {
   padding: 0.7rem 0;
 }
 .transparent-div{
-  height:45px;
+  height:55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .right-panel .image,
 .right-panel .content {
@@ -376,13 +440,17 @@ form.sign-in-form {
 .container.sign-up-mode .signin-signup {
   left: 25%;
 }
-.container.sign-up-mode .login-ball{
-  left: 8%;
-  top: 25%;
+.container.sign-up-mode .ball1{
+  left: 36%;
+  top: 82%;
 }
-.container.sign-up-mode .small{
-  left: 42%;
-  top: 76%;
+.container.sign-up-mode .ball2{
+   left: 43%;
+  top: 23%;
+}
+.container.sign-up-mode .ball3{
+  left: 11%;
+  top: 9%;
 }
 
 .container.sign-up-mode form.sign-up-form {
@@ -413,7 +481,7 @@ form.sign-in-form {
     min-height: 800px;
     height: 100vh;
   }
-  .login-ball{
+  .ball1, .ball2, .ball3{
     display:none;
   }
   .signin-signup {

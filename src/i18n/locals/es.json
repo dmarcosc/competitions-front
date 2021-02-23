@@ -1,0 +1,33 @@
+{   
+    "combobox": {
+        "loading": "Cargando...",
+        "notOptions": "No hay opciones"
+    },
+    "main":{
+        "retrievingData": "Cargando..."
+    },
+    "header": {
+        "home": "Inicio"
+    },
+    "error": {
+        "title404": "Hay un problema en el sistema",
+
+        "errors_404": {
+            "STP_KO24": "Error guardando paso 24: Firmado OK"
+        }
+    },
+    "buttons": {
+        "accept": "Aceptar",
+        "access": "Acceder",
+        "send": "Enviar",
+        "back": "Volver",
+        "continue": "Continuar",
+        "calculate": "Calcular",
+        "close": "Cerrar",
+        "save": "Guardar",
+        "yes":"SI",
+        "no":"NO",
+        "tryAgain":"Volver a intentar"
+    }
+}
+
