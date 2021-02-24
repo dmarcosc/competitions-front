@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard">
+    <NavMenu route="Home" />
     <div class="dashboard-container">
       <Button primary>
         Apply
@@ -10,23 +11,30 @@
 
 <script>
 import Button from '@/components/Button.vue'
+import NavMenu from '@/components/NavMenu.vue'
 
 export default {
   name: 'Dashboard',
   components: {
-    Button
+    Button,
+    NavMenu
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$primary-color: #4974a5;
+$main-background: #C9D6FF;
+$main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+$main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
+
 .dashboard{
   z-index: 2;
   max-width: 100%;
   width: 100%;
-  background: #C9D6FF;
-  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+  background:$main-background;
+  background: $main-background2;
+  background: $main-background3;
   height: 100vh;
   overflow: hidden;
   display:flex;

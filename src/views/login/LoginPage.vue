@@ -93,7 +93,7 @@
               </Button>
             </div>
           </div>
-          <img src="@/assets/images/lost.svg" class="image" alt="">
+          <img src="@/assets/images/lost.svg" class="image" alt="lost-person">
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -142,6 +142,10 @@ export default {
 
 <style lang="scss" scoped>
 
+$primary-color: #4974a5;
+$main-background: #C9D6FF;
+$main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+$main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .login-div,
 input {
   font-family: "Poppins", sans-serif;
@@ -151,9 +155,9 @@ input {
   position: relative;
   max-width: 100%;
   width: 100%;
-  background: #C9D6FF;
-  background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+  background:$main-background;
+  background: $main-background2;
+  background: $main-background3;
   min-height: 100vh;
   overflow: hidden;
 }

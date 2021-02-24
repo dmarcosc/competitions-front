@@ -84,7 +84,7 @@ export default {
   margin: 0;
   z-index: 1;
   &:active{
-        transform: scale(1.1);
+        width:136px;
       }
   &:after {
     content: '';
