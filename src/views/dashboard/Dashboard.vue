@@ -2,24 +2,54 @@
   <div class="dashboard">
     <NavMenu route="Home" />
     <div class="dashboard-container">
-      <Button primary>
-        Apply
-      </Button>
+      <div class="dashboard-block">
+        <div class="dashboard-card">
+          <h1 class="dashboard-title">
+            Browse through job and open position listings
+          </h1>
+          <h2 class="dashboard-subtitle">
+            and easily apply in just a few steps, the result will only deppend on your own merits
+          </h2>
+          <div class="dashboard-buttons">
+            <Button primary>
+              Apply
+            </Button>
+          </div>
+        </div>
+        <img class="dashboard-img" src="@/assets/images/mirror.svg">
+      </div>
+      <div class="dashboard-block bottom">
+        <div class="dashboard-card">
+          <h1 class="dashboard-title">
+            Build your own selection process
+          </h1>
+          <h2 class="dashboard-subtitle">
+            choose the requirements and skills you want, set a deadline, sit down and wait for results
+          </h2>
+          <div class="dashboard-buttons">
+            <Button primary>
+              Create
+            </Button>
+          </div>
+        </div>
+        <img class="dashboard-img" src="@/assets/images/factors.svg">
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenu from '@/components/NavMenu.vue'
 
-export default {
+export default Vue.extend({
   name: 'Dashboard',
   components: {
     Button,
     NavMenu
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -52,6 +82,68 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   -webkit-backdrop-filter: blur( 8.0px );
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding-left: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.dashboard-block{
+  display:flex;
+  align-items: center;
+}
+.dashboard-card{
+  flex-basis: 35%;
+}
+.dashboard-title{
+  color: $primary-color;
+  font-size: 29px;
+  // margin-bottom:1em;
+}
+.dashboard-subtitle{
+  color:#fff;
+  font-size: 22px;
+  margin:1em 0em;
+}
+.dashboard-buttons{
+  padding:1em;
+}
+.dashboard-img{
+  height: 260px;
+  margin-left: 7em;
+}
+@media (max-width: 1150px) {
+  .dashboard-card{
+    flex-basis: 70%;
+  }
+.dashboard-img{
+  margin-left: .5em;
+  }
 }
 
+@media (max-width: 900px) {
+  .dashboard-img{
+    display: none
+  }
+  .dashboard-card{
+  flex-basis: 100%;
+  }
+}
+@media (max-height: 850px) {
+  .dashboard-subtitle{
+    margin:0em;
+  }
+}
+@media (max-height: 850px) {
+  .dashboard-subtitle{
+    margin:0em;
+  }
+}
+@media (max-height: 850px) {
+  .dashboard-subtitle{
+   font-size: 17px;
+  }
+  .dashboard-title{
+  font-size: 24px;
+}
+}
 </style>

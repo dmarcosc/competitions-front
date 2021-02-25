@@ -83,8 +83,10 @@ export default {
   overflow: hidden;
   margin: 0;
   z-index: 1;
+  backface-visibility: hidden;
   &:active{
-        width:136px;
+        // width:136px;
+        transform: scale(1.1)
       }
   &:after {
     content: '';

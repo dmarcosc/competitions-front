@@ -14,6 +14,21 @@ const routes: Array<RouteConfig> = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Dashboard.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/profile/Profile.vue')
+  },
+  {
+    path: '/apply',
+    name: 'Apply',
+    component: () => import('../views/apply/Apply.vue')
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: () => import('../views/create/Create.vue')
   }
   // {
   //   path: '/finish',

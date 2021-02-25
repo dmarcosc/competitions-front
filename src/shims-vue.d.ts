@@ -4,16 +4,16 @@ declare module '*.vue' {
 }
 
 declare module '*.png' {
-  const value: any;
+  const value: any
   export = value;
 }
 
 declare module '*.svg' {
-  const value: any;
+  const value: any
   export = value;
 }
 
 declare module '*.json' {
-  const value: any;
+  const value: any
   export = value;
 }
