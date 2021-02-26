@@ -41,7 +41,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import NavMenu from '@/components/NavMenu.vue'
+import NavMenu from '@/components/NavMenu/NavMenu.vue'
 
 export default Vue.extend({
   name: 'Dashboard',
@@ -119,31 +119,69 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   margin-left: .5em;
   }
 }
-
 @media (max-width: 900px) {
   .dashboard-img{
-    display: none
+    height: 160px;
+  }
+  .dashboard-subtitle{
+   font-size: 17px;
+   margin:0em;
+  }
+  .dashboard-title{
+  font-size: 24px;
+}
+}
+@media (max-width: 700px) {
+  .dashboard{
+    height:100% ;
+  }
+  .dashboard-block{
+    flex-direction: column;
+    margin-bottom:1.5em;
   }
   .dashboard-card{
   flex-basis: 100%;
+  margin:3em 0em;
   }
 }
-@media (max-height: 850px) {
-  .dashboard-subtitle{
-    margin:0em;
+@media (max-width: 400px) {
+  .dashboard-img{
+    height: 130px !important;
+  }
+  .dashboard-container{
+    padding-left:1.5em;
   }
 }
-@media (max-height: 850px) {
-  .dashboard-subtitle{
-    margin:0em;
+@media (max-height: 650px) {
+  .dashboard-img{
+    height: 150px;
   }
 }
 @media (max-height: 850px) {
   .dashboard-subtitle{
    font-size: 17px;
+   margin:0em;
   }
   .dashboard-title{
   font-size: 24px;
 }
+}
+@media (min-height: 1200px) {
+  .dashboard-subtitle{
+   font-size: 29px;
+   margin:0em;
+  }
+  .dashboard-title{
+  font-size: 36px;
+}
+.dashboard-img{
+    height: 340px;
+  }
+}
+@media (min-width: 1300px) {
+.dashboard-img{
+    height: 300px;
+    margin-left: 11em;
+  }
 }
 </style>

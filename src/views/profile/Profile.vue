@@ -12,7 +12,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import NavMenu from '@/components/NavMenu.vue'
+import NavMenu from '@/components/NavMenu/NavMenu.vue'
 
 export default Vue.extend({
   name: 'Profile',

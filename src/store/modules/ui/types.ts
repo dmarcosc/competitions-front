@@ -1,7 +1,7 @@
 export interface StateUi {
   modal: StateUiModal;
   mask: StateUiMask;
-  faldon: StateUiFaldon;
+  menu: StateUiMenu;
 }
 
 export interface StateUiModal {
@@ -15,7 +15,7 @@ export interface StateUiMask {
   text: string;
 }
 
-export interface StateUiFaldon {
+export interface StateUiMenu {
   show: boolean;
 }
 

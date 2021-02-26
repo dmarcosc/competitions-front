@@ -20,8 +20,8 @@ export const ui: Module<StateUi, RootStore> = {
       text: getDefaultTextMask(),
       show: false
     },
-    faldon: {
-      show: true
+    menu: {
+      show: false
     }
   },
   mutations: {
@@ -39,8 +39,11 @@ export const ui: Module<StateUi, RootStore> = {
     closeDialog (state) {
       state.modal = getDefaultStateModal()
     },
-    toggleFaldon (state, { show }) {
-      state.faldon.show = show
+    toggleMenu (state) {
+      state.menu.show = !state.menu.show
+    },
+    hideMenu (state) {
+      state.menu.show = false
     }
   },
   actions: {
@@ -56,11 +59,11 @@ export const ui: Module<StateUi, RootStore> = {
     closeDialog ({ commit }) {
       commit('closeDialog')
     },
-    showFaldon ({ commit }) {
-      commit('toggleFaldon', { show: true })
+    toggleMenu ({ commit }) {
+      commit('toggleMenu')
     },
-    hideFaldon ({ commit }) {
-      commit('toggleFaldon', { show: false })
+    hideMenu ({ commit }) {
+      commit('hideMenu')
     }
   },
   getters: {
@@ -70,8 +73,8 @@ export const ui: Module<StateUi, RootStore> = {
     dialogInfo (state) {
       return state.modal
     },
-    faldonInfo (state) {
-      return state.faldon
+    menuInfo (state) {
+      return state.menu
     }
   }
 }

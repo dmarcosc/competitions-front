@@ -46,7 +46,7 @@ export default {
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
-    transition: all ease 0.2s;
+    transition: all ease 0.1s;
     text-align: center;
     position: relative;
     overflow: hidden;

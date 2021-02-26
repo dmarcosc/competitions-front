@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'nav-menu' : !isMobile, 'nav-menu mobile' : isMobile}">
+  <div :class="{'nav-menu' : !isMobile, 'nav-menu mobile' : isMobile}" @click="handleMobileMenu()">
     <button class="logo-img" @click="toHome()">
       <BlueBall small class="logo-ball-big" />
       <BlueBall small class="logo-ball-small" />
@@ -31,7 +31,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import BlueBall from './BlueBall.vue'
+import BlueBall from '@/components/BlueBall.vue'
 export default Vue.extend({
   name: 'NavMenu',
   components: {
@@ -46,8 +46,12 @@ export default Vue.extend({
   },
   data () {
     return {
-      isMobile: false
+      isMobile: false,
+      showMenuMobile: false
     }
+  },
+  updated () {
+    this.hideMobileMenu()
   },
   mounted () {
     this.checkIsMobile()
@@ -59,8 +63,16 @@ export default Vue.extend({
     window.removeEventListener('resize', this.checkIsMobile)
   },
   methods: {
+    hideMobileMenu () {
+      if (!this.isMobile) this.$store.dispatch('ui/hideMenu')
+    },
     checkIsMobile () {
-      this.isMobile = window.innerHeight < 850 || window.innerWidth < 700
+      this.isMobile = window.innerHeight < 600 || window.innerWidth <= 751
+    },
+    handleMobileMenu () {
+      if (this.isMobile) {
+        this.$store.dispatch('ui/toggleMenu')
+      }
     },
     toHome () {
       this.$router.push('/dashboard').catch((err: string) => { return err })
@@ -96,7 +108,7 @@ $primary-color: #4974a5;
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   &.mobile{
-    background-image: url('../assets/images/favicon.png');
+    background-image: url('../../assets/images/favicon.png');
     background-size: 80%;
     background-color: #fff;
     background-position: center;
@@ -107,6 +119,7 @@ $primary-color: #4974a5;
     z-index: 6;
     width:80px;
     height:70px;
+    cursor:pointer;
   :nth-child(1),:nth-child(2),:nth-child(3){
     display:none;
   }
@@ -191,7 +204,7 @@ to   {  transform: translateX(7px) translateY(-7px); }
 }
 .menu-img{
   height: 150px;
-  margin-bottom: 30px;
+   margin-bottom: 20px;
 }
 .fas{
   background: #fff;
@@ -239,6 +252,37 @@ to   {  transform: translateX(7px) translateY(-7px); }
   font-weight: 800;
   &:active{
     color: #fff !important;
+  }
+}
+@media (max-height: 800px) {
+.menu-img{
+  height:90px;
+  margin-bottom: 10px;
+}
+.fas{
+width:40px;
+height:40px;
+padding-top:12px;
+}
+.logo-img{
+  width:90px;
+  height:90px;
+    background-image: url('../../assets/images/favicon.png');
+    background-size: 80%;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.logo-ball-small, .logo-ball-big{
+  display: none;
+}
+.nav-items{
+  margin:10px 0px;
+}
+}
+@media (min-height: 1200px) {
+  .nav-items{
+    margin:4em 0px;
   }
 }
 </style>
