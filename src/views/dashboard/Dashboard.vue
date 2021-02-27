@@ -11,7 +11,7 @@
             and easily apply in just a few steps, the result will only deppend on your own merits
           </h2>
           <div class="dashboard-buttons">
-            <Button primary>
+            <Button primary @click="toApply">
               Apply
             </Button>
           </div>
@@ -27,7 +27,7 @@
             choose the requirements and skills you want, set a deadline, sit down and wait for results
           </h2>
           <div class="dashboard-buttons">
-            <Button primary>
+            <Button primary @click="toCreate">
               Create
             </Button>
           </div>
@@ -48,6 +48,14 @@ export default Vue.extend({
   components: {
     Button,
     NavMenu
+  },
+  methods: {
+    toCreate () {
+      this.$router.push('/create').catch((err: string) => { return err })
+    },
+    toApply () {
+      this.$router.push('/apply').catch((err: string) => { return err })
+    }
   }
 })
 </script>
@@ -134,6 +142,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 @media (max-width: 700px) {
   .dashboard{
     height:100% ;
+    min-height: 100vh;
   }
   .dashboard-block{
     flex-direction: column;

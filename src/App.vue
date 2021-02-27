@@ -3,9 +3,18 @@
     <transition name="show" mode="in-out">
       <NavMenuMobile v-if="menuInfo.show" :route="route" />
     </transition>
-    <BlueBall v-if="login" big class="ball1" />
-    <BlueBall v-if="login" medium class="ball2" />
-    <BlueBall v-if="login" small class="ball3" />
+    <BlueBall v-if="login" id="ball"
+              big
+              class="ball1"
+    />
+    <BlueBall v-if="login" id="ball"
+              medium
+              class="ball2"
+    />
+    <BlueBall v-if="login" id="ball"
+              small
+              class="ball3"
+    />
     <router-view />
   </div>
 </template>
@@ -13,8 +22,8 @@
 <script>
 import BlueBall from '@/components/BlueBall.vue'
 import NavMenuMobile from '@/components/NavMenu/NavMenuMobile.vue'
-
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'App',
   components: {
     BlueBall,
@@ -37,8 +46,34 @@ export default {
       if (this.$router.currentRoute.name === 'Home') this.login = false
       else this.login = true
     }
+  },
+  updated () {
+    this.relocate()
+  },
+  methods: {
+    relocate () {
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        const placementX = Math.floor(Math.random() * Math.floor(100))
+        element.style.setProperty('--relocation-distanceX', placementX + '%')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        const placementY = Math.floor(Math.random() * Math.floor(100))
+        element.style.setProperty('--relocation-distanceY', placementY + '%')
+      })
+    },
+    relocateError () {
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        element.style.setProperty('--relocation-distanceX', 34 + '%')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        element.style.setProperty('--relocation-distanceY', 67 + '%')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        element.style.setProperty('transition-delay', 1 + 's')
+      })
+    }
   }
-}
+})
 </script>
 <style lang="scss">
 .show {
@@ -52,5 +87,10 @@ export default {
     {
         transition: transform .7s ease;
     }
+}
+#ball {
+  transition: 1s;
+  top: var(--relocation-distanceX) !important;
+  left: var(--relocation-distanceY) !important;
 }
 </style>

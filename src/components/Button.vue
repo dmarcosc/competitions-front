@@ -34,18 +34,17 @@ export default {
   .primary-btn {
     width: 160px;
     background-color: #4974a5;
-    background-size: 200% 200%;
-    background-position: 0 0;
     background-image:
-    linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+    linear-gradient(to left, rgb(63, 59, 126) 0%, rgb(69, 87, 138) 0%, rgb(93, 141, 196) 100%);
     border:none;
     outline:none;
     height: 49px;
     border-radius: 20px;
     color: #fff;
-    text-transform: uppercase;
     font-weight: 600;
+    font-size:14px;
     cursor: pointer;
+    backface-visibility: hidden;
     transition: all ease 0.1s;
     text-align: center;
     position: relative;
@@ -107,9 +106,7 @@ export default {
     width: 0%;
     height: 0%;
     border-radius: 50rem;
-    background-size: 400% 400%;
-    background-position: 0 0;
-    background-image: linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+    background-image: linear-gradient(to left, rgb(63, 59, 126) 0%, rgb(69, 87, 138) 0%, rgb(93, 141, 196) 100%);
     transition: all .3s;
     z-index: -1;
   }
@@ -121,6 +118,13 @@ export default {
       width: 100%;
       height: 100%;
     }
+  }
+}
+@media (min-width: 1300px) and (min-height: 800px)  {
+  .primary-btn {
+  width: 165px;
+  height: 51px;
+  font-size:18px;
   }
 }
 

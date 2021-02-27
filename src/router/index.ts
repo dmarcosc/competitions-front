@@ -21,6 +21,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/profile/Profile.vue')
   },
   {
+    path: '/profile/detail',
+    name: 'Detail',
+    component: () => import('../views/profile/Detail.vue')
+  },
+  {
     path: '/apply',
     name: 'Apply',
     component: () => import('../views/apply/Apply.vue')
@@ -29,7 +34,7 @@ const routes: Array<RouteConfig> = [
     path: '/create',
     name: 'Create',
     component: () => import('../views/create/Create.vue')
-  }
+  },
   // {
   //   path: '/finish',
   //   name: 'Finish',
@@ -37,12 +42,12 @@ const routes: Array<RouteConfig> = [
   //   meta: { requiresAuth: true },
   //   props: true
   // },
-  // {
-  //   path: '*',
-  //   name: 'Error404',
-  //   component: () => import('../views/error404/Error404.vue'),
-  //   props: true
-  // }
+  {
+    path: '*',
+    name: 'Error404',
+    component: () => import('../views/error404/Error404.vue'),
+    props: true
+  }
 ]
 
 const router = new VueRouter({

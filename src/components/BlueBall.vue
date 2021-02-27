@@ -34,7 +34,7 @@ export default {
   border-radius: 50%;
   background-color: #4974a5;
   background-image:
-  linear-gradient(to left, rgba(2,0,36,1) 0%, rgba(29,44,85,1) 0%, rgba(73,116,165,1) 100%);
+  linear-gradient(to left, rgb(76, 73, 148) 0%, rgb(75, 99, 165) 0%, rgb(135, 185, 241) 100%);
 }
 .big{
   width: 200px;

@@ -65,10 +65,11 @@ $primary-color: #4974a5;
   display:flex;
   flex-direction: column;
   color:#fff;
-  padding:130px 0px;
+  padding:6em 0em 0em 0em;
 }
 .nav-mobile-link{
 padding:1em 1em;
+cursor:pointer;
   &.active{
     background:#274568;
     outline: 1px solid black;

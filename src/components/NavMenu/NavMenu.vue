@@ -101,6 +101,7 @@ $primary-color: #4974a5;
   align-items: center;
   justify-content: space-around;
   height: 100%;
+  min-height: 90vh;
   background: rgba( 255, 255, 255, 0.20 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 8.0px );
@@ -119,6 +120,7 @@ $primary-color: #4974a5;
     z-index: 6;
     width:80px;
     height:70px;
+    min-height: auto;
     cursor:pointer;
   :nth-child(1),:nth-child(2),:nth-child(3){
     display:none;
