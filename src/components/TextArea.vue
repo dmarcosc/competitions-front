@@ -1,10 +1,10 @@
 <template>
-  <div class="tf-div">
-    <label class="tf-label">{{ label }}</label>
-    <v-text-field
+  <div class="ta-div">
+    <label class="ta-label">{{ label }}</label>
+    <v-textarea
       v-model="valueData"
       v-bind="$attrs"
-      class="myTextField"
+      class="myTextArea"
       solo
       @input="e => $emit('input', e)"
       @blur="e => $emit('blur', e)"
@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'TextField',
+  name: 'TextArea',
   props: {
     value: {
       type: String,
@@ -83,12 +83,12 @@ export default {
 
 <style lang="scss" scoped>
 $primary-color: #4974a5;
-.tf-label{
+.ta-label{
   color:$primary-color;
   font-size: 15px;
   font-weight: 700;
 }
-.myTextField{
+.myTextArea{
   margin-top:10px;
 }
 

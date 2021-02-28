@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
     name: 'Create',
     component: () => import('../views/create/Create.vue')
   },
+  {
+    path: '/create/generalParams',
+    name: 'GeneralParams',
+    component: () => import('../views/create/GeneralParams.vue')
+  },
   // {
   //   path: '/finish',
   //   name: 'Finish',

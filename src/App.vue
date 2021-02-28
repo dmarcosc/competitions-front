@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <transition name="show" mode="in-out">
       <NavMenuMobile v-if="menuInfo.show" :route="route" />
     </transition>
@@ -15,8 +15,10 @@
               small
               class="ball3"
     />
-    <router-view />
-  </div>
+    <v-container class="app-container">
+      <router-view />
+    </v-container>
+  </v-app>
 </template>
 
 <script>

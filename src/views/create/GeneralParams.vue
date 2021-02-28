@@ -1,17 +1,24 @@
 <template>
-  <div class="create">
-    <NavMenu route="Create" />
-    <div class="create-container">
-      <div class="create-titlecard">
-        <h1>Creation process</h1>
-        <span class="create-info"><i class="fas fa-info-circle "> info</i></span>
+  <div class="general">
+    <div class="general-container">
+      <div class="general-titlecard">
+        <h1>General params</h1>
+        <span class="general-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
-      <TextField label="Please enter a name for your contest" class="create-tf" />
-      <Button primary class="create-button" @click="toGeneralParams">
+      <br>
+      <br>
+      <TextField label="Company/Employer" class="general-tf" />
+      <ComboBox label="Field" class="general-tf"
+                :items="items"
+                vmodel="selected"
+      />
+      <TextField label="Due date" class="general-tf" />
+      <TextField label="Number of vacancies" class="general-tf" />
+      <TextArea label="Description" class="general-tf" />
+      <Button primary class="general-button" @click="toMinRequirements">
         Start
       </Button>
-      <img class="create-img" src="@/assets/images/build.svg">
     </div>
   </div>
 </template>
@@ -19,19 +26,27 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import TextField from '@/components/TextField.vue'
+import TextArea from '@/components/TextArea.vue'
+import ComboBox from '@/components/ComboBox.vue'
 
 export default Vue.extend({
-  name: 'Create',
+  name: 'GeneralParams',
   components: {
     Button,
     TextField,
-    NavMenu
+    TextArea,
+    ComboBox
+  },
+  data () {
+    return {
+      items: ['Software Development', 'Computer Science', 'Machine Learning', 'Web Development'],
+      selected: ''
+    }
   },
   methods: {
-    toGeneralParams () {
-      this.$router.push('/create/generalParams').catch((err: string) => { return err })
+    toMinRequirements () {
+      this.$router.push('/create/minRequirements').catch((err: string) => { return err })
     }
   }
 })
@@ -43,7 +58,7 @@ $main-background: #C9D6FF;
 $main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
 $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 
-.create{
+.general{
   z-index: 2;
   max-width: 100%;
   width: 100%;
@@ -58,9 +73,9 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 6em 8em;
 }
-.create-container{
+.general-container{
   width: 100%;
   height: 100%;
   z-index: 5;
@@ -70,14 +85,14 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   -webkit-backdrop-filter: blur( 8.0px );
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
-  padding:2em;
+  padding:2em 3em;
 }
-.create-titlecard{
+.general-titlecard{
   display:flex;
   align-items: center;
   margin-bottom:1em;
 }
-.create-info{
+.general-info{
   user-select: none;
   font-size: 18px;
   cursor:pointer;
@@ -88,35 +103,12 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
     color: #fff
   }
 }
-.create-tf{
-  margin:3em 0em;
-}
-.create-button{
+.general-button{
   margin-bottom:2em;
 }
-.create-img{
-height:100px;
-float: right;
-}
 @media (min-width: 750px) {
-  .create{
+  .general{
     height: 100vh;
-  }
-  .create-img{
-    height:18rem;
-    position:absolute;
-    bottom:4em;
-    right:4em;
-  }
-}
-@media (max-height: 700px) {
-  .create-img{
-    height:140px;
-  }
-}
-@media (min-width: 1300px) and (min-height: 800px)  {
-  .create-img{
-    height:28rem;
   }
 }
 

@@ -4,7 +4,7 @@
     <div class="profile-container">
       <div class="profile-titlecard">
         <h1>Contests created by me</h1>
-        <span class="profile-info"><i class="fas fa-info-circle">info</i></span>
+        <span class="profile-info"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
       <v-data-table
@@ -157,10 +157,15 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   margin-bottom:1em;
 }
 .profile-info{
+  user-select:none;
+  font-size: 18px;
   cursor:pointer;
   margin-left: auto;
   min-width: 90px;
   text-align: right;
+  &:active{
+    color: #fff
+  }
 }
 ::v-deep
 .v-data-table{

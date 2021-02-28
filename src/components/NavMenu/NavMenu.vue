@@ -93,7 +93,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 $primary-color: #4974a5;
 .nav-menu{
-  z-index: 5;
+  z-index: 9;
   width: 17em;
   margin-right: 3em;
   display: flex;

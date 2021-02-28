@@ -33,6 +33,7 @@ export default {
 <style lang="scss" scoped>
   .primary-btn {
     width: 160px;
+    user-select: none;
     background-color: #4974a5;
     background-image:
     linear-gradient(to left, rgb(63, 59, 126) 0%, rgb(69, 87, 138) 0%, rgb(93, 141, 196) 100%);
@@ -69,6 +70,7 @@ export default {
 }
   .secondary-btn {
   width: 130px;
+  user-select: none;
   background: none;
   border: 2px solid #444;
   height: 41px;
@@ -118,13 +120,6 @@ export default {
       width: 100%;
       height: 100%;
     }
-  }
-}
-@media (min-width: 1300px) and (min-height: 800px)  {
-  .primary-btn {
-  width: 165px;
-  height: 51px;
-  font-size:18px;
   }
 }
 

@@ -115,14 +115,36 @@ export default Vue.extend({
   },
   methods: {
     relocateError () {
+      const top = document.querySelector('.img-404')?.getBoundingClientRect().top ?? -300
+      const left = document.querySelector('.img-404')?.getBoundingClientRect().left ?? -400
+      // debugger
+      if (window.innerWidth > 1050) {
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceX', top + 80 + 'px')
+        })
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceY', left + 200 + 'px')
+        })
+      } else if (window.innerWidth > 650) {
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceX', top + 'px')
+        })
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceY', left + 50 + 'px')
+        })
+      } else {
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceX', -150 + 'px')
+        })
+        document.querySelectorAll('[id=ball]').forEach(element => {
+          (element as any).style.setProperty('--relocation-distanceY', -150 + 'px')
+        })
+      }
       document.querySelectorAll('[id=ball]').forEach(element => {
-        (element as any).style.setProperty('--relocation-distanceX', 36 + '%')
+        (element as any).style.setProperty('transition', '.7' + 's')
       })
       document.querySelectorAll('[id=ball]').forEach(element => {
-        (element as any).style.setProperty('--relocation-distanceY', 68 + '%')
-      })
-      document.querySelectorAll('[id=ball]').forEach(element => {
-        (element as any).style.setProperty('transition', '.6' + 's')
+        (element as any).style.setProperty('transform', 'scale(0.7)')
       })
       setTimeout(() => this.$router.back(), 500)
     }

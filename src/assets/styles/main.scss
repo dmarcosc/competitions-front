@@ -5,6 +5,22 @@
     font-family: "Poppins", sans-serif;
     overflow-y: hidden;
   }
+  .app-container{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position:relative;
+    overflow: hidden;
+    min-width: 100vw;
+  }
+  .v-application--wrap{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    position:relative;
+    overflow: hidden;
+  }
   #app{
       margin: 0;
       padding: 0;

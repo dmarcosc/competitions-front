@@ -1,21 +1,19 @@
 <template>
-  <div class="tf-div">
-    <label class="tf-label">{{ label }}</label>
-    <v-text-field
+  <div class="cb-div">
+    <label class="cb-label">{{ label }}</label>
+    <v-combobox
       v-model="valueData"
       v-bind="$attrs"
-      class="myTextField"
+      class="myCombobox"
       solo
-      @input="e => $emit('input', e)"
-      @blur="e => $emit('blur', e)"
     />
   </div>
 </template>
 
 <script>
-
-export default {
-  name: 'TextField',
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'ComboBox',
   props: {
     value: {
       type: String,
@@ -78,18 +76,27 @@ export default {
       this.valueData = ''
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
 $primary-color: #4974a5;
-.tf-label{
+.cb-label{
   color:$primary-color;
   font-size: 15px;
   font-weight: 700;
 }
-.myTextField{
+.myCombobox{
   margin-top:10px;
+}
+::v-deep
+.v-icon.v-icon{
+ overflow: hidden !important;
+}
+::v-deep
+.v-input__icon{
+  cursor:pointer;
+  overflow: hidden !important;
 }
 
 </style>
