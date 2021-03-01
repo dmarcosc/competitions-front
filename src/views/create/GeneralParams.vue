@@ -1,5 +1,6 @@
 <template>
   <div class="general">
+    <NavMenuHome />
     <div class="general-container">
       <div class="general-titlecard">
         <h1>General params</h1>
@@ -17,7 +18,7 @@
       <TextField label="Number of vacancies" class="general-tf" />
       <TextArea label="Description" class="general-tf" />
       <Button primary class="general-button" @click="toMinRequirements">
-        Start
+        Continue
       </Button>
     </div>
   </div>
@@ -29,6 +30,7 @@ import Button from '@/components/Button.vue'
 import TextField from '@/components/TextField.vue'
 import TextArea from '@/components/TextArea.vue'
 import ComboBox from '@/components/ComboBox.vue'
+import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 
 export default Vue.extend({
   name: 'GeneralParams',
@@ -36,7 +38,8 @@ export default Vue.extend({
     Button,
     TextField,
     TextArea,
-    ComboBox
+    ComboBox,
+    NavMenuHome
   },
   data () {
     return {
@@ -46,7 +49,7 @@ export default Vue.extend({
   },
   methods: {
     toMinRequirements () {
-      this.$router.push('/create/minRequirements').catch((err: string) => { return err })
+      this.$router.push('/create/creationRequirements').catch((err: string) => { return err })
     }
   }
 })
@@ -73,7 +76,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 6em 8em;
+  padding: 6em 2em;
 }
 .general-container{
   width: 100%;
@@ -106,9 +109,9 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .general-button{
   margin-bottom:2em;
 }
-@media (min-width: 750px) {
+@media (min-width: 580px) {
   .general{
-    height: 100vh;
+    padding: 1em 8em;
   }
 }
 

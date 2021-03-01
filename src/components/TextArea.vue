@@ -6,6 +6,7 @@
       v-bind="$attrs"
       class="myTextArea"
       solo
+      no-resize
       @input="e => $emit('input', e)"
       @blur="e => $emit('blur', e)"
     />
