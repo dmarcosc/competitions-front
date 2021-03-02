@@ -44,6 +44,8 @@ export default Vue.extend({
   },
   watch: {
     $route () {
+      // if (this.$router.currentRoute.name !== 'Dashboard' && this.$router.currentRoute.name !== 'Create' && this.$router.currentRoute.name !== 'Profile' && this.$router.currentRoute.name !== 'Apply' && this.$router.currentRoute.name !== 'Detail')
+      this.$store.dispatch('ui/hideMenu')
       this.route = this.$router.currentRoute.name
       if (this.$router.currentRoute.name === 'Home') this.login = false
       else this.login = true
@@ -62,17 +64,6 @@ export default Vue.extend({
         const placementY = Math.floor(Math.random() * Math.floor(100))
         element.style.setProperty('--relocation-distanceY', placementY + '%')
       })
-    },
-    relocateError () {
-      document.querySelectorAll('[id=ball]').forEach(element => {
-        element.style.setProperty('--relocation-distanceX', 34 + '%')
-      })
-      document.querySelectorAll('[id=ball]').forEach(element => {
-        element.style.setProperty('--relocation-distanceY', 67 + '%')
-      })
-      document.querySelectorAll('[id=ball]').forEach(element => {
-        element.style.setProperty('transition-delay', 1 + 's')
-      })
     }
   }
 })
@@ -81,13 +72,13 @@ export default Vue.extend({
 .show {
   &-enter,
     &-leave-to {
-        transform: translateX(-100%);
+        transform: translateX(-100%) translateY(-100%);
         transition: all .7s ease-in 0s
     }
     &-enter-active,
     &-leave-active
     {
-        transition: transform .7s ease;
+        transition: transform 1.1s ease;
     }
 }
 #ball {

@@ -1,17 +1,25 @@
 <template>
-  <div class="create">
-    <NavMenu route="Create" />
-    <div class="create-container">
-      <div class="create-titlecard">
-        <h1>Creation process</h1>
-        <span class="create-info"><i class="fas fa-info-circle "> info</i></span>
+  <div class="personalData">
+    <NavMenuHome />
+    <div class="personalData-container">
+      <div class="personalData-titlecard">
+        <h1>Personal data</h1>
+        <span class="personalData-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
-      <TextField label="Please enter a name for your contest" class="create-tf" />
-      <Button primary class="create-button" @click="toGeneralParams">
-        Start
+      <br>
+      <br>
+      <TextField label="First-name" class="personalData-tf" />
+      <TextField label="Second-name" class="personalData-tf" />
+      <TextField label="Date of birth" class="personalData-tf" />
+      <TextField label="Phone number" class="personalData-tf" />
+      <ComboBox label="Country" class="personalData-tf"
+                :items="items"
+                vmodel="selected"
+      />
+      <Button primary class="personalData-button" @click="toMinRequirements">
+        Continue
       </Button>
-      <img class="create-img" src="@/assets/images/build.svg">
     </div>
   </div>
 </template>
@@ -19,19 +27,27 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import TextField from '@/components/TextField.vue'
+import ComboBox from '@/components/ComboBox.vue'
+import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 
 export default Vue.extend({
-  name: 'Create',
+  name: 'PersonalData',
   components: {
     Button,
     TextField,
-    NavMenu
+    ComboBox,
+    NavMenuHome
+  },
+  data () {
+    return {
+      items: ['Spain', 'France', 'Germany', 'Italy'],
+      selected: ''
+    }
   },
   methods: {
-    toGeneralParams () {
-      this.$router.push('/create/generalParams').catch((err: string) => { return err })
+    toMinRequirements () {
+      this.$router.push('/apply/requirements').catch((err: string) => { return err })
     }
   }
 })
@@ -43,7 +59,7 @@ $main-background: #C9D6FF;
 $main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
 $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 
-.create{
+.personalData{
   z-index: 2;
   max-width: 100%;
   width: 100%;
@@ -58,9 +74,9 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 5em 2em;
+  padding: 6em 2em;
 }
-.create-container{
+.personalData-container{
   width: 100%;
   height: 100%;
   z-index: 5;
@@ -70,14 +86,14 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   -webkit-backdrop-filter: blur( 8.0px );
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
-  padding:2em;
+  padding:2em 3em;
 }
-.create-titlecard{
+.personalData-titlecard{
   display:flex;
   align-items: center;
   margin-bottom:1em;
 }
-.create-info{
+.personalData-info{
   user-select: none;
   font-size: 18px;
   cursor:pointer;
@@ -88,35 +104,12 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
     color: #fff
   }
 }
-.create-tf{
+.personalData-button{
   margin:3em 0em;
 }
-.create-button{
-  margin-bottom:2em;
-}
-.create-img{
-height:100px;
-float: right;
-}
-@media (min-width: 750px) {
-  .create{
-    height: 100vh;
-  }
-  .create-img{
-    height:18rem;
-    position:absolute;
-    bottom:4em;
-    right:4em;
-  }
-}
-@media (max-height: 700px) {
-  .create-img{
-    height:140px;
-  }
-}
-@media (min-width: 1300px) and (min-height: 800px)  {
-  .create-img{
-    height:28rem;
+@media (min-width: 580px) {
+  .personalData{
+    padding: 1em 8em;
   }
 }
 

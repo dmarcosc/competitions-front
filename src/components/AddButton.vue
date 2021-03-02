@@ -40,7 +40,7 @@ export default {
     linear-gradient(to left, rgb(63, 59, 126) 0%, rgb(69, 87, 138) 0%, rgb(93, 141, 196) 100%);
     border:none;
     outline:none;
-    height: 40px;
+    height: 43px;
     border-radius: 50%;
     color: #fff;
     font-weight: 600;

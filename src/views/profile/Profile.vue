@@ -136,7 +136,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 5em 2em;
 }
 .profile-container{
   width: 100%;

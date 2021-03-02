@@ -43,7 +43,7 @@ export default {
     border-radius: 20px;
     color: #fff;
     font-weight: 600;
-    font-size:14px;
+    font-size:15px;
     cursor: pointer;
     backface-visibility: hidden;
     transition: all ease 0.1s;

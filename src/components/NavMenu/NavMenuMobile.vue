@@ -1,25 +1,10 @@
 <template>
   <div id="sideNav" class="nav-mobile-content">
-    <div :class="{'nav-mobile-link' : route!=='Dashboard','nav-mobile-link active' : route=='Dashboard'}"
-         @click="toHome"
-    >
-      Home
-    </div>
-    <div :class="{'nav-mobile-link' : route!=='Profile','nav-mobile-link active' : route=='Profile'}"
-         @click="toProfile"
-    >
-      Profile
-    </div>
-    <div :class="{'nav-mobile-link' : route!=='Apply','nav-mobile-link active' : route=='Apply'}"
-         @click="toApply"
-    >
-      Apply
-    </div>
-    <div :class="{'nav-mobile-link' : route!=='Create','nav-mobile-link active' : route=='Create'}"
-         @click="toCreate"
-    >
-      Create
-    </div>
+    <a class="menu-item" @click="toHome"><i class="fas fa-home fa-lg" /></a>
+    <a class="menu-item" @click="toProfile"><i class="fas fa-user fa-lg" /></a>
+    <a class="menu-item" @click="toApply"><i class="fas fa-search-dollar fa-lg" /></a>
+    <a class="menu-item" @click="toCreate"><i class="fas fa-city fa-lg" /></a>
+    <!-- <span class="mobile-inner-circle">&nbsp;</span> -->
   </div>
 </template>
 
@@ -53,26 +38,67 @@ export default Vue.extend({
 <style lang="scss" scoped>
 $primary-color: #4974a5;
 .nav-mobile-content {
-  height: 100%;
-  width: 150px;
-  left: 0;
+  height: 320px;
+  width: 320px;
+  left: -100px;
+  top:-100px;
   position: fixed;
   z-index: 6;
   border: 2px solid #fff;
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  background:  $primary-color;
+  border-radius: 50%;
+  background:  rgb(73, 116, 165,.5);
   display:flex;
   flex-direction: column;
   color:#fff;
   padding:6em 0em 0em 0em;
 }
-.nav-mobile-link{
-padding:1em 1em;
-cursor:pointer;
-  &.active{
-    background:#274568;
-    outline: 1px solid black;
+// .mobile-inner-circle{
+//     height: 120px;
+//   width: 120px;
+//   left: -100px;
+//   top:-100px;
+//   position: fixed;
+//   z-index: 6;
+//   border: 2px solid #fff;
+//   border-radius: 50%;
+//   background:  $primary-color;
+// }
+.nav-mobile-content .menu-item {
+  position: absolute;
+  top: .2em;
+  right: .2em;
+  z-index: -1;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  width: 3em;
+  height: 3em;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 3;
+  background-color: #2b507a;
+  cursor:pointer;
+  :active{
+    transform: scale(1.2);
   }
+}
+.nav-mobile-content .menu-item:nth-child(1) {
+  transform: translate3d(-5.3em,14.6em,0);
+}
+
+.nav-mobile-content .menu-item:nth-child(2) {
+  transform: translate3d(-9.5em,15.5em,0);
+}
+
+.nav-mobile-content .menu-item:nth-child(3) {
+  transform: translate3d(-2.1em,11.5em,0);
+}
+
+.nav-mobile-content .menu-item:nth-child(4) {
+  transform: translate3d(-1.0em,7em,0);
+}
+.fa-lg{
+  line-height: .9;
 }
 </style>

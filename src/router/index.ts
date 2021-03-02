@@ -31,6 +31,32 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/apply/Apply.vue')
   },
   {
+    path: '/apply/personalData',
+    name: 'PersonalData',
+    component: () => import('../views/apply/PersonalData.vue')
+  },
+  {
+    path: '/apply/requirements',
+    name: 'ApplyRequirements',
+    component: () => import('../views/apply/ApplyRequirements.vue')
+  },
+  {
+    path: '/apply/skills',
+    name: 'ApplySkills',
+    component: () => import('../views/apply/ApplySkills.vue')
+  },
+  {
+    path: '/apply/extra',
+    name: 'ApplyExtra',
+    component: () => import('../views/apply/ApplyExtra.vue')
+  },
+  {
+    path: '/apply/finish',
+    name: 'ApplyFinish',
+    component: () => import('../views/apply/ApplyFinish.vue'),
+    props: true
+  },
+  {
     path: '/create',
     name: 'Create',
     component: () => import('../views/create/Create.vue')
@@ -41,17 +67,26 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/create/GeneralParams.vue')
   },
   {
-    path: '/create/creationRequirements',
+    path: '/create/requirements',
     name: 'CreationRequirements',
     component: () => import('../views/create/CreationRequirements.vue')
   },
-  // {
-  //   path: '/finish',
-  //   name: 'Finish',
-  //   component: () => import('../views/finish/index.vue'),
-  //   meta: { requiresAuth: true },
-  //   props: true
-  // },
+  {
+    path: '/create/skills',
+    name: 'CreationSkills',
+    component: () => import('../views/create/CreationSkills.vue')
+  },
+  {
+    path: '/create/extra',
+    name: 'CreationExtra',
+    component: () => import('../views/create/CreationExtra.vue')
+  },
+  {
+    path: '/create/finish',
+    name: 'CreationFinish',
+    component: () => import('../views/create/CreationFinish.vue'),
+    props: true
+  },
   {
     path: '*',
     name: 'Error404',

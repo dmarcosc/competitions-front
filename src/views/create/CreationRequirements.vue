@@ -6,7 +6,7 @@
         <h1>Min requirements</h1>
         <span class="creation-requirements-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      Here you can set the minimum requirements needed to apply, you can also duplicate the textfields if needed
+      Here you can set the minimum requirements needed to apply, you can also duplicate the rows if needed
       <hr>
       <br>
       <br>
@@ -28,15 +28,51 @@
       </div>
       <div class="creation-tfdiv">
         <TextField label="Experience Merit" class="creation-requirements-tf" />
-        <AddButton plus />
+        <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
+      </div>
+      <div v-if="expCounter >= 1" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
+      </div>
+      <div v-if="expCounter >= 2" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
+      </div>
+      <div v-if="expCounter >= 3" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
       <div class="creation-tfdiv">
         <TextField label="Punctual Merit" class="creation-requirements-tf" />
-        <AddButton plus />
+        <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
+      </div>
+      <div v-if="punctCounter >= 1" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
+      </div>
+      <div v-if="punctCounter >= 2" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
+      </div>
+      <div v-if="punctCounter >= 3" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
       </div>
       <div class="creation-tfdiv">
         <TextField label="Knowledge Merit" class="creation-requirements-tf" />
-        <AddButton plus />
+        <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
+      </div>
+      <div v-if="knowCounter >= 1" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
+      </div>
+      <div v-if="knowCounter >= 2" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
+      </div>
+      <div v-if="knowCounter >= 3" class="creation-tfdiv duplicate">
+        <TextField class="creation-requirements-tf" />
+        <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
       <Button primary class="creation-requirements-button" @click="toCreationSkills">
         Continue
@@ -62,18 +98,39 @@ export default Vue.extend({
   },
   data () {
     return {
-      count: 0
+      count: 0,
+      expCounter: 0,
+      punctCounter: 0,
+      knowCounter: 0
     }
   },
   methods: {
     toCreationSkills () {
-      this.$router.push('/create/creationSkills').catch((err: string) => { return err })
+      this.$router.push('/create/skills').catch((err: string) => { return err })
     },
     duplicateRow () {
       if (this.count < 3) this.count++
     },
     deleteRow () {
       this.count--
+    },
+    duplicateRowExp () {
+      if (this.expCounter < 3) this.expCounter++
+    },
+    deleteRowExp () {
+      this.expCounter--
+    },
+    duplicateRowPunctual () {
+      if (this.punctCounter < 3) this.punctCounter++
+    },
+    deleteRowPunctual () {
+      this.punctCounter--
+    },
+    duplicateRowKnow () {
+      if (this.knowCounter < 3) this.knowCounter++
+    },
+    deleteRowKnow () {
+      this.knowCounter--
     }
   }
 })
@@ -100,7 +157,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   display:flex;
   justify-content: center;
   align-items: center;
-  padding: 6em 2em;
+  padding: 6em 1em;
 }
 .creation-requirements-container{
   width: 100%;
@@ -143,12 +200,33 @@ margin-right:1em;
   align-items: flex-start;
 }
 }
+.creation-requirements-img{
+  display: none;
+  height: 20rem;
+  z-index: 6;
+  position: absolute;
+  top:40%;
+  left:50%;
+}
 .creation-requirements-button{
   margin-bottom:2em;
 }
 @media (min-width: 580px) {
   .creation-requirements{
     padding: 1em 8em;
+  }
+}
+@media (min-width: 850px) {
+  .creation-requirements-img{
+    display: block;
+  }
+  .tf-div.creation-requirements-tf{
+    width:40%;
+  }
+}
+@media (min-width: 1500px) {
+  .creation-requirements-img{
+    height: 30rem;
   }
 }
 

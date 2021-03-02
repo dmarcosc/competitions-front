@@ -49,7 +49,7 @@ export default Vue.extend({
   },
   methods: {
     toMinRequirements () {
-      this.$router.push('/create/creationRequirements').catch((err: string) => { return err })
+      this.$router.push('/create/requirements').catch((err: string) => { return err })
     }
   }
 })
