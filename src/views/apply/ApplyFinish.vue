@@ -160,10 +160,10 @@
     <div class="finish-container">
       <div class="finish-container-inner">
         <h1 class="title-finish">
-          Congratulations
+          Congratulations !!
         </h1>
         <p class="subtitle-finish">
-          You succesfully created your contest, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> to know more or just press accept and go to the dashboard
+          You have succesfully finished your application, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> to know more or just press accept and go to the dashboard
         </p>
         <Button
           primary
