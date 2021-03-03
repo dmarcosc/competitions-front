@@ -17,3 +17,8 @@ declare module '*.json' {
   const value: any
   export = value;
 }
+
+declare module 'easy-circular-progress' {
+  const value: any
+  export = value;
+}

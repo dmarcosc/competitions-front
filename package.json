@@ -15,6 +15,7 @@
     "@types/vuelidate": "^0.7.13",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "easy-circular-progress": "^1.0.4",
     "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-i18n": "^8.21.1",

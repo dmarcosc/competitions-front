@@ -163,10 +163,19 @@
           Congratulations !!
         </h1>
         <p class="subtitle-finish">
-          You have succesfully finished your application, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> to know more or just press accept and go to the dashboard
+          You have succesfully finished your application with a nice score, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> for more
         </p>
+        <Progress
+          :transition-duration="2000"
+          :radius="50"
+          :stroke-width="10"
+          stroke-color="#F42A61"
+          value="84.2"
+          style="color:#F42A61;"
+        />
         <Button
           primary
+          style="margin-top:1em"
           @click="toHome"
         >
           Accept
@@ -181,12 +190,14 @@ import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import BlueBall from '@/components/BlueBall.vue'
 import imgfinish from '@/assets/images/finish.svg'
+import Progress from 'easy-circular-progress'
 
 export default Vue.extend({
   name: 'ApplyFinish',
   components: {
     Button,
-    BlueBall
+    BlueBall,
+    Progress
   },
   props: {
     status: {
@@ -198,6 +209,9 @@ export default Vue.extend({
     return {
       imgfinish
     }
+  },
+  mounted () {
+    console.log('jaja')
   },
   methods: {
     toProfile () {
@@ -267,7 +281,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   -webkit-backdrop-filter: blur( 8.0px );
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
-  padding:5em 3em;
+  padding:3em 3em;
   overflow-y: auto;
   display:flex;
   flex-direction: column;
@@ -306,7 +320,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   max-width:350px;
   font-size: 20px;
   color:#fff;
-  margin:2em 2em;
+  margin:1em 2em;
   text-align: center;
 }
 
