@@ -12,27 +12,35 @@
       <br>
       <div class="apply-skills-tfdiv">
         <label class="apply-skills-label">{ X Oficial title }</label>
-        <Button secondary class="apply-skills-upload">
-          Upload file
-        </Button>
+        <span class="apply-skills-span">
+          <Button secondary class="apply-skills-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-skills-tfdiv">
         <label class="apply-skills-label">{ X Experience merit }</label>
-        <Button secondary class="apply-skills-upload">
-          Upload file
-        </Button>
+        <span class="apply-skills-span">
+          <Button secondary class="apply-skills-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-skills-tfdiv">
         <label class="apply-skills-label">{ X Punctual merit }</label>
-        <Button secondary class="apply-skills-upload">
-          Upload file
-        </Button>
+        <span class="apply-skills-span">
+          <Button secondary class="apply-skills-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-skills-tfdiv">
         <label class="apply-skills-label">{ X Knowledge merit }</label>
-        <Button secondary class="apply-skills-upload">
-          Upload file
-        </Button>
+        <span class="apply-skills-span">
+          <Button secondary class="apply-skills-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <Button primary class="apply-skills-button" @click="toExtra">
         Continue
@@ -130,10 +138,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   align-items: center;
   max-width:365px;
   margin:3em 0em;
-}
-.apply-skills-upload{
-  margin-left: auto;
-
+    overflow: hidden;
 }
 ::v-deep
 .v-select__slot{
@@ -141,6 +146,15 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 }
 .apply-skills-button{
   margin:3em 0em;
+}
+.apply-skills-span{
+  margin-left: auto;
+  height:80px;
+  min-width:150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .apply-skills-img{
   display: none;

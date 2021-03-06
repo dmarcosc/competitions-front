@@ -143,6 +143,14 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .v-data-table-header-mobile,.v-data-table-header{
   display:none;
 }
+::v-deep
+.v-icon.notranslate.v-data-table-header__icon.theme--light {
+  overflow: hidden;
+}
+::v-deep
+.v-icon.notranslate.theme--light {
+  overflow: hidden;
+}
 .v-data-table-header-mobile,.v-data-table-header{
   display:none;
 }

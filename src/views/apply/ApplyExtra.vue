@@ -12,7 +12,7 @@
       <br>
       <div class="apply-extra-tfdiv">
         <TextField label="Official Title" class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
             Upload file
           </Button>
@@ -21,7 +21,7 @@
       </div>
       <div v-if="count >= 1" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -30,7 +30,7 @@
       </div>
       <div v-if="count >= 2" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -39,7 +39,7 @@
       </div>
       <div v-if="count >= 3" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -48,7 +48,7 @@
       </div>
       <div class="apply-extra-tfdiv">
         <TextField label="Experience Merit" class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
             Upload file
           </Button>
@@ -57,7 +57,7 @@
       </div>
       <div v-if="expCounter >= 1" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -66,7 +66,7 @@
       </div>
       <div v-if="expCounter >= 2" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -75,7 +75,7 @@
       </div>
       <div v-if="expCounter >= 3" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -84,7 +84,7 @@
       </div>
       <div class="apply-extra-tfdiv">
         <TextField label="Punctual Merit" class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
             Upload file
           </Button>
@@ -93,7 +93,7 @@
       </div>
       <div v-if="punctCounter >= 1" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -102,7 +102,7 @@
       </div>
       <div v-if="punctCounter >= 2" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -111,7 +111,7 @@
       </div>
       <div v-if="punctCounter >= 3" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -120,7 +120,7 @@
       </div>
       <div class="apply-extra-tfdiv">
         <TextField label="Knowledge Merit" class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
             Upload file
           </Button>
@@ -129,7 +129,7 @@
       </div>
       <div v-if="knowCounter >= 1" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -138,7 +138,7 @@
       </div>
       <div v-if="knowCounter >= 2" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -147,7 +147,7 @@
       </div>
       <div v-if="knowCounter >= 3" class="apply-extra-tfdiv duplicate">
         <TextField class="apply-extra-tf" />
-        <span style="display: flex;">
+        <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
             Upload file
           </Button>
@@ -281,6 +281,13 @@ margin-right:1em;
   &.duplicate{
   align-items: flex-start;
 }
+.apply-extra-span{
+display:flex;
+justify-content: center;
+align-items: center;
+min-width:205px;
+height:60px;
+}
 }
 .apply-extra-img{
   display: none;
@@ -299,6 +306,10 @@ margin-right:1em;
 .apply-extra-button{
   margin:2em 0em;
 }
+::v-deep
+  .v-text-field__details{
+  display:none
+}
 @media (min-width: 580px) {
   .apply-extra{
     padding: 1em 8em;
@@ -308,6 +319,10 @@ margin-right:1em;
     align-items: center;
     margin-bottom: 0px;
   }
+  ::v-deep
+  .v-text-field__details{
+  display:block
+}
 }
 @media (min-width: 850px) {
   .apply-extra-img{

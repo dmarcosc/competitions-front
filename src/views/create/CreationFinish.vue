@@ -299,20 +299,26 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   left:61%;
 }
 .title-finish{
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
 }
 .subtitle-finish{
   max-width:350px;
-  font-size: 20px;
+  font-size: 16px;
   color:#fff;
-  margin:2em 2em;
+  margin:2em 1em;
   text-align: center;
 }
 
 @media (min-width: 750px) {
   .finish{
     height: 100vh;
+  }
+    .title-finish{
+    font-size: 38px;
+  }
+  .subtitle-finish{
+    font-size: 20px;
   }
 }
 @media (max-width: 1050px) {

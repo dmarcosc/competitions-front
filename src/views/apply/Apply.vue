@@ -154,6 +154,14 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   font-weight: 600;
 }
 ::v-deep
+.v-icon.notranslate.v-data-table-header__icon, .v-icon.notranslate.theme--light {
+  overflow: hidden;
+}
+::v-deep
+.v-icon.notranslate.theme--light {
+  overflow: hidden;
+}
+::v-deep
 .v-data-table-header{
   text-align: left;
 }

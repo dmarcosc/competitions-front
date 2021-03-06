@@ -163,7 +163,7 @@
           Congratulations !!
         </h1>
         <p class="subtitle-finish">
-          You have succesfully finished your application with a nice score, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> for more
+          You have succesfully finished your application with a nice score, check your <a style="color:#3F3D56; font-weight: 700;" @click="toProfile">profile</a> for more
         </p>
         <Progress
           :transition-duration="2000"
@@ -171,11 +171,11 @@
           :stroke-width="10"
           stroke-color="#F42A61"
           value="84.2"
-          style="color:#F42A61;"
+          style="color: #3F3D56;"
         />
         <Button
           primary
-          style="margin-top:1em"
+          class="apply-finish-button"
           @click="toHome"
         >
           Accept
@@ -242,19 +242,19 @@ $main-background: #C9D6FF;
 $main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
 $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .ball1{
-  background: rgb(112, 253, 112);
+  background: rgb(48, 255, 48);
 }
 .ball2{
-  background: #ffdc51;
+  background: #f8cb15;
 }
 .ball3{
   background: #f51651;
 }
 .ball4{
- background:#f965a9;
+ background:#fa51a0;
 }
 .ball5{
- background:#817afc;
+ background:#6057ff;
 }
 .finish{
   z-index: 2;
@@ -279,7 +279,6 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 8.0px );
   -webkit-backdrop-filter: blur( 8.0px );
-  border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   padding:3em 3em;
   overflow-y: auto;
@@ -295,7 +294,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   background: rgba( 255, 255, 255, 0.20 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 8.0px );
-  -webkit-backdrop-filter: blur( 8.0px );
+  -webkit-backdrop-filter: blur( 5.0px );
   border-radius: 30px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   padding:5em 3em;
@@ -313,20 +312,35 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   left:61%;
 }
 .title-finish{
-  font-size: 36px;
+  font-size: 28px;
   text-align: center;
+  color:#3F3D56;
 }
 .subtitle-finish{
   max-width:350px;
-  font-size: 20px;
+  font-size: 16px;
   color:#fff;
-  margin:1em 2em;
+  margin:1em;
   text-align: center;
 }
-
+.apply-finish-button{
+  margin-top: 1em;
+  background:#fff;
+  color:#3F3D56
+}
+::v-deep
+.apply-finish-button.primary-btn .shine{
+  background: #F42A61 !important;
+}
 @media (min-width: 750px) {
   .finish{
     height: 100vh;
+  }
+.title-finish{
+    font-size: 38px;
+  }
+  .subtitle-finish{
+    font-size: 20px;
   }
 }
 @media (max-width: 1050px) {

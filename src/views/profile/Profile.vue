@@ -26,8 +26,7 @@
         </template>
       </v-data-table>
       <div class="profile-titlecard">
-        <h1>Contests I applied for</h1>
-        <span class="profile-info"><i class="fas fa-info-circle">info</i></span>
+        <h1 style="margin-top:1em">Contests I applied for</h1>
       </div>
       <hr>
       <v-data-table
@@ -186,6 +185,14 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 }
 .v-data-table-header-mobile,.v-data-table-header{
   display:none;
+}
+::v-deep
+.v-icon.notranslate.v-data-table-header__icon, .v-icon.notranslate.theme--light {
+  overflow: hidden;
+}
+::v-deep
+.v-icon.notranslate.theme--light {
+  overflow: hidden;
 }
 .button-table{
   height: 30px;

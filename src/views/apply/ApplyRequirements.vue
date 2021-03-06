@@ -12,27 +12,35 @@
       <br>
       <div class="apply-requirements-tfdiv">
         <label class="apply-requirements-label">{ X Oficial title }</label>
-        <Button secondary class="apply-requirements-upload">
-          Upload file
-        </Button>
+        <span class="apply-requirements-span">
+          <Button secondary class="apply-requirements-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-requirements-tfdiv">
         <label class="apply-requirements-label">{ X Experience merit }</label>
-        <Button secondary class="apply-requirements-upload">
-          Upload file
-        </Button>
+        <span class="apply-requirements-span">
+          <Button secondary class="apply-requirements-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-requirements-tfdiv">
         <label class="apply-requirements-label">{ X Punctual merit }</label>
-        <Button secondary class="apply-requirements-upload">
-          Upload file
-        </Button>
+        <span class="apply-requirements-span">
+          <Button secondary class="apply-requirements-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <div class="apply-requirements-tfdiv">
         <label class="apply-requirements-label">{ X Knowledge merit }</label>
-        <Button secondary class="apply-requirements-upload">
-          Upload file
-        </Button>
+        <span class="apply-requirements-span">
+          <Button secondary class="apply-requirements-upload">
+            Upload file
+          </Button>
+        </span>
       </div>
       <Button primary class="apply-requirements-button" @click="toSkills">
         Continue
@@ -125,16 +133,26 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .apply-requirements-minus{
   margin-top:14px;
 }
+.apply-requirements-span{
+  margin-left: auto;
+  height:80px;
+  min-width:150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 .apply-requirements-tfdiv{
   display:flex;
   align-items: center;
   max-width:365px;
   margin:3em 0em;
+  overflow: hidden;
 }
-.apply-requirements-upload{
-  margin-left: auto;
+// .apply-requirements-upload{
+//   margin-left: auto;
 
-}
+// }
 ::v-deep
 .v-select__slot{
   overflow:hidden;
