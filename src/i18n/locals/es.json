@@ -28,6 +28,8 @@
         "yes":"SI",
         "no":"NO",
         "tryAgain":"Volver a intentar"
+    },
+    "login":{
+        
     }
 }
-

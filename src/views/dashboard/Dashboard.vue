@@ -5,14 +5,14 @@
       <div class="dashboard-block">
         <div class="dashboard-card">
           <h1 class="dashboard-title">
-            Browse through job and open position listings
+            {{ $t('dashboard.titleApply') }}
           </h1>
           <h2 class="dashboard-subtitle">
-            and easily apply in just a few steps, the result will only deppend on your own merits
+            {{ $t('dashboard.subtitleApply') }}
           </h2>
           <div class="dashboard-buttons">
             <Button primary @click="toApply">
-              Apply
+              {{ $t('buttons.apply') }}
             </Button>
           </div>
         </div>
@@ -21,14 +21,14 @@
       <div class="dashboard-block bottom">
         <div class="dashboard-card">
           <h1 class="dashboard-title">
-            Build your own selection process
+            {{ $t('dashboard.titleCreate') }}
           </h1>
           <h2 class="dashboard-subtitle">
-            choose the requirements and skills you want, set a deadline, sit down and wait for results
+            {{ $t('dashboard.subtitleCreate') }}
           </h2>
           <div class="dashboard-buttons">
             <Button primary @click="toCreate">
-              Create
+              {{ $t('buttons.create') }}
             </Button>
           </div>
         </div>
@@ -109,6 +109,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   // margin-bottom:1em;
 }
 .dashboard-subtitle{
+  color:#444;
   color:#fff;
   font-size: 22px;
   margin:1em 0em;

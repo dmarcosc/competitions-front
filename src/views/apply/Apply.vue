@@ -3,7 +3,7 @@
     <NavMenu route="Apply" />
     <div class="apply-container">
       <div class="apply-titlecard">
-        <h1>Contests</h1>
+        <h1>{{ $t('apply.title') }}</h1>
         <span class="apply-info"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
@@ -21,7 +21,7 @@
             class="button-table"
             @click="contestApply(item)"
           >
-            Apply
+            {{ $t('buttons.apply') }}
           </Button>
         </template>
       </v-data-table>
@@ -33,6 +33,7 @@
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
+import i18n from '@/i18n'
 
 export default Vue.extend({
   name: 'Apply',
@@ -43,13 +44,14 @@ export default Vue.extend({
   data: () => ({
     headers: [
       {
-        text: 'Name',
+        // FIX ME
+        text: (i18n as any).messages.en.profile.name,
         align: 'start',
         value: 'name'
       },
-      { text: 'Field', value: 'field', align: 'start' },
-      { text: 'Due-Date', value: 'dueDate', align: 'start' },
-      { text: 'Actions', value: 'actions', sortable: false, align: 'start' }
+      { text: (i18n as any).messages.en.profile.field, value: 'field', align: 'start' },
+      { text: (i18n as any).messages.en.profile.dueDate, value: 'dueDate', align: 'start' },
+      { value: 'actions', sortable: false, align: 'start' }
     ],
     itemsPerPage: 5,
     contests: [] as any

@@ -3,7 +3,7 @@
     <NavMenu route="Profile" />
     <div class="profile-container">
       <div class="profile-titlecard">
-        <h1>Contests created by me</h1>
+        <h1>{{ $t('profile.titleCreated') }}</h1>
         <span class="profile-info"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
@@ -21,12 +21,14 @@
             class="button-table"
             @click="contestDetail(item)"
           >
-            Detail
+            {{ $t('buttons.detail') }}
           </Button>
         </template>
       </v-data-table>
       <div class="profile-titlecard">
-        <h1 style="margin-top:1em">Contests I applied for</h1>
+        <h1 style="margin-top:1em">
+          {{ $t('profile.titleApplied') }}
+        </h1>
       </div>
       <hr>
       <v-data-table
@@ -43,7 +45,7 @@
             class="button-table"
             @click="contestDetail(item)"
           >
-            Detail
+            {{ $t('buttons.detail') }}
           </Button>
         </template>
       </v-data-table>
@@ -55,7 +57,7 @@
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
-
+import i18n from '@/i18n'
 export default Vue.extend({
   name: 'Profile',
   components: {
@@ -65,13 +67,14 @@ export default Vue.extend({
   data: () => ({
     headers: [
       {
-        text: 'Name',
+        // FIX ME
+        text: (i18n as any).messages.en.profile.name,
         align: 'start',
         value: 'name'
       },
-      { text: 'Field', value: 'field', align: 'start' },
-      { text: 'Due-Date', value: 'dueDate', align: 'start' },
-      { text: 'Actions', value: 'actions', sortable: false, align: 'start' }
+      { text: (i18n as any).messages.en.profile.field, value: 'field', align: 'start' },
+      { text: (i18n as any).messages.en.profile.dueDate, value: 'dueDate', align: 'start' },
+      { value: 'actions', sortable: false, align: 'start' }
     ],
     itemsPerPage: 5,
     contests: [] as any

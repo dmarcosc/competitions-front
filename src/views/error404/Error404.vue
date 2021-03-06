@@ -75,7 +75,7 @@
     <img class="img-404" :src="img404" alt="error 404">
     <div class="error-container">
       <h1 class="title-404">
-        Ooops !! Error 404
+        {{ $t('error.title404') }}
       </h1>
       <p class="subtitle-404">
         {{ errorType }}
@@ -84,7 +84,7 @@
         primary
         @click="relocateError"
       >
-        Back
+        {{ $t('buttons.back') }}
       </Button>
     </div>
   </div>

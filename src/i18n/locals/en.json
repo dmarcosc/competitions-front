@@ -1,0 +1,88 @@
+{   
+    "combobox": {
+        "loading": "Loading...",
+        "notOptions": "No options"
+    },
+    "main":{
+        "retrievingData": "Loading..."
+    },
+    "error": {
+        "title404": "Oooops !! Error 404",
+
+        "errors_404": {
+            "STP_KO24": "Error guardando paso 24: Firmado OK"
+        }
+    },
+    "menu": {
+        "home": "Home",
+        "profile": "Profile",
+        "apply": "Apply",
+        "applyNow": "Apply now",
+        "create": "Create",
+        "contest": "Contest",
+        "settings": "Settings"
+    },
+    "buttons": {
+        "accept": "Accept",
+        "access": "Access",
+        "send": "Send",
+        "back": "Back",
+        "continue": "Continue",
+        "calculate": "Calculate",
+        "close": "Close",
+        "save": "Save",
+        "yes":"Yes",
+        "no":"No",
+        "tryAgain":"Try Again",
+        "start":"Start",
+        "login":"Login",
+        "register":"Register",
+        "signin":"Sign in",
+        "signup":"Sign up",
+        "apply": "Apply",
+        "create": "Create",
+        "detail": "Detail"
+    },
+    "login":{
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "social": "Or Sign in with social platforms",
+        "new": "New here?",
+        "newSubtitle": "Create an account and start yout journey today!"
+    },
+    "register":{
+        "title": "Register",
+        "email": "Email",
+        "password": "Password",
+        "social": "Or Sign up with social platforms",
+        "new": "One of us?",
+        "newSubtitle": "Don't waste time and log in with your credentials"
+    },
+    "dashboard":{
+        "titleApply":"Browse through job and open position listings",
+        "subtitleApply": "and easily apply in just a few steps, the result will only deppend on your own merits",
+        "titleCreate":"Build your own selection process",
+        "subtitleCreate": "choose the requirements and skills you want, set a deadline, sit down and wait for results"
+    },
+    "profile":{
+        "titleCreated":"Contests created by me",
+        "titleApplied":"Contests I applied for",
+        "name":"Name",
+        "field":"Field",
+        "dueDate":"Due date"
+    },
+    "detail":{
+        "title":"Contests detail",
+        "contestants":"Name",
+        "score":"Field",
+        "status":"Due date"
+    },
+    "apply":{
+        "title":"Contests",
+        "name":"Name",
+        "field":"Field",
+        "dueDate":"Due date"
+    }
+}
+

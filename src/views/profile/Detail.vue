@@ -3,7 +3,7 @@
     <NavMenu route="Profile" />
     <div class="detail-container">
       <div class="detail-titlecard">
-        <h1>Contest detail</h1>
+        <h1>{{ $t('detail.title') }}</h1>
         <span class="detail-info"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
@@ -22,6 +22,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
+import i18n from '@/i18n'
 
 export default Vue.extend({
   name: 'Detail',
@@ -31,12 +32,13 @@ export default Vue.extend({
   data: () => ({
     headers: [
       {
-        text: 'Contestants',
+        // FIX ME
+        text: (i18n as any).messages.en.detail.contestants,
         align: 'start',
         value: 'name'
       },
-      { text: 'Score', value: 'score', align: 'start' },
-      { text: 'Status', value: 'status', align: 'start' }
+      { text: (i18n as any).messages.en.detail.score, value: 'score', align: 'start' },
+      { text: (i18n as any).messages.en.detail.status, value: 'status', align: 'start' }
     ],
     itemsPerPage: 8,
     contestants: [] as any

@@ -7,22 +7,22 @@
     <ul class="nav-list">
       <li class="nav-items" @click="toHome()">
         <i class="fas fa-home fa-lg" />
-        <span :class="{'active' : route==='Home'}">Home</span>
+        <span :class="{'active' : route==='Home'}">{{ $t('menu.home') }}</span>
       </li>
       <li class="nav-items" @click="toProfile()">
-        <i class="fas fa-user fa-lg" /><span :class="{'active' : route==='Profile'}">Profile</span>
+        <i class="fas fa-user fa-lg" /><span :class="{'active' : route==='Profile'}">{{ $t('menu.profile') }}</span>
       </li>
       <li class="nav-items" @click="toApply()">
-        <i class="fas fa-search-dollar fa-lg" /><span :class="{'active' : route==='Apply'}">Apply now</span>
+        <i class="fas fa-search-dollar fa-lg" /><span :class="{'active' : route==='Apply'}">{{ $t('menu.applyNow') }}</span>
       </li>
       <li class="nav-items" @click="toCreate()">
-        <i class="fas fa-city fa-lg" /><span :class="{'active' : route==='Create'}">Create <br> Contest</span>
+        <i class="fas fa-city fa-lg" /><span :class="{'active' : route==='Create'}">{{ $t('menu.create') }} <br> {{ $t('menu.contest') }}</span>
       </li>
     </ul>
     <div class="bottom-nav">
       <img class="menu-img" src="@/assets/images/menu.svg">
       <Button secondary>
-        Settings
+        {{ $t('menu.settings') }}
       </Button>
     </div>
   </div>
