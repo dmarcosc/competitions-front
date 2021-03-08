@@ -3,18 +3,18 @@
     <NavMenuHome />
     <div class="apply-extra-container">
       <div class="apply-extra-titlecard">
-        <h1>Extra skills</h1>
+        <h1>{{ $t('apply.titleExtra') }}</h1>
         <span class="apply-extra-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      Here you can add any extra skill, note that this skills will have less impact in your score, you can also duplicate the rows if needed
+      {{ $t('apply.subtitleExtra') }}
       <hr>
       <br>
       <br>
       <div class="apply-extra-tfdiv">
-        <TextField label="Official Title" class="apply-extra-tf" />
+        <TextField :label="$t('merits.official')" class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton plus :disabled="count==3" @click="duplicateRow" />
         </span>
@@ -23,7 +23,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRow" />
         </span>
@@ -32,7 +32,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRow" />
         </span>
@@ -41,16 +41,16 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRow" />
         </span>
       </div>
       <div class="apply-extra-tfdiv">
-        <TextField label="Experience Merit" class="apply-extra-tf" />
+        <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
         </span>
@@ -59,7 +59,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
         </span>
@@ -68,7 +68,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
         </span>
@@ -77,16 +77,16 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
         </span>
       </div>
       <div class="apply-extra-tfdiv">
-        <TextField label="Punctual Merit" class="apply-extra-tf" />
+        <TextField :label="$t('merits.punctual')" class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
         </span>
@@ -95,7 +95,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
         </span>
@@ -104,7 +104,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
         </span>
@@ -113,16 +113,16 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
         </span>
       </div>
       <div class="apply-extra-tfdiv">
-        <TextField label="Knowledge Merit" class="apply-extra-tf" />
+        <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
         </span>
@@ -131,7 +131,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
         </span>
@@ -140,7 +140,7 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
         </span>
@@ -149,13 +149,13 @@
         <TextField class="apply-extra-tf" />
         <span class="apply-extra-span">
           <Button secondary class="apply-extra-upload dup">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
           <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
         </span>
       </div>
       <Button primary class="apply-extra-button" @click="toFinish">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
   </div>

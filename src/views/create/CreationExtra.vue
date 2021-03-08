@@ -3,31 +3,31 @@
     <NavMenuHome />
     <div class="creation-extra-container">
       <div class="creation-extra-titlecard">
-        <h1>Extra skills</h1>
+        <h1>{{ $t('create.titleExtra') }}</h1>
         <span class="creation-extra-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      Here you can set the importance of any generic extra skill, these won't be mandatory and won't have a significant impact overall
+      {{ $t('create.subtitleExtra') }}
       <hr>
       <br>
       <br>
       <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">Any extra oficial title</label>
-        <ComboBox label="Weight" :items="weight" class="creation-extra-cb" />
+        <label class="creation-extra-label">{{ $t('create.extraOfficial') }}</label>
+        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">Any extra experience merit</label>
-        <ComboBox label="Weight" :items="weight" class="creation-extra-cb" />
+        <label class="creation-extra-label">{{ $t('create.extraExperience') }}</label>
+        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">Any extra punctual merit</label>
-        <ComboBox label="Weight" :items="weight" class="creation-extra-cb" />
+        <label class="creation-extra-label">{{ $t('create.extraPunctual') }}</label>
+        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">Any extra knowledge merit</label>
-        <ComboBox label="Weight" :items="weight" class="creation-extra-cb" />
+        <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
+        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
       </div>
       <Button primary class="creation-extra-button" @click="toFinish">
-        Create contest
+        {{ $t('buttons.createContest') }}
       </Button>
     </div>
     <img class="creation-extra-img" src="@/assets/images/extra.svg">

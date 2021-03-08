@@ -3,13 +3,13 @@
     <NavMenu route="Create" />
     <div class="create-container">
       <div class="create-titlecard">
-        <h1>Creation process</h1>
+        <h1>{{ $t('create.title') }}</h1>
         <span class="create-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
-      <TextField label="Please enter a name for your contest" class="create-tf" />
+      <TextField :label="$t('create.name')" class="create-tf" />
       <Button primary class="create-button" @click="toGeneralParams">
-        Start
+        {{ $t('buttons.start') }}
       </Button>
       <img class="create-img" src="@/assets/images/build.svg">
     </div>

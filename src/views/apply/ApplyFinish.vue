@@ -160,10 +160,10 @@
     <div class="finish-container">
       <div class="finish-container-inner">
         <h1 class="title-finish">
-          Congratulations !!
+          {{ $t('apply.titleFinish') }}
         </h1>
         <p class="subtitle-finish">
-          You have succesfully finished your application with a nice score, check your <a style="color:#3F3D56; font-weight: 700;" @click="toProfile">profile</a> for more
+          {{ $t('apply.subtitleFinish') }}<a style="color:#3F3D56; font-weight: 700;" @click="toProfile">{{ $t('apply.subtitleFinish2') }}</a> {{ $t('apply.subtitleFinish3') }}
         </p>
         <Progress
           :transition-duration="2000"
@@ -178,7 +178,7 @@
           class="apply-finish-button"
           @click="toHome"
         >
-          Accept
+          {{ $t('buttons.accept') }}
         </Button>
       </div>
     </div>

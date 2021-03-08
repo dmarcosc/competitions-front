@@ -3,22 +3,22 @@
     <NavMenuHome />
     <div class="personalData-container">
       <div class="personalData-titlecard">
-        <h1>Personal data</h1>
+        <h1>{{ $t('apply.titlePersonal') }}</h1>
         <span class="personalData-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
       <br>
       <br>
-      <TextField label="First-name" class="personalData-tf" />
-      <TextField label="Second-name" class="personalData-tf" />
-      <TextField label="Date of birth" class="personalData-tf" />
-      <TextField label="Phone number" class="personalData-tf" />
-      <ComboBox label="Country" class="personalData-tf"
+      <TextField :label="$t('apply.firstName')" class="personalData-tf" />
+      <TextField :label="$t('apply.secondName')" class="personalData-tf" />
+      <TextField :label="$t('apply.dateBirth')" class="personalData-tf" />
+      <TextField :label="$t('apply.phone')" class="personalData-tf" />
+      <ComboBox :label="$t('apply.country')" class="personalData-tf"
                 :items="items"
                 vmodel="selected"
       />
       <Button primary class="personalData-button" @click="toMinRequirements">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
   </div>

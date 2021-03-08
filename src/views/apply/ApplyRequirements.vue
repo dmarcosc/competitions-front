@@ -3,10 +3,10 @@
     <NavMenuHome />
     <div class="apply-requirements-container">
       <div class="apply-requirements-titlecard">
-        <h1>Requeriments</h1>
+        <h1>{{ $t('apply.titleRequirements') }}</h1>
         <span class="apply-requirements-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      This are the mandatory requirements to apply
+      {{ $t('apply.subtitleRequirements') }}
       <hr>
       <br>
       <br>
@@ -14,7 +14,7 @@
         <label class="apply-requirements-label">{ X Oficial title }</label>
         <span class="apply-requirements-span">
           <Button secondary class="apply-requirements-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -22,7 +22,7 @@
         <label class="apply-requirements-label">{ X Experience merit }</label>
         <span class="apply-requirements-span">
           <Button secondary class="apply-requirements-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -30,7 +30,7 @@
         <label class="apply-requirements-label">{ X Punctual merit }</label>
         <span class="apply-requirements-span">
           <Button secondary class="apply-requirements-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -38,12 +38,12 @@
         <label class="apply-requirements-label">{ X Knowledge merit }</label>
         <span class="apply-requirements-span">
           <Button secondary class="apply-requirements-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
       <Button primary class="apply-requirements-button" @click="toSkills">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
     <img class="apply-requirements-img" src="@/assets/images/contract.svg">

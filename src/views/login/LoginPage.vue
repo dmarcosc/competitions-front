@@ -8,7 +8,7 @@
         <div class="signin-signup">
           <form class="sign-in-form" @click.prevent>
             <h2 class="title">
-              Login
+              {{ $t('login.title') }}
             </h2>
             <div class="input-field">
               <i class="fas fa-envelope" />
@@ -20,11 +20,11 @@
             </div>
             <div class="form-buttons">
               <Button primary @click="onContinue">
-                login
+                {{ $t('login.title') }}
               </Button>
             </div>
             <p class="social-text">
-              Or Sign in with social platforms
+              {{ $t('login.social') }}
             </p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -43,7 +43,7 @@
           </form>
           <form class="sign-up-form" @click.prevent>
             <h2 class="title">
-              Register
+              {{ $t('register.title') }}
             </h2>
             <div class="input-field">
               <i class="fas fa-envelope" />
@@ -55,11 +55,11 @@
             </div>
             <div class="form-buttons">
               <Button primary @click="onContinue">
-                sign up
+                {{ $t('buttons.signup') }}
               </Button>
             </div>
             <p class="social-text">
-              Or Sign up with social platforms
+              {{ $t('register.social') }}
             </p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -81,15 +81,15 @@
       <div class="panels-container">
         <div class="panel left-panel">
           <div class="content">
-            <h3>New here ?</h3>
+            <h3>{{ $t('login.new') }}</h3>
             <p>
-              Create an account and start your journey today!
+              {{ $t('login.newSubtitle') }}
             </p>
             <div class="transparent-div">
               <Button id="sign-up-btn" secondary
                       @click="signUpMode = !signUpMode"
               >
-                Register
+                {{ $t('buttons.register') }}
               </Button>
             </div>
           </div>
@@ -97,15 +97,15 @@
         </div>
         <div class="panel right-panel">
           <div class="content">
-            <h3>One of us ?</h3>
+            <h3>{{ $t('register.new') }}</h3>
             <p>
-              Dont waste time and log in with your credentials
+              {{ $t('register.newSubtitle') }}
             </p>
             <div class="transparent-div">
               <Button id="sign-in-btn"
                       secondary @click="signUpMode = !signUpMode"
               >
-                Login
+                {{ $t('buttons.login') }}
               </Button>
             </div>
           </div>

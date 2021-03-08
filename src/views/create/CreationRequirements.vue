@@ -3,15 +3,15 @@
     <NavMenuHome />
     <div class="creation-requirements-container">
       <div class="creation-requirements-titlecard">
-        <h1>Min requirements</h1>
+        <h1>{{ $t('create.titleRequirements') }}</h1>
         <span class="creation-requirements-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      Here you can set the minimum requirements needed to apply, you can also duplicate the rows if needed
+      {{ $t('create.subtitleRequirements') }}
       <hr>
       <br>
       <br>
       <div class="creation-tfdiv">
-        <TextField label="Official Title" class="creation-requirements-tf" />
+        <TextField :label="$t('merits.official')" class="creation-requirements-tf" />
         <AddButton plus :disabled="count==3" @click="duplicateRow" />
       </div>
       <div v-if="count >= 1" class="creation-tfdiv duplicate">
@@ -27,7 +27,7 @@
         <AddButton class="creation-requirements-minus" minus @click="deleteRow" />
       </div>
       <div class="creation-tfdiv">
-        <TextField label="Experience Merit" class="creation-requirements-tf" />
+        <TextField :label="$t('merits.experience')" class="creation-requirements-tf" />
         <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
       </div>
       <div v-if="expCounter >= 1" class="creation-tfdiv duplicate">
@@ -43,7 +43,7 @@
         <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
       <div class="creation-tfdiv">
-        <TextField label="Punctual Merit" class="creation-requirements-tf" />
+        <TextField :label="$t('merits.punctual')" class="creation-requirements-tf" />
         <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
       </div>
       <div v-if="punctCounter >= 1" class="creation-tfdiv duplicate">
@@ -59,7 +59,7 @@
         <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
       </div>
       <div class="creation-tfdiv">
-        <TextField label="Knowledge Merit" class="creation-requirements-tf" />
+        <TextField :label="$t('merits.knowledge')" class="creation-requirements-tf" />
         <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
       </div>
       <div v-if="knowCounter >= 1" class="creation-tfdiv duplicate">
@@ -75,7 +75,7 @@
         <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
       <Button primary class="creation-requirements-button" @click="toCreationSkills">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
   </div>

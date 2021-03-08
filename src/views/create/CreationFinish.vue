@@ -160,16 +160,16 @@
     <div class="finish-container">
       <div class="finish-container-inner">
         <h1 class="title-finish">
-          Congratulations !!
+          {{ $t('create.titleFinish') }}
         </h1>
         <p class="subtitle-finish">
-          You succesfully created your contest, check your <a style="color:#4974a5; font-weight: 700;" @click="toProfile">profile</a> to know more or just press accept and go to the dashboard
+          {{ $t('create.subtitleFinish') }} <a style="color:#4974a5; font-weight: 700;" @click="toProfile">{{ $t('create.subtitleFinish2') }}</a> {{ $t('create.subtitleFinish3') }}
         </p>
         <Button
           primary
           @click="toHome"
         >
-          Accept
+          {{ $t('buttons.accept') }}
         </Button>
       </div>
     </div>

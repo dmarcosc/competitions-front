@@ -41,7 +41,15 @@
         "signup":"Sign up",
         "apply": "Apply",
         "create": "Create",
-        "detail": "Detail"
+        "detail": "Detail",
+        "upload": "Upload file",
+        "createContest": "Create contest"
+    },
+    "merits":{
+        "official":"Official Title",
+        "experience":"Experience Merit",
+        "punctual":"Punctual Merit",
+        "knowledge":"Knowledge Merit"
     },
     "login":{
         "title": "Login",
@@ -80,9 +88,50 @@
     },
     "apply":{
         "title":"Contests",
+        "titlePersonal":"Personal data",
+        "titleRequirements":"Requirements",
+        "titleSkills":"Highly valuable skills",
+        "titleExtra":"Extra skills",
+        "titleFinish":"Congratulations !!",
+        "subtitleFinish":"You have succesfully finished your application with a nice score, check your ",
+        "subtitleFinish2":"profile ",
+        "subtitleFinish3":"for more",
+        "subtitleExtra": "Here you can add any extra skill, note that this skills will have less impact in your score, you can also duplicate the rows if needed",
+        "subtitleSkills": "This skills will have a huge impact in your overall score",
+        "subtitleRequirements": "This are the mandatory requirements to apply",
         "name":"Name",
         "field":"Field",
-        "dueDate":"Due date"
+        "dueDate":"Due date",
+        "firstName": "First name",
+        "secondName":"Second name",
+        "dateBirth":"Date of birth",
+        "phone":"Phone number",
+        "country": "Country"
+    },
+    "create":{
+        "title":"Creation process",
+        "titleGeneral":"General params",
+        "titleRequirements":"Requirements",
+        "titleSkills":"Highly valuable skills",
+        "titleExtra":"Extra skills",
+        "titleFinish":"Congratulations !!",
+        "subtitleFinish":"You succesfully created your contest, check your ",
+        "subtitleFinish2":"profile ",
+        "subtitleFinish3":"to know more, or just press accept and go to the dashboard",
+        "subtitleExtra": "Here you can set the importance of any generic extra skill, these won't be mandatory and won't have a significant impact overall",
+        "subtitleSkills": "Add specific skills you value most, you can also duplicate the rows if needed, these won't be mandatory but will have a significant impact overall",
+        "subtitleRequirements": "Here you can set the minimum requirements needed to apply, you can also duplicate the rows if needed",
+        "name":"Please enter a name for your contest",
+        "company":"Company/Employer",
+        "field":"Field",
+        "dueDate": "Due date",
+        "vacancies":"Number of vacancies",
+        "description":"Description",
+        "weight":"Weight",
+        "extraOfficial":"Any extra official title",
+        "extraExperience":"Any extra experience merit",
+        "extraPunctual":"Any extra punctual merit",
+        "extraKnowledge":"Any extra knowledge merit"
     }
 }
 

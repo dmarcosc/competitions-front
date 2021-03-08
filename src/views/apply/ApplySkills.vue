@@ -3,10 +3,10 @@
     <NavMenuHome />
     <div class="apply-skills-container">
       <div class="apply-skills-titlecard">
-        <h1>Highly valuable skills</h1>
+        <h1>{{ $t('apply.titleSkills') }}</h1>
         <span class="apply-skills-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      This skills will have a huge impact in your overall score
+      {{ $t('apply.subtitleSkills') }}
       <hr>
       <br>
       <br>
@@ -14,7 +14,7 @@
         <label class="apply-skills-label">{ X Oficial title }</label>
         <span class="apply-skills-span">
           <Button secondary class="apply-skills-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -22,7 +22,7 @@
         <label class="apply-skills-label">{ X Experience merit }</label>
         <span class="apply-skills-span">
           <Button secondary class="apply-skills-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -30,7 +30,7 @@
         <label class="apply-skills-label">{ X Punctual merit }</label>
         <span class="apply-skills-span">
           <Button secondary class="apply-skills-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
@@ -38,12 +38,12 @@
         <label class="apply-skills-label">{ X Knowledge merit }</label>
         <span class="apply-skills-span">
           <Button secondary class="apply-skills-upload">
-            Upload file
+            {{ $t('buttons.upload') }}
           </Button>
         </span>
       </div>
       <Button primary class="apply-skills-button" @click="toExtra">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
     <img class="apply-skills-img" src="@/assets/images/skills.svg">

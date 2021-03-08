@@ -3,22 +3,22 @@
     <NavMenuHome />
     <div class="general-container">
       <div class="general-titlecard">
-        <h1>General params</h1>
+        <h1>{{ $t('create.titleGeneral') }}</h1>
         <span class="general-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
       <br>
       <br>
-      <TextField label="Company/Employer" class="general-tf" />
-      <ComboBox label="Field" class="general-tf"
+      <TextField :label="$t('create.company')" class="general-tf" />
+      <ComboBox :label="$t('create.field')" class="general-tf"
                 :items="items"
                 vmodel="selected"
       />
-      <TextField label="Due date" class="general-tf" />
-      <TextField label="Number of vacancies" class="general-tf" />
-      <TextArea label="Description" class="general-tf" />
+      <TextField :label="$t('create.dueDate')" class="general-tf" />
+      <TextField :label="$t('create.vacancies')" class="general-tf" />
+      <TextArea :label="$t('create.description')" class="general-tf" />
       <Button primary class="general-button" @click="toMinRequirements">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
   </div>

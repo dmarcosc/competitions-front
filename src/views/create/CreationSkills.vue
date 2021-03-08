@@ -3,15 +3,15 @@
     <NavMenuHome />
     <div class="creation-skills-container">
       <div class="creation-skills-titlecard">
-        <h1>Highly valuable skills</h1>
+        <h1>{{ $t('create.titleSkills') }}</h1>
         <span class="creation-skills-info"><i class="fas fa-info-circle "> info</i></span>
       </div>
-      Add specific skills you value most, you can also duplicate the rows if needed, these won't be mandatory but will have a significant impact overall
+      {{ $t('create.subtitleSkills') }}
       <hr>
       <br>
       <br>
       <div class="creation-skills-tfdiv">
-        <TextField label="Official Title" class="creation-skills-tf" />
+        <TextField :label="$t('merits.official')" class="creation-skills-tf" />
         <AddButton plus :disabled="count==3" @click="duplicateRow" />
       </div>
       <div v-if="count >= 1" class="creation-skills-tfdiv duplicate">
@@ -27,7 +27,7 @@
         <AddButton class="creation-skills-minus" minus @click="deleteRow" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField label="Experience Merit" class="creation-skills-tf" />
+        <TextField :label="$t('merits.experience')" class="creation-skills-tf" />
         <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
       </div>
       <div v-if="expCounter >= 1" class="creation-skills-tfdiv duplicate">
@@ -43,7 +43,7 @@
         <AddButton class="creation-skills-minus" minus @click="deleteRowExp" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField label="Punctual Merit" class="creation-skills-tf" />
+        <TextField :label="$t('merits.punctual')" class="creation-skills-tf" />
         <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
       </div>
       <div v-if="punctCounter >= 1" class="creation-skills-tfdiv duplicate">
@@ -59,7 +59,7 @@
         <AddButton class="creation-skills-minus" minus @click="deleteRowPunctual" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField label="Knowledge Merit" class="creation-skills-tf" />
+        <TextField :label="$t('merits.knowledge')" class="creation-skills-tf" />
         <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
       </div>
       <div v-if="knowCounter >= 1" class="creation-skills-tfdiv duplicate">
@@ -75,7 +75,7 @@
         <AddButton class="creation-skills-minus" minus @click="deleteRowKnow" />
       </div>
       <Button primary class="creation-skills-button" @click="toCreationExtra">
-        Continue
+        {{ $t('buttons.continue') }}
       </Button>
     </div>
     <img class="creation-skills-img" src="@/assets/images/percentages.svg">
