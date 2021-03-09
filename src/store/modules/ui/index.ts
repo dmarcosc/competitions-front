@@ -5,7 +5,7 @@ import { RootStore } from '@/store/rootStore'
 const getDefaultStateModal = () => {
   return {
     open: false,
-    component: '',
+    text: '',
     props: {}
   }
 }
@@ -31,10 +31,12 @@ export const ui: Module<StateUi, RootStore> = {
         show
       }
     },
-    openDialog (state, { component, props }) {
-      state.modal.open = true
-      state.modal.component = component
-      state.modal.props = props
+    openDialog (state, { text }) {
+      state.modal = {
+        text: text,
+        open: true,
+        props: {}
+      }
     },
     closeDialog (state) {
       state.modal = getDefaultStateModal()
@@ -53,8 +55,8 @@ export const ui: Module<StateUi, RootStore> = {
     hideMask ({ commit }) {
       commit('toggleMask', { show: false })
     },
-    openDialog ({ commit }, { component, props }) {
-      commit('openDialog', { component, props })
+    openDialog ({ commit }, { text }) {
+      commit('openDialog', { text })
     },
     closeDialog ({ commit }) {
       commit('closeDialog')

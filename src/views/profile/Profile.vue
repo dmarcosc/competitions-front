@@ -64,21 +64,22 @@ export default Vue.extend({
     NavMenu,
     Button
   },
-  data: () => ({
-    headers: [
-      {
-        // FIX ME
-        text: (i18n as any).messages.en.profile.name,
-        align: 'start',
-        value: 'name'
-      },
-      { text: (i18n as any).messages.en.profile.field, value: 'field', align: 'start' },
-      { text: (i18n as any).messages.en.profile.dueDate, value: 'dueDate', align: 'start' },
-      { value: 'actions', sortable: false, align: 'start' }
-    ],
-    itemsPerPage: 5,
-    contests: [] as any
-  }),
+  data () {
+    return {
+      headers: [
+        {
+          text: this.$i18n.locale === 'en' ? 'Name' : 'Nombre',
+          align: 'start',
+          value: 'name'
+        },
+        { text: this.$i18n.locale === 'en' ? 'Field' : 'Campo', value: 'field', align: 'start' },
+        { text: this.$i18n.locale === 'en' ? 'Due-date' : 'Fecha límite', value: 'dueDate', align: 'start' },
+        { value: 'actions', sortable: false, align: 'start' }
+      ],
+      itemsPerPage: 5,
+      contests: [] as any
+    }
+  },
   created () {
     this.initialize()
   },

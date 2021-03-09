@@ -3,6 +3,15 @@
     <transition name="show" mode="in-out">
       <NavMenuMobile v-if="menuInfo.show" :route="route" />
     </transition>
+    <v-dialog v-model="dialog.open" light
+              persistent
+    >
+      <i class="fas fa-info-circle fa-4x" />
+      <div>{{ dialog.text }}</div>
+      <Button primary class="dialog-button" @click="onClose">
+        {{ $t('buttons.close') }}
+      </Button>
+    </v-dialog>
     <BlueBall v-if="login" id="ball"
               big
               class="ball1"
@@ -23,13 +32,15 @@
 
 <script>
 import BlueBall from '@/components/BlueBall.vue'
+import Button from '@/components/Button.vue'
 import NavMenuMobile from '@/components/NavMenu/NavMenuMobile.vue'
 import Vue from 'vue'
 export default Vue.extend({
   name: 'App',
   components: {
     BlueBall,
-    NavMenuMobile
+    NavMenuMobile,
+    Button
   },
   data () {
     return {
@@ -40,6 +51,9 @@ export default Vue.extend({
   computed: {
     menuInfo () {
       return this.$store.getters['ui/menuInfo']
+    },
+    dialog () {
+      return this.$store.getters['ui/dialogInfo']
     }
   },
   watch: {
@@ -64,11 +78,42 @@ export default Vue.extend({
         const placementY = Math.floor(Math.random() * Math.floor(100))
         element.style.setProperty('--relocation-distanceY', placementY + '%')
       })
+    },
+    onClose () {
+      this.$store.dispatch('ui/closeDialog')
     }
   }
 })
 </script>
 <style lang="scss">
+.v-dialog{
+  background: #fff;
+  height:450px;
+  width:700px !important;
+  border-radius: 5% !important;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color:#4974a5;
+  border: 4px solid #4974a5;
+  font-size: 12px;
+  padding: 20px;
+}
+.dialog-button{
+  height: 40px !important;
+  width:120px !important;
+}
+@media (min-width: 700px) {
+  .dialog-button{
+    height: 46px !important;
+    width:160px !important;
+  }
+  .v-dialog{
+    font-size: 16px;
+  }
+}
 .show {
   &-enter,
     &-leave-to {

@@ -4,7 +4,7 @@
     <div class="apply-container">
       <div class="apply-titlecard">
         <h1>{{ $t('apply.title') }}</h1>
-        <span class="apply-info"><i class="fas fa-info-circle"> info</i></span>
+        <span class="apply-info" @click="openDialog"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
       <v-data-table
@@ -41,21 +41,22 @@ export default Vue.extend({
     NavMenu,
     Button
   },
-  data: () => ({
-    headers: [
-      {
-        // FIX ME
-        text: (i18n as any).messages.en.profile.name,
-        align: 'start',
-        value: 'name'
-      },
-      { text: (i18n as any).messages.en.profile.field, value: 'field', align: 'start' },
-      { text: (i18n as any).messages.en.profile.dueDate, value: 'dueDate', align: 'start' },
-      { value: 'actions', sortable: false, align: 'start' }
-    ],
-    itemsPerPage: 5,
-    contests: [] as any
-  }),
+  data () {
+    return {
+      headers: [
+        {
+          text: this.$i18n.locale === 'en' ? 'Name' : 'Nombre',
+          align: 'start',
+          value: 'name'
+        },
+        { text: this.$i18n.locale === 'en' ? 'Field' : 'Campo', value: 'field', align: 'start' },
+        { text: this.$i18n.locale === 'en' ? 'Due-date' : 'Fecha límite', value: 'dueDate', align: 'start' },
+        { value: 'actions', sortable: false, align: 'start' }
+      ],
+      itemsPerPage: 5,
+      contests: [] as any
+    }
+  },
   created () {
     this.initialize()
   },
@@ -89,6 +90,11 @@ export default Vue.extend({
     contestApply (item: never) {
       console.log(item)
       this.$router.push('/apply/personalData').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual'
+      })
     }
   }
 })

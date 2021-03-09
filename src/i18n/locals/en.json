@@ -55,7 +55,7 @@
         "title": "Login",
         "email": "Email",
         "password": "Password",
-        "social": "Or Sign in with social platforms",
+        "social": "Or login with social platforms",
         "new": "New here?",
         "newSubtitle": "Create an account and start yout journey today!"
     },

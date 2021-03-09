@@ -6,7 +6,7 @@ export interface StateUi {
 
 export interface StateUiModal {
   open: boolean;
-  component: any;
+  text: string;
   props: any;
 }
 

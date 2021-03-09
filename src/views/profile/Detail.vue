@@ -29,20 +29,21 @@ export default Vue.extend({
   components: {
     NavMenu
   },
-  data: () => ({
-    headers: [
-      {
-        // FIX ME
-        text: (i18n as any).messages.en.detail.contestants,
-        align: 'start',
-        value: 'name'
-      },
-      { text: (i18n as any).messages.en.detail.score, value: 'score', align: 'start' },
-      { text: (i18n as any).messages.en.detail.status, value: 'status', align: 'start' }
-    ],
-    itemsPerPage: 8,
-    contestants: [] as any
-  }),
+  data () {
+    return {
+      headers: [
+        {
+          text: this.$i18n.locale === 'en' ? 'Contestants' : 'Participantes',
+          align: 'start',
+          value: 'name'
+        },
+        { text: this.$i18n.locale === 'en' ? 'Score' : 'Puntuación', value: 'score', align: 'start' },
+        { text: this.$i18n.locale === 'en' ? 'Status' : 'Estado', value: 'status', align: 'start' }
+      ],
+      itemsPerPage: 8,
+      contestants: [] as any
+    }
+  },
   created () {
     this.initialize()
   },

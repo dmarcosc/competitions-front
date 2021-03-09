@@ -7,16 +7,16 @@
         <BlueBall small class="ball3" />
         <div class="signin-signup">
           <form class="sign-in-form" @click.prevent>
-            <h2 class="title">
+            <h2 class="titles">
               {{ $t('login.title') }}
             </h2>
             <div class="input-field">
               <i class="fas fa-envelope" />
-              <input type="text" placeholder="Email">
+              <input type="text" :placeholder="$t('register.email')">
             </div>
             <div class="input-field">
               <i class="fas fa-lock" />
-              <input type="password" placeholder="Password">
+              <input type="password" :placeholder="$t('register.password')">
             </div>
             <div class="form-buttons">
               <Button primary @click="onContinue">
@@ -42,16 +42,16 @@
             </div>
           </form>
           <form class="sign-up-form" @click.prevent>
-            <h2 class="title">
+            <h2 class="titles">
               {{ $t('register.title') }}
             </h2>
             <div class="input-field">
               <i class="fas fa-envelope" />
-              <input type="email" placeholder="Email">
+              <input type="email" :placeholder="$t('register.email')">
             </div>
             <div class="input-field">
               <i class="fas fa-lock" />
-              <input type="password" placeholder="Password">
+              <input type="password" :placeholder="$t('register.password')">
             </div>
             <div class="form-buttons">
               <Button primary @click="onContinue">
@@ -228,8 +228,8 @@ form.sign-in-form {
   z-index: 2;
 }
 
-.title {
-  font-size: 2.2rem;
+.titles {
+  font-size: 2.2rem !important;
   color: #444;
   margin-bottom: 10px;
 }
