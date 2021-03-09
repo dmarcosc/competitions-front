@@ -4,7 +4,7 @@
     <div class="creation-skills-container">
       <div class="creation-skills-titlecard">
         <h1>{{ $t('create.titleSkills') }}</h1>
-        <span class="creation-skills-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="creation-skills-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       {{ $t('create.subtitleSkills') }}
       <hr>
@@ -132,6 +132,11 @@ export default Vue.extend({
     },
     deleteRowKnow () {
       this.knowCounter--
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.createSkills')
+      })
     }
   }
 })

@@ -4,7 +4,7 @@
     <div class="profile-container">
       <div class="profile-titlecard">
         <h1>{{ $t('profile.titleCreated') }}</h1>
-        <span class="profile-info"><i class="fas fa-info-circle"> info</i></span>
+        <span class="profile-info" @click="openDialog"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
       <v-data-table
@@ -68,12 +68,12 @@ export default Vue.extend({
     return {
       headers: [
         {
-          text: this.$i18n.locale === 'en' ? 'Name' : 'Nombre',
+          text: this.$t('profile.name'),
           align: 'start',
           value: 'name'
         },
-        { text: this.$i18n.locale === 'en' ? 'Field' : 'Campo', value: 'field', align: 'start' },
-        { text: this.$i18n.locale === 'en' ? 'Due-date' : 'Fecha límite', value: 'dueDate', align: 'start' },
+        { text: this.$t('profile.field'), value: 'field', align: 'start' },
+        { text: this.$t('profile.dueDate'), value: 'dueDate', align: 'start' },
         { value: 'actions', sortable: false, align: 'start' }
       ],
       itemsPerPage: 5,
@@ -113,6 +113,11 @@ export default Vue.extend({
     contestDetail (item: never) {
       console.log(item)
       this.$router.push('/profile/detail').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.profile')
+      })
     }
   }
 })

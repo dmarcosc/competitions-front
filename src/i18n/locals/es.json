@@ -83,8 +83,8 @@
     "detail":{
         "title":"Concurso al detalle",
         "contestants":"Nombre",
-        "score":"Campo",
-        "status":"Fecha límite"
+        "score":"Puntuación",
+        "status":"Status"
     },
     "apply":{
         "title":"Concurso",

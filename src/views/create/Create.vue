@@ -4,7 +4,7 @@
     <div class="create-container">
       <div class="create-titlecard">
         <h1>{{ $t('create.title') }}</h1>
-        <span class="create-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="create-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
       <TextField :label="$t('create.name')" class="create-tf" />
@@ -32,6 +32,11 @@ export default Vue.extend({
   methods: {
     toGeneralParams () {
       this.$router.push('/create/generalParams').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.create')
+      })
     }
   }
 })

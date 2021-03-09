@@ -45,12 +45,12 @@ export default Vue.extend({
     return {
       headers: [
         {
-          text: this.$i18n.locale === 'en' ? 'Name' : 'Nombre',
+          text: this.$t('profile.name'),
           align: 'start',
           value: 'name'
         },
-        { text: this.$i18n.locale === 'en' ? 'Field' : 'Campo', value: 'field', align: 'start' },
-        { text: this.$i18n.locale === 'en' ? 'Due-date' : 'Fecha límite', value: 'dueDate', align: 'start' },
+        { text: this.$t('profile.field'), value: 'field', align: 'start' },
+        { text: this.$t('profile.dueDate'), value: 'dueDate', align: 'start' },
         { value: 'actions', sortable: false, align: 'start' }
       ],
       itemsPerPage: 5,
@@ -93,7 +93,7 @@ export default Vue.extend({
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {
-        text: 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual'
+        text: this.$t('info.apply')
       })
     }
   }

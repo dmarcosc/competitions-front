@@ -4,7 +4,7 @@
     <div class="general-container">
       <div class="general-titlecard">
         <h1>{{ $t('create.titleGeneral') }}</h1>
-        <span class="general-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="general-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
       <br>
@@ -50,6 +50,11 @@ export default Vue.extend({
   methods: {
     toMinRequirements () {
       this.$router.push('/create/requirements').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.createGeneral')
+      })
     }
   }
 })

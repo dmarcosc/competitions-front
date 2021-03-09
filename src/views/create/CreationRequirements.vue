@@ -4,7 +4,7 @@
     <div class="creation-requirements-container">
       <div class="creation-requirements-titlecard">
         <h1>{{ $t('create.titleRequirements') }}</h1>
-        <span class="creation-requirements-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="creation-requirements-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       {{ $t('create.subtitleRequirements') }}
       <hr>
@@ -131,6 +131,11 @@ export default Vue.extend({
     },
     deleteRowKnow () {
       this.knowCounter--
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.createRequirements')
+      })
     }
   }
 })

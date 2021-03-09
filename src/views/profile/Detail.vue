@@ -4,7 +4,7 @@
     <div class="detail-container">
       <div class="detail-titlecard">
         <h1>{{ $t('detail.title') }}</h1>
-        <span class="detail-info"><i class="fas fa-info-circle"> info</i></span>
+        <span class="detail-info" @click="openDialog"><i class="fas fa-info-circle"> info</i></span>
       </div>
       <hr>
       <v-data-table
@@ -33,12 +33,12 @@ export default Vue.extend({
     return {
       headers: [
         {
-          text: this.$i18n.locale === 'en' ? 'Contestants' : 'Participantes',
+          text: this.$t('detail.name'),
           align: 'start',
           value: 'name'
         },
-        { text: this.$i18n.locale === 'en' ? 'Score' : 'Puntuación', value: 'score', align: 'start' },
-        { text: this.$i18n.locale === 'en' ? 'Status' : 'Estado', value: 'status', align: 'start' }
+        { text: this.$t('detail.score'), value: 'score', align: 'start' },
+        { text: this.$t('detail.status'), value: 'status', align: 'start' }
       ],
       itemsPerPage: 8,
       contestants: [] as any
@@ -72,6 +72,11 @@ export default Vue.extend({
           status: true
         }
       ]
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.detail')
+      })
     }
   }
 })

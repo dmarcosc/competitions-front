@@ -4,7 +4,7 @@
     <div class="creation-extra-container">
       <div class="creation-extra-titlecard">
         <h1>{{ $t('create.titleExtra') }}</h1>
-        <span class="creation-extra-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="creation-extra-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       {{ $t('create.subtitleExtra') }}
       <hr>
@@ -55,6 +55,11 @@ export default Vue.extend({
   methods: {
     toFinish () {
       this.$router.push('/create/finish').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.createExtra')
+      })
     }
   }
 })

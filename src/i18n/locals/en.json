@@ -82,9 +82,9 @@
     },
     "detail":{
         "title":"Contests detail",
-        "contestants":"Name",
-        "score":"Field",
-        "status":"Due date"
+        "name":"Name",
+        "score":"Score",
+        "status":"Status"
     },
     "apply":{
         "title":"Contests",
@@ -132,6 +132,20 @@
         "extraExperience":"Any extra experience merit",
         "extraPunctual":"Any extra punctual merit",
         "extraKnowledge":"Any extra knowledge merit"
+    },
+    "info": {
+        "profile":"Check the status of the contests you applied for, or manage the ones you created",
+        "apply":"Here you can browse through opened contests, and easily apply in just one click, you can also expand the rows to know more about the contest",
+        "create":"Start the creation process by giving a descriptive name of the contest you want to build",
+        "detail":"Here you can check the current status of the process",
+        "createGeneral":"Please fill all this fields accurately to ensure your contest is created correctly",
+        "official":"Official Title: master degrees, bachelor degrees, master degree, phd...",
+        "experience":"Experience Merit: scholarship, internship or working experiences.",
+        "punctual":"Punctual Merit: scholarship, internship or working experiences.",
+        "knowledge":"Knowledge Merit: scholarship, internship or working experiences.",
+        "createRequirements": "Official Title: master degrees, bachelor degrees, master degree, phd... Experience Merit: scholarship, internship or working experiences. Punctual Merit:",
+        "createSkills":"",
+        "createExtra":""
     }
 }
 
