@@ -132,5 +132,24 @@
         "extraExperience":"Cualquier experiencia extra",
         "extraPunctual":"Cualquier mérito puntual extra",
         "extraKnowledge":"Cualquier mérito de conocimiento extra"
+    },
+    "info": {
+        "cheat":"Guía",
+        "profile":"Sigue el estado de tus aplicaciones, o gestiona tus concursos",
+        "apply":"Aquí encontrarás los concursos abiertos, y aplicar a ellos con solo un click, pulsa sobre las filas para saber más de cada concurso",
+        "create":"Comienza la creación dando un nombre apropiado a tu concurso",
+        "detail":"Aquí podrás comprobar el estado del concurso",
+        "createGeneral":"Por favor rellena adecuadamente todos los campos para la correcta creación del concurso",
+        "official":"-Título Oficial: grado universitario, formación profesional, máster, doctorado...",
+        "experience":"-Experience Merit: experiencias de trabajo, prácticas, voluntariados, becarías...",
+        "punctual":"-Punctual Merit: pueden ser charlas, publicaciones, revistas, libros...",
+        "knowledge":"-Knowledge Merit: un idioma, tecnología , títulos no oficiales, certificados...",
+        "createRequirements": "Estos requisitos serán obligatorios para aplicar, por lo que selecciona las aptitudes principales que estés buscando",
+        "createSkills":"Estas habilidades tendrán un gran impacto, introdúcelas sabiamente",
+        "createExtra":"Aunque no tendrán una gran importancia en líneas generales, trata de darles mayor peso a las relacionadas con el concurso",
+        "personalData":"Por favor rellena todos los campos adecuadamente para que tu proceso de aplicación finalice de forma correcta",
+        "applyRequirements": "No podrás saltarte ninguno de estos ! ...por favor asegúrate de adjuntar los archivos correctos",
+        "applySkills":"No son obligatorias, pero ten en cuenta que son muy importantes de cara a la puntuación ...por favor asegúrate de adjuntar los archivos correctos",
+        "applyExtra":"Último paso! ...asegúrate de añadir todas las habilidades que te quedan"
     }
 }

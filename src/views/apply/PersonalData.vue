@@ -4,7 +4,7 @@
     <div class="personalData-container">
       <div class="personalData-titlecard">
         <h1>{{ $t('apply.titlePersonal') }}</h1>
-        <span class="personalData-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="personalData-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
       <br>
@@ -48,6 +48,11 @@ export default Vue.extend({
   methods: {
     toMinRequirements () {
       this.$router.push('/apply/requirements').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.personalData')
+      })
     }
   }
 })

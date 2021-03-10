@@ -4,6 +4,7 @@
     <a class="menu-item" @click="toProfile"><i class="fas fa-user fa-lg" /></a>
     <a class="menu-item" @click="toApply"><i class="fas fa-search-dollar fa-lg" /></a>
     <a class="menu-item" @click="toCreate"><i class="fas fa-city fa-lg" /></a>
+    <a class="menu-item" @click="toSettings"><i class="fas fa-cogs fa-lg" /></a>
     <!-- <span class="mobile-inner-circle">&nbsp;</span> -->
   </div>
 </template>
@@ -30,6 +31,11 @@ export default Vue.extend({
     },
     toCreate () {
       this.$router.push('/create').catch((err: string) => { return err })
+    },
+    toSettings () {
+      this.$store.dispatch('ui/openDialog', {
+        settings: true
+      })
     }
   }
 })
@@ -84,19 +90,22 @@ $primary-color: #4974a5;
   }
 }
 .nav-mobile-content .menu-item:nth-child(1) {
-  transform: translate3d(-5.3em,14.6em,0);
+  transform: translate3d(-2.8em,13.9em,0);
 }
 
 .nav-mobile-content .menu-item:nth-child(2) {
-  transform: translate3d(-9.5em,15.5em,0);
+  transform: translate3d(-6.0em,15.7em,0);
 }
 
 .nav-mobile-content .menu-item:nth-child(3) {
-  transform: translate3d(-2.1em,11.5em,0);
+  transform: translate3d(-1.0em,10.5em,0);
 }
 
 .nav-mobile-content .menu-item:nth-child(4) {
-  transform: translate3d(-1.0em,7em,0);
+  transform: translate3d(-1.0em,6.7em,0);
+}
+.nav-mobile-content .menu-item:nth-child(5) {
+  transform: translate3d(-9.7em,15.6em,0);
 }
 .fa-lg{
   line-height: .9;

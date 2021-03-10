@@ -21,7 +21,7 @@
     </ul>
     <div class="bottom-nav">
       <img class="menu-img" src="@/assets/images/menu.svg">
-      <Button secondary>
+      <Button secondary @click="toSettings">
         {{ $t('menu.settings') }}
       </Button>
     </div>
@@ -85,6 +85,11 @@ export default Vue.extend({
     },
     toCreate () {
       this.$router.push('/create').catch((err: string) => { return err })
+    },
+    toSettings () {
+      this.$store.dispatch('ui/openDialog', {
+        settings: true
+      })
     }
   }
 })

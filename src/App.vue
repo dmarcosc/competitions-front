@@ -3,15 +3,12 @@
     <transition name="show" mode="in-out">
       <NavMenuMobile v-if="menuInfo.show" :route="route" />
     </transition>
-    <v-dialog v-model="dialog.open" light
-              persistent
-    >
-      <i class="fas fa-info-circle fa-4x" />
-      <div>{{ dialog.text }}</div>
-      <Button primary class="dialog-button" @click="onClose">
-        {{ $t('buttons.close') }}
-      </Button>
-    </v-dialog>
+    <Dialog v-model="dialog.open" :is-process="isProcess"
+            :settings="dialog.settings"
+            persistent
+            :text="dialog.text"
+            @close="onClose"
+    />
     <BlueBall v-if="login" id="ball"
               big
               class="ball1"
@@ -32,7 +29,7 @@
 
 <script>
 import BlueBall from '@/components/BlueBall.vue'
-import Button from '@/components/Button.vue'
+import Dialog from '@/components/Dialog.vue'
 import NavMenuMobile from '@/components/NavMenu/NavMenuMobile.vue'
 import Vue from 'vue'
 export default Vue.extend({
@@ -40,12 +37,13 @@ export default Vue.extend({
   components: {
     BlueBall,
     NavMenuMobile,
-    Button
+    Dialog
   },
   data () {
     return {
       route: '',
-      login: false
+      login: false,
+      isProcess: false
     }
   },
   computed: {
@@ -58,7 +56,11 @@ export default Vue.extend({
   },
   watch: {
     $route () {
-      // if (this.$router.currentRoute.name !== 'Dashboard' && this.$router.currentRoute.name !== 'Create' && this.$router.currentRoute.name !== 'Profile' && this.$router.currentRoute.name !== 'Apply' && this.$router.currentRoute.name !== 'Detail')
+      if ((this.$router.currentRoute.name === 'CreationRequirements') || (this.$router.currentRoute.name === 'ApplyExtra') || (this.$router.currentRoute.name === 'CreationRequirements') || (this.$router.currentRoute.name === 'CreationExtra') || (this.$router.currentRoute.name === 'ApplyRequirements') || (this.$router.currentRoute.name === 'ApplySkills') || (this.$router.currentRoute.name === 'CreationSkills')) {
+        this.isProcess = true
+      } else {
+        this.isProcess = false
+      }
       this.$store.dispatch('ui/hideMenu')
       this.route = this.$router.currentRoute.name
       if (this.$router.currentRoute.name === 'Home') this.login = false
@@ -105,6 +107,14 @@ export default Vue.extend({
   height: 40px !important;
   width:120px !important;
 }
+.dialog-cheat-sheet{
+  border: .5px solid red;
+padding: 10px 5%;
+}
+.dialog-p{
+    margin:0px !important;
+    text-align: left;
+  }
 @media (min-width: 700px) {
   .dialog-button{
     height: 46px !important;

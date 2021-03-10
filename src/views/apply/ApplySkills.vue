@@ -4,7 +4,7 @@
     <div class="apply-skills-container">
       <div class="apply-skills-titlecard">
         <h1>{{ $t('apply.titleSkills') }}</h1>
-        <span class="apply-skills-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="apply-skills-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       {{ $t('apply.subtitleSkills') }}
       <hr>
@@ -69,6 +69,11 @@ export default Vue.extend({
   methods: {
     toExtra () {
       this.$router.push('/apply/extra').catch((err: string) => { return err })
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.applySkills')
+      })
     }
   }
 })

@@ -4,7 +4,7 @@
     <div class="apply-extra-container">
       <div class="apply-extra-titlecard">
         <h1>{{ $t('apply.titleExtra') }}</h1>
-        <span class="apply-extra-info"><i class="fas fa-info-circle "> info</i></span>
+        <span class="apply-extra-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       {{ $t('apply.subtitleExtra') }}
       <hr>
@@ -211,6 +211,11 @@ export default Vue.extend({
     },
     deleteRowKnow () {
       this.knowCounter--
+    },
+    openDialog () {
+      this.$store.dispatch('ui/openDialog', {
+        text: this.$t('info.applyExtra')
+      })
     }
   }
 })

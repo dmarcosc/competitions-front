@@ -134,18 +134,23 @@
         "extraKnowledge":"Any extra knowledge merit"
     },
     "info": {
+        "cheat":"Cheat sheet",
         "profile":"Check the status of the contests you applied for, or manage the ones you created",
         "apply":"Here you can browse through opened contests, and easily apply in just one click, you can also expand the rows to know more about the contest",
         "create":"Start the creation process by giving a descriptive name of the contest you want to build",
         "detail":"Here you can check the current status of the process",
         "createGeneral":"Please fill all this fields accurately to ensure your contest is created correctly",
-        "official":"Official Title: master degrees, bachelor degrees, master degree, phd...",
-        "experience":"Experience Merit: scholarship, internship or working experiences.",
-        "punctual":"Punctual Merit: scholarship, internship or working experiences.",
-        "knowledge":"Knowledge Merit: scholarship, internship or working experiences.",
-        "createRequirements": "Official Title: master degrees, bachelor degrees, master degree, phd... Experience Merit: scholarship, internship or working experiences. Punctual Merit:",
-        "createSkills":"",
-        "createExtra":""
+        "official":"-Official Title: master degrees, bachelor degrees, language title, phd...",
+        "experience":"-Experience Merit: scholarship, internship or working experiences.",
+        "punctual":"-Punctual Merit: such as talks, papers, books...",
+        "knowledge":"-Knowledge Merit: any language, technology , unofficial titles, certificates...",
+        "createRequirements": "This requirements will be mandatory to apply, so pick the basic skills you are looking for ",
+        "createSkills":"This skills will have a huge impact in the overall score, pick them wisely",
+        "createExtra":"Even though this may not be very important, try to give more weight to the ones related with the contest!",
+        "personalData":"Please fill all this fields accurately to ensure your apply is processed correctly",
+        "applyRequirements": "You can't skip any of these ! ...please make sure you upload the right files",
+        "applySkills":"These are not mandatory, but keep in mind they are important ...please make sure you upload the right files",
+        "applyExtra":"Last step! ...make sure you add all the skills you have left"
     }
 }
 

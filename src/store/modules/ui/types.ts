@@ -7,7 +7,7 @@ export interface StateUi {
 export interface StateUiModal {
   open: boolean;
   text: string;
-  props: any;
+  settings: boolean;
 }
 
 export interface StateUiMask {
