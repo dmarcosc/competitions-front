@@ -2,23 +2,23 @@
   <v-dialog v-bind="$attrs" light
             persistent
   >
-    <div v-if="settings">
-      Settings
-      <v-radio-group v-model="$i18n.locale" label="Language">
+    <div v-if="settings" class="settings-dialog">
+      <h1>{{ $t('menu.settings') }}</h1>
+      <v-radio-group v-model="$i18n.locale" :label="$t('settings.language')">
         <v-radio
-          label="Español"
+          :label="$t('settings.spanish')"
           value="es"
         />
         <v-radio
-          label="Inglés"
+          :label="$t('settings.english')"
           value="en"
         />
       </v-radio-group>
       <v-switch
-        v-model="mode"
-        label="Dark Mode"
+        v-model="dark"
+        :label="$t('settings.dark')"
       />
-      <span class="span-session" @click="closeSession">Cerrar sesión <i class="fas fa-power-off" /></span>
+      <span class="span-session" @click="closeSession">{{ $t('settings.session') }} <i class="fas fa-power-off fa-lg" /></span>
     </div>
     <div v-else class="common-dialog">
       <i class="fas fa-info-circle fa-4x" />
@@ -69,35 +69,35 @@ export default Vue.extend({
   },
   data () {
     return {
-      language: this.$i18n.locale,
-      mode: false
+      dark: false
+    }
+  },
+  watch: {
+    dark () {
+      if (this.dark === true) this._addDarkTheme()
+      else this._removeDarkTheme()
     }
   },
   methods: {
     closeSession () {
       this.$emit('close')
       this.$router.push('/').catch((err: string) => { return err })
+    },
+    _addDarkTheme () {
+      document.querySelectorAll('.v-application--wrap').forEach(element => {
+        element.className += ' dark-theme'
+      })
+    },
+    _removeDarkTheme () {
+      document.querySelectorAll('.v-application--wrap').forEach(element => {
+        element.classList.remove('dark-theme')
+      })
     }
   }
 })
 </script>
 
 <style  lang="scss" scoped>
-.v-dialog{
-  background: #fff;
-  height:450px;
-  width:700px !important;
-  border-radius: 5% !important;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  color:#4974a5;
-  border: 4px solid #4974a5;
-  font-size: 12px;
-  padding: 20px;
-}
 .common-dialog{
   margin:0;
   padding:0;
@@ -107,6 +107,9 @@ export default Vue.extend({
   justify-content: space-around;
   align-items: center;
   text-align: center;
+}
+.settings-dialog{
+  padding:0% 5%;
 }
 .dialog-button{
   height: 40px !important;
@@ -145,9 +148,13 @@ padding: 10px 5%;
   cursor: pointer;
   display:flex;
   align-items: center;
+  height:23px;
+  font-size:16px;
 }
 .fa-power-off{
   margin-left:5px;
+  width:26px;
+  height:20px;
 }
 ::v-deep
 .v-input--switch .v-input--selection-controls__input{
@@ -161,5 +168,30 @@ padding: 10px 5%;
 .theme--light.v-input input{
 overflow: visible !important;
 overflow-y: visible !important;
+}
+::v-deep
+.v-input.theme--light.v-input--selection-controls.v-input--switch{
+  overflow: visible !important;
+overflow-y: visible !important;
+}
+::v-deep
+.v-input__control{
+    overflow: visible !important;
+overflow-y: visible !important;
+}
+::v-deep
+.v-input__slot{
+    overflow: visible !important;
+overflow-y: visible !important;
+}
+::v-deep
+.v-input--radio-group__input .v-label.theme--light{
+font-size:16px;
+color: #4974a5;
+}
+::v-deep
+.v-input.theme--light.v-input--selection-controls.v-input--switch .v-input__control .v-input__slot .v-label.theme--light{
+font-size:16px;
+color: #4974a5;
 }
 </style>

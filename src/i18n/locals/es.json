@@ -4,7 +4,8 @@
         "notOptions": "Sin opciones"
     },
     "main":{
-        "retrievingData": "Cargando..."
+        "retrievingData": "Cargando...",
+        "confirm": "Está seguro de querer abandonar el proceso ?"
     },
     "error": {
         "title404": "Oooops !! Error 404",
@@ -21,6 +22,13 @@
         "create": "Crear",
         "contest": "Concurso",
         "settings": "Ajustes"
+    },
+    "settings": {
+        "language": "Idioma",
+        "english": "Inglés",
+        "spanish": "Español",
+        "dark": "Dark mode",
+        "session": "Cerrar sesión"
     },
     "buttons": {
         "accept": "Aceptar",

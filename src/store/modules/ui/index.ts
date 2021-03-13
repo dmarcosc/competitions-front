@@ -22,6 +22,9 @@ export const ui: Module<StateUi, RootStore> = {
     },
     menu: {
       show: false
+    },
+    mode: {
+      dark: false
     }
   },
   mutations: {
@@ -46,6 +49,9 @@ export const ui: Module<StateUi, RootStore> = {
     },
     hideMenu (state) {
       state.menu.show = false
+    },
+    changeMode (state) {
+      state.mode.dark = !state.mode.dark
     }
   },
   actions: {
@@ -66,6 +72,9 @@ export const ui: Module<StateUi, RootStore> = {
     },
     hideMenu ({ commit }) {
       commit('hideMenu')
+    },
+    changeMode ({ commit }) {
+      commit('changeMode')
     }
   },
   getters: {
@@ -77,6 +86,9 @@ export const ui: Module<StateUi, RootStore> = {
     },
     menuInfo (state) {
       return state.menu
+    },
+    modeInfo (state) {
+      return state.mode.dark
     }
   }
 }

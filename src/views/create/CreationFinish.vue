@@ -224,9 +224,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $primary-color: #4974a5;
-$main-background: #C9D6FF;
-$main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-$main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 .ball1{
   background: rgb(112, 253, 112);
 }
@@ -246,9 +243,7 @@ $main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
   z-index: 2;
   max-width: 100%;
   width: 100%;
-  background:$main-background;
-  background: $main-background2;
-  background: $main-background3;
+  background: inherit;
   min-height: 100vh;
   color:$primary-color;
   font-size: 12px;

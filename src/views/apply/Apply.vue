@@ -10,6 +10,10 @@
       <v-data-table
         :headers="headers"
         :items="contests"
+        :expanded.sync="expanded"
+        :single-expand="true"
+        item-key="name"
+        show-expand
         sort-by="dueDate"
         :sort-desc="true"
         :items-per-page="itemsPerPage"
@@ -24,6 +28,11 @@
             {{ $t('buttons.apply') }}
           </Button>
         </template>
+        <template v-slot:expanded-item="{ headers, item }">
+          <td :colspan="headers.length">
+            {{ item.description }}
+          </td>
+        </template>
       </v-data-table>
     </div>
   </div>
@@ -33,7 +42,6 @@
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
-import i18n from '@/i18n'
 
 export default Vue.extend({
   name: 'Apply',
@@ -43,6 +51,7 @@ export default Vue.extend({
   },
   data () {
     return {
+      expanded: [],
       headers: [
         {
           text: this.$t('profile.name'),
@@ -67,22 +76,26 @@ export default Vue.extend({
         {
           name: 'Senior Product Owner',
           field: 'Software Development',
-          dueDate: '2021/07/02'
+          dueDate: '2021/07/02',
+          description: 'As a Product Owner, you will play a critical and active role in the day-to-day operations. This is an excellent opportunity to be one of the key members of our Product Team and position yourself for unique career growth opportunities'
         },
         {
           name: 'English Teacher',
           field: 'Teaching',
-          dueDate: '2021/09/11'
+          dueDate: '2021/09/11',
+          description: 'We are looking for a qualified Secondary School English Teacher to join our School. We offer a permanent contract for the next academic year. Full time position. '
         },
         {
           name: 'Junior Java Developer',
           field: 'Software Development',
-          dueDate: '2021/12/21'
+          dueDate: '2021/12/21',
+          description: 'We are looking for developers willing to work in challenging projects, with creative minds and people who enjoy working in collaborative teams'
         },
         {
           name: 'Python Developer',
           field: 'Computer Science',
-          dueDate: '2021/10/01'
+          dueDate: '2021/10/01',
+          description: 'We are looking for a Developer Evangelist Architect to join our Global Product Management team and lead our inbound and outbound strategy targeting our software developer audience'
         }
       ]
     },
@@ -102,17 +115,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $primary-color: #4974a5;
-$main-background: #C9D6FF;
-$main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-$main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 
 .apply{
   z-index: 2;
   max-width: 100%;
   width: 100%;
-  background:$main-background;
-  background: $main-background2;
-  background: $main-background3;
+  background: inherit;
   min-height: 100vh;
   color:$primary-color;
   font-size: 12px;

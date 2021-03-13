@@ -32,7 +32,7 @@
             </Button>
           </div>
         </div>
-        <img class="dashboard-img" src="@/assets/images/factors.svg">
+        <img class="dashboard-img" :src="factors">
       </div>
     </div>
   </div>
@@ -42,12 +42,18 @@
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
+import factors from '@/assets/images/factors.svg'
 
 export default Vue.extend({
   name: 'Dashboard',
   components: {
     Button,
     NavMenu
+  },
+  data () {
+    return {
+      factors
+    }
   },
   methods: {
     toCreate () {
@@ -62,17 +68,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 $primary-color: #4974a5;
-$main-background: #C9D6FF;
-$main-background2: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
-$main-background3: linear-gradient(to right, #E2E2E2, #C9D6FF);
 
 .dashboard{
   z-index: 2;
   max-width: 100%;
   width: 100%;
-  background:$main-background;
-  background: $main-background2;
-  background: $main-background3;
+  background: inherit;
   height: 100vh;
   overflow: hidden;
   font-size: 12px;

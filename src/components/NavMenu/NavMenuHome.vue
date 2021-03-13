@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-menu-home" @click="goToDashboard()">
+  <div class="nav-menu-home" @click="mobileToDashboard()">
     &nbsp;
   </div>
 </template>
@@ -9,8 +9,13 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'NavMenuHome',
   methods: {
-    goToDashboard () {
-      this.$router.push('/Dashboard')
+    mobileToDashboard () {
+      const text = this.$t('main.confirm')
+      const r = confirm(text.toString())
+      if (r === true) {
+        this.$router.push('/dashboard').catch((err: string) => { return err })
+      } else {
+      }
     }
   }
 })

@@ -2,6 +2,7 @@ export interface StateUi {
   modal: StateUiModal;
   mask: StateUiMask;
   menu: StateUiMenu;
+  mode: StateUiMode;
 }
 
 export interface StateUiModal {
@@ -17,6 +18,10 @@ export interface StateUiMask {
 
 export interface StateUiMenu {
   show: boolean;
+}
+
+export interface StateUiMode {
+  dark: boolean;
 }
 
 export const test = '3'
