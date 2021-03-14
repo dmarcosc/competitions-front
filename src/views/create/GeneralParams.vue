@@ -14,7 +14,7 @@
                 :items="items"
                 vmodel="selected"
       />
-      <TextField :label="$t('create.dueDate')" class="general-tf" />
+      <DateField :label="$t('create.dueDate')" class="general-tf" :min-date="new Date().toISOString()" />
       <TextField :label="$t('create.vacancies')" class="general-tf" />
       <TextArea :label="$t('create.description')" class="general-tf" />
       <Button primary class="general-button" @click="toMinRequirements">
@@ -28,6 +28,7 @@
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import TextField from '@/components/TextField.vue'
+import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
 import ComboBox from '@/components/ComboBox.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
@@ -37,6 +38,7 @@ export default Vue.extend({
   components: {
     Button,
     TextField,
+    DateField,
     TextArea,
     ComboBox,
     NavMenuHome

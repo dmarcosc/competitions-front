@@ -11,7 +11,7 @@
       <br>
       <TextField :label="$t('apply.firstName')" class="personalData-tf" />
       <TextField :label="$t('apply.secondName')" class="personalData-tf" />
-      <TextField :label="$t('apply.dateBirth')" class="personalData-tf" />
+      <DateField :label="$t('apply.dateBirth')" class="personalData-tf datefield" :max-date="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString()" />
       <TextField :label="$t('apply.phone')" class="personalData-tf" />
       <ComboBox :label="$t('apply.country')" class="personalData-tf"
                 :items="items"
@@ -30,6 +30,7 @@ import Button from '@/components/Button.vue'
 import TextField from '@/components/TextField.vue'
 import ComboBox from '@/components/ComboBox.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
+import DateField from '@/components/DateField.vue'
 
 export default Vue.extend({
   name: 'PersonalData',
@@ -37,6 +38,7 @@ export default Vue.extend({
     Button,
     TextField,
     ComboBox,
+    DateField,
     NavMenuHome
   },
   data () {
