@@ -133,7 +133,10 @@ export default {
   },
   methods: {
     onContinue () {
-      this.$router.push('/dashboard')
+      this.$store.dispatch('ui/showMask', {
+        text: this.$t('main.retrievingData')
+      })
+      window.setTimeout(() => { this.$router.push('/dashboard').catch((err) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
     }
   }
 }
@@ -225,7 +228,7 @@ form.sign-in-form {
 
 .titles {
   font-size: 2.2rem !important;
-  color: #444;
+  color: rgb(46, 44, 44);
   margin-bottom: 10px;
 }
 

@@ -238,7 +238,7 @@ margin-right:1em;
     margin:20px 0px 40px 0px;
     padding:10px;
     :nth-child(1) {
-    margin-right: 7em ;
+    margin-right: 3em ;
   }
   }
     .creation-requirements-button {

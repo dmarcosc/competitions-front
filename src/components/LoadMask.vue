@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import photoLoader from '@/assets/images/waiting.svg'
+import photoLoader from '@/assets/images/mask.svg'
 
 export default Vue.extend({
   name: 'LoadMask',
@@ -33,7 +33,7 @@ export default Vue.extend({
 #loading {
   display: flex;
   justify-content: center;
-  background-color: #02307B;opacity:0.6; //#2f2f2f #02307B
+  background-color: rgb(2, 48, 123, 0.6); //opacity:0.6; //#2f2f2f #02307B
   color: white;
   top: 0;
   left: 0;
@@ -53,7 +53,9 @@ export default Vue.extend({
 }
 
 .img-loading {
-  width: 125px;
-  height: 125px;
+  width: 225px;
+  height: 225px;
+  color:white;
+  opacity: 1 !important;
 }
 </style>

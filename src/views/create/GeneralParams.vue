@@ -141,7 +141,7 @@ $primary-color: #4974a5;
     width: 160px !important;
   }
   :nth-child(1) {
-    margin-right: 7em ;
+    margin-right: 3em ;
   }
   }
 }

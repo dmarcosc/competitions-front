@@ -13,7 +13,7 @@
         <i class="fas fa-user fa-lg" /><span :class="{'active' : route==='Profile'}">{{ $t('menu.profile') }}</span>
       </li>
       <li class="nav-items" @click="toApply()">
-        <i class="fas fa-search-dollar fa-lg" /><span :class="{'active' : route==='Apply'}">{{ $t('menu.applyNow') }}</span>
+        <i class="fas fa-search-dollar fa-lg" /><span :class="{'active' : route==='Apply'}">{{ $t('menu.apply') }}<br> {{ $t('menu.now') }}</span>
       </li>
       <li class="nav-items" @click="toCreate()">
         <i class="fas fa-city fa-lg" /><span :class="{'active' : route==='Create'}">{{ $t('menu.create') }} <br> {{ $t('menu.contest') }}</span>
@@ -231,6 +231,7 @@ to   {  transform: translateX(7px) translateY(-7px); }
 }
 .nav-items{
   display:flex;
+  min-width:118px;
   align-items: center;
   margin:20px 0px 20px 0px;
   cursor:pointer;
@@ -240,9 +241,9 @@ to   {  transform: translateX(7px) translateY(-7px); }
   position: relative;
   overflow: hidden;
   &:hover{
-    //border-radius: 20px;
+    border-radius: 20px;
     box-shadow: 0 3px 3px 0 rgba( 31, 38, 135, 0.37 );
-    outline:0.4px solid lightgray
+    //outline:0.4px solid lightgray
   }
   &:active{
     color: #fff !important;

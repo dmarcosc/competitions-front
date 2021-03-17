@@ -194,7 +194,10 @@ export default Vue.extend({
       this.$router.push('/apply/skills').catch((err: string) => { return err })
     },
     toFinish () {
-      this.$router.push('/apply/finish').catch((err: string) => { return err })
+      this.$store.dispatch('ui/showMask', {
+        text: this.$t('main.retrievingData')
+      })
+      window.setTimeout(() => { this.$router.push('/apply/finish').catch((err: string) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
     },
     duplicateRow () {
       if (this.count < 3) this.count++

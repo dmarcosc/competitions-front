@@ -62,7 +62,10 @@ export default Vue.extend({
       this.$router.push('/create/skills').catch((err: string) => { return err })
     },
     toFinish () {
-      this.$router.push('/create/finish').catch((err: string) => { return err })
+      this.$store.dispatch('ui/showMask', {
+        text: this.$t('main.retrievingData')
+      })
+      window.setTimeout(() => { this.$router.push('/create/finish').catch((err: string) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {

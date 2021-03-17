@@ -14,6 +14,7 @@
                    :text="dialogConfirm.text"
                    @close="onCloseDialogConfirm"
     />
+    <LoadMask v-if="maskInfo.show" :text="maskInfo.text" />
     <BlueBall v-if="login" id="ball"
               big
               class="ball1"
@@ -37,6 +38,7 @@ import BlueBall from '@/components/BlueBall.vue'
 import Dialog from '@/components/Dialog.vue'
 import DialogConfirm from '@/components/DialogConfirm.vue'
 import NavMenuMobile from '@/components/NavMenu/NavMenuMobile.vue'
+import LoadMask from '@/components/LoadMask.vue'
 import Vue from 'vue'
 export default Vue.extend({
   name: 'App',
@@ -44,6 +46,7 @@ export default Vue.extend({
     BlueBall,
     NavMenuMobile,
     Dialog,
+    LoadMask,
     DialogConfirm
   },
   data () {
@@ -62,6 +65,9 @@ export default Vue.extend({
     },
     dialogConfirm () {
       return this.$store.getters['ui/dialogConfirmInfo']
+    },
+    maskInfo () {
+      return this.$store.getters['ui/maskInfo']
     }
   },
   watch: {
