@@ -42,9 +42,14 @@
           </Button>
         </span>
       </div>
-      <Button primary class="apply-skills-button" @click="toExtra">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="apply-skills-div-button">
+        <Button terciary class="apply-skills-button" @click="toRequirements">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="apply-skills-button" @click="toExtra">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
     <img class="apply-skills-img" src="@/assets/images/skills.svg">
   </div>
@@ -67,6 +72,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toRequirements () {
+      this.$router.push('/apply/requirements').catch((err: string) => { return err })
+    },
     toExtra () {
       this.$router.push('/apply/extra').catch((err: string) => { return err })
     },
@@ -144,9 +152,19 @@ $primary-color: #4974a5;
 .v-select__slot{
   overflow:hidden;
 }
-.apply-skills-button{
-  margin:3em 0em;
-}
+.apply-skills-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .apply-skills-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 .apply-skills-span{
   margin-left: auto;
   height:80px;
@@ -167,6 +185,17 @@ $primary-color: #4974a5;
 @media (min-width: 580px) {
   .apply-skills{
     padding: 1em 8em;
+  }
+  .apply-skills-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 3em ;
+  }
+  }
+    .apply-skills-button {
+    width: 160px !important;
   }
 }
 @media (min-width: 900px) {

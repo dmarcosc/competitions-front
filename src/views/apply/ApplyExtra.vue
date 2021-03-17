@@ -154,9 +154,14 @@
           <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
         </span>
       </div>
-      <Button primary class="apply-extra-button" @click="toFinish">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="apply-extra-div-button">
+        <Button terciary class="apply-extra-button" @click="toSkills">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="apply-extra-button" @click="toFinish">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -185,6 +190,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toSkills () {
+      this.$router.push('/apply/skills').catch((err: string) => { return err })
+    },
     toFinish () {
       this.$router.push('/apply/finish').catch((err: string) => { return err })
     },
@@ -303,9 +311,19 @@ height:60px;
     margin-top:13px;
   }
 }
-.apply-extra-button{
-  margin:2em 0em;
-}
+.apply-extra-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .apply-extra-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 ::v-deep
   .v-text-field__details{
   display:none
@@ -313,6 +331,17 @@ height:60px;
 @media (min-width: 580px) {
   .apply-extra{
     padding: 1em 8em;
+  }
+  .apply-extra-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 3em ;
+  }
+  }
+    .apply-extra-button {
+    width: 160px !important;
   }
   .apply-extra-tfdiv{
     flex-direction: row;

@@ -26,9 +26,14 @@
         <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
         <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
       </div>
-      <Button primary class="creation-extra-button" @click="toFinish">
-        {{ $t('buttons.createContest') }}
-      </Button>
+      <div class="creation-extra-div-button">
+        <Button terciary class="creation-extra-button" @click="toCreationSkills">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="creation-extra-button" @click="toFinish">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
     <img class="creation-extra-img" src="@/assets/images/extra.svg">
   </div>
@@ -53,6 +58,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toCreationSkills () {
+      this.$router.push('/create/skills').catch((err: string) => { return err })
+    },
     toFinish () {
       this.$router.push('/create/finish').catch((err: string) => { return err })
     },
@@ -133,9 +141,19 @@ $primary-color: #4974a5;
 .v-select__slot{
   overflow:hidden;
 }
-.creation-extra-button{
-  margin:3em 0em;
-}
+.creation-extra-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .creation-extra-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 .creation-extra-img{
   display: none;
   height: 20rem;
@@ -147,6 +165,17 @@ $primary-color: #4974a5;
 @media (min-width: 580px) {
   .creation-extra{
     padding: 1em 8em;
+  }
+  .creation-extra-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 3em ;
+  }
+  }
+    .creation-extra-button {
+    width: 160px !important;
   }
 }
 @media (min-width: 900px) {

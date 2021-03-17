@@ -74,9 +74,14 @@
         <TextField class="creation-skills-tf" />
         <AddButton class="creation-skills-minus" minus @click="deleteRowKnow" />
       </div>
-      <Button primary class="creation-skills-button" @click="toCreationExtra">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="creation-skills-div-button">
+        <Button terciary class="creation-skills-button" @click="toRequirements">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="creation-skills-button" @click="toCreationExtra">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
     <img class="creation-skills-img" src="@/assets/images/percentages.svg">
   </div>
@@ -106,6 +111,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toRequirements () {
+      this.$router.push('/create/requirements').catch((err: string) => { return err })
+    },
     toCreationExtra () {
       this.$router.push('/create/extra').catch((err: string) => { return err })
     },
@@ -201,9 +209,19 @@ margin-right:1em;
   align-items: flex-start;
 }
 }
-.creation-skills-button{
-  margin-bottom:2em;
-}
+.creation-skills-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .creation-skills-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 .creation-skills-img{
   display: none;
   height: 20rem;
@@ -215,6 +233,17 @@ margin-right:1em;
 @media (min-width: 580px) {
   .creation-skills{
     padding: 1em 8em;
+  }
+  .creation-skills-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    .creation-skills-button {
+    width: 160px !important;
+  }
+  :nth-child(1) {
+    margin-right: 3em ;
+  }
   }
 }
 @media (min-width: 850px) {

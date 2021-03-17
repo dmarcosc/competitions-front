@@ -17,9 +17,14 @@
                 :items="items"
                 vmodel="selected"
       />
-      <Button primary class="personalData-button" @click="toMinRequirements">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="personalData-div-button">
+        <Button terciary class="personalData-button" @click="toApply">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="personalData-button" @click="toMinRequirements">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +53,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toApply () {
+      this.$router.push('/apply').catch((err: string) => { return err })
+    },
     toMinRequirements () {
       this.$router.push('/apply/requirements').catch((err: string) => { return err })
     },
@@ -106,12 +114,33 @@ $primary-color: #4974a5;
     color: #fff
   }
 }
-.personalData-button{
-  margin:3em 0em;
-}
+.personalData-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .personalData-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 @media (min-width: 580px) {
   .personalData{
     padding: 1em 8em;
+  }
+  .personalData-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 3em ;
+  }
+  }
+    .personalData-button {
+    width: 160px !important;
   }
 }
 

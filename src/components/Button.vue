@@ -1,10 +1,10 @@
 <template>
   <button
     v-bind="$attrs"
-    :class="{'primary-btn' : (primary&&!disabled),'primary-btn--disabled' : disabled, 'secondary-btn' : (secondary&&!disabled)}"
+    :class="{'primary-btn' : (primary&&!disabled),'primary-btn--disabled' : disabled, 'secondary-btn' : (secondary&&!disabled), 'primary-btn terciary' : (terciary&&!disabled)}"
     @click="!disabled&&$emit('click')"
   >
-    <div v-if="primary" class="shine" />
+    <div v-if="primary || terciary" :class="{'shine' : primary, 'shine terciary': terciary}" />
     <slot />
   </button>
 </template>
@@ -19,6 +19,10 @@ export default {
       default: false
     },
     secondary: {
+      type: Boolean,
+      default: false
+    },
+    terciary: {
       type: Boolean,
       default: false
     },
@@ -54,7 +58,12 @@ export default {
         transform: scale(1.05);
       }
       &:hover .shine {
-      transform: skewX(20deg) translateX(300px);
+      transform: skewX(20deg) translateX(500px);
+      }
+      &.terciary{
+        background: #fff !important;
+        color: #4974a5 !important;
+        border: 2px solid #4974a5;
       }
     }
 .shine {
@@ -65,8 +74,11 @@ export default {
   height: 98px;
   width: 50px;
   background: rgba(255, 255, 255, 0.4);
-  transition: all .4s linear;
+  transition: all .7s linear;
   transform: skewX(20deg) translateX(0);
+  &.terciary{
+    background: #ebecee !important;
+  }
 }
   .secondary-btn {
   width: 130px;

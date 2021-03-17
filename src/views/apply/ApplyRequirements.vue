@@ -42,9 +42,14 @@
           </Button>
         </span>
       </div>
-      <Button primary class="apply-requirements-button" @click="toSkills">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="apply-requirements-div-button">
+        <Button terciary class="apply-requirements-button" @click="toPersonalData">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="apply-requirements-button" @click="toSkills">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
     <img class="apply-requirements-img" src="@/assets/images/contract.svg">
   </div>
@@ -67,6 +72,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toPersonalData () {
+      this.$router.push('/apply/personalData').catch((err: string) => { return err })
+    },
     toSkills () {
       this.$router.push('/apply/skills').catch((err: string) => { return err })
     },
@@ -157,9 +165,19 @@ $primary-color: #4974a5;
 .v-select__slot{
   overflow:hidden;
 }
-.apply-requirements-button{
-  margin:3em 0em;
-}
+.apply-requirements-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .apply-requirements-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 .apply-requirements-img{
   display: none;
   height: 20rem;
@@ -171,6 +189,17 @@ $primary-color: #4974a5;
 @media (min-width: 580px) {
   .apply-requirements{
     padding: 1em 8em;
+  }
+  .apply-requirements-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 3em ;
+  }
+  }
+    .apply-requirements-button {
+    width: 160px !important;
   }
 }
 @media (min-width: 900px) {

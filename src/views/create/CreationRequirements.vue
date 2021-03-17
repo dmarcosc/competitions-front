@@ -74,9 +74,14 @@
         <TextField class="creation-requirements-tf" />
         <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
-      <Button primary class="creation-requirements-button" @click="toCreationSkills">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="creation-requirements-div-button">
+        <Button terciary class="creation-requirements-button" @click="toGeneralParams">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="creation-requirements-button" @click="toCreationSkills">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -131,6 +136,9 @@ export default Vue.extend({
     },
     deleteRowKnow () {
       this.knowCounter--
+    },
+    toGeneralParams () {
+      this.$router.push('/create/generalParams').catch((err: string) => { return err })
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {
@@ -208,12 +216,33 @@ margin-right:1em;
   top:40%;
   left:50%;
 }
-.creation-requirements-button{
-  margin-bottom:2em;
-}
+.creation-requirements-div-button {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .creation-requirements-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 @media (min-width: 580px) {
   .creation-requirements{
     padding: 1em 8em;
+  }
+  .creation-requirements-div-button{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    :nth-child(1) {
+    margin-right: 7em ;
+  }
+  }
+    .creation-requirements-button {
+    width: 160px !important;
   }
 }
 @media (min-width: 850px) {

@@ -17,9 +17,14 @@
       <DateField :label="$t('create.dueDate')" class="general-tf" :min-date="new Date().toISOString()" />
       <TextField :label="$t('create.vacancies')" class="general-tf" />
       <TextArea :label="$t('create.description')" class="general-tf" />
-      <Button primary class="general-button" @click="toMinRequirements">
-        {{ $t('buttons.continue') }}
-      </Button>
+      <div class="general-div-buttons">
+        <Button terciary class="general-button" @click="toCreate">
+          {{ $t('buttons.back') }}
+        </Button>
+        <Button primary class="general-button" @click="toMinRequirements">
+          {{ $t('buttons.continue') }}
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +55,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toCreate () {
+      this.$router.push('/create').catch((err: string) => { return err })
+    },
     toMinRequirements () {
       this.$router.push('/create/requirements').catch((err: string) => { return err })
     },
@@ -108,12 +116,33 @@ $primary-color: #4974a5;
     color: #fff
   }
 }
-.general-button{
-  margin-bottom:2em;
-}
+.general-div-buttons {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100% !important;
+    margin-bottom: 70px !important;
+    padding:10px;
+    overflow: hidden;
+   }
+   .general-button {
+    width:100% !important;
+    margin-bottom: 2em;
+  }
 @media (min-width: 580px) {
   .general{
     padding: 1em 8em;
+  }
+  .general-div-buttons{
+    flex-direction: row;
+    margin:20px 0px 40px 0px;
+    padding:10px;
+    .general-button {
+    width: 160px !important;
+  }
+  :nth-child(1) {
+    margin-right: 7em ;
+  }
   }
 }
 
