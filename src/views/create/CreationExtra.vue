@@ -120,7 +120,7 @@ $primary-color: #4974a5;
   }
 }
 .creation-extra-label{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   margin-right:1em;
 }
@@ -133,8 +133,10 @@ $primary-color: #4974a5;
   max-width:365px;
 }
 .creation-extra-cb{
+  min-width:90px !important;
   width:120px;
   margin-left: auto;
+  overflow: hidden;
 
 }
 ::v-deep

@@ -227,6 +227,7 @@ to   {  transform: translateX(7px) translateY(-7px); }
   display:flex;
   flex-direction: column;
   user-select: none;
+  margin-left: -1em;
 }
 .nav-items{
   display:flex;

@@ -22,7 +22,9 @@
     </div>
     <div v-else class="common-dialog">
       <i class="fas fa-info-circle fa-4x" />
-      <div>{{ text }}</div>
+      <div :class="{'text-noProcess' : !isProcess, '' : isProcess}">
+        {{ text }}
+      </div>
       <div v-if="isProcess" class="dialog-cheat-sheet">
         <span style="color:red;">{{ $t('info.cheat') }}</span>
         <p class="dialog-p">
@@ -150,6 +152,9 @@ padding: 10px 5%;
   align-items: center;
   height:23px;
   font-size:16px;
+}
+.text-noProcess{
+  margin-bottom: 40px;
 }
 .fa-power-off{
   margin-left:5px;
