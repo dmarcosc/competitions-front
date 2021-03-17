@@ -10,12 +10,15 @@ export default Vue.extend({
   name: 'NavMenuHome',
   methods: {
     mobileToDashboard () {
-      const text = this.$t('main.confirm')
-      const r = confirm(text.toString())
-      if (r === true) {
-        this.$router.push('/dashboard').catch((err: string) => { return err })
-      } else {
-      }
+      this.$store.dispatch('ui/openDialogConfirm', {
+        text: this.$t('main.confirm')
+      })
+      // const text = this.$t('main.confirm')
+      // const r = confirm(text.toString())
+      // if (r === true) {
+      //   this.$router.push('/dashboard').catch((err: string) => { return err })
+      // } else {
+      // }
     }
   }
 })

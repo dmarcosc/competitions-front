@@ -9,6 +9,11 @@
             :text="dialog.text"
             @close="onClose"
     />
+    <DialogConfirm v-model="dialogConfirm.open"
+                   persistent
+                   :text="dialogConfirm.text"
+                   @close="onCloseDialogConfirm"
+    />
     <BlueBall v-if="login" id="ball"
               big
               class="ball1"
@@ -30,6 +35,7 @@
 <script>
 import BlueBall from '@/components/BlueBall.vue'
 import Dialog from '@/components/Dialog.vue'
+import DialogConfirm from '@/components/DialogConfirm.vue'
 import NavMenuMobile from '@/components/NavMenu/NavMenuMobile.vue'
 import Vue from 'vue'
 export default Vue.extend({
@@ -37,7 +43,8 @@ export default Vue.extend({
   components: {
     BlueBall,
     NavMenuMobile,
-    Dialog
+    Dialog,
+    DialogConfirm
   },
   data () {
     return {
@@ -52,6 +59,9 @@ export default Vue.extend({
     },
     dialog () {
       return this.$store.getters['ui/dialogInfo']
+    },
+    dialogConfirm () {
+      return this.$store.getters['ui/dialogConfirmInfo']
     }
   },
   watch: {
@@ -83,6 +93,9 @@ export default Vue.extend({
     },
     onClose () {
       this.$store.dispatch('ui/closeDialog')
+    },
+    onCloseDialogConfirm () {
+      this.$store.dispatch('ui/closeDialogConfirm')
     }
   }
 })

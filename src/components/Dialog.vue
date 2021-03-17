@@ -4,21 +4,26 @@
   >
     <div v-if="settings" class="settings-dialog">
       <h1>{{ $t('menu.settings') }}</h1>
-      <v-radio-group v-model="$i18n.locale" :label="$t('settings.language')">
-        <v-radio
-          :label="$t('settings.spanish')"
-          value="es"
-        />
-        <v-radio
-          :label="$t('settings.english')"
-          value="en"
-        />
-      </v-radio-group>
-      <v-switch
-        v-model="dark"
-        :label="$t('settings.dark')"
-      />
-      <span class="span-session" @click="closeSession">{{ $t('settings.session') }} <i class="fas fa-power-off fa-lg" /></span>
+      <div class="container-settings">
+        <div style="overflow: visible;">
+          <v-radio-group v-model="$i18n.locale" :label="$t('settings.language')">
+            <v-radio
+              :label="$t('settings.spanish')"
+              value="es"
+            />
+            <v-radio
+              :label="$t('settings.english')"
+              value="en"
+            />
+          </v-radio-group>
+          <v-switch
+            v-model="dark"
+            :label="$t('settings.dark')"
+          />
+          <span class="span-session" @click="closeSession">{{ $t('settings.session') }} <i class="fas fa-power-off fa-lg" /></span>
+        </div>
+        <img :alt="settings" class="img-settings" :src="settingsImg">
+      </div>
     </div>
     <div v-else class="common-dialog">
       <i class="fas fa-info-circle fa-4x" />
@@ -50,6 +55,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
+import settingsImg from '@/assets/images/settings.svg'
 export default Vue.extend({
   name: 'Dialog',
   components: {
@@ -71,7 +77,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      dark: false
+      dark: false,
+      settingsImg
     }
   },
   watch: {
@@ -113,6 +120,16 @@ export default Vue.extend({
 .settings-dialog{
   padding:0% 5%;
 }
+.container-settings{
+  display:flex;
+  overflow: visible;
+  justify-content: space-between;
+}
+.img-settings{
+  display:none;
+margin: 3em 2em 0em 0em;
+height:170px;
+}
 .dialog-button{
   height: 40px !important;
   width:120px !important;
@@ -132,6 +149,9 @@ padding: 10px 5%;
   }
   .v-dialog{
     font-size: 16px;
+  }
+  .img-settings{
+  display:block;
   }
 }
 ::v-deep

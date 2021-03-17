@@ -10,12 +10,20 @@ const getDefaultStateModal = () => {
   }
 }
 
+const getDefaultStateModalConfirm = () => {
+  return {
+    open: false,
+    text: ''
+  }
+}
+
 const getDefaultTextMask = () => 'Cargando...'
 
 export const ui: Module<StateUi, RootStore> = {
   namespaced: true,
   state: {
     modal: getDefaultStateModal(),
+    modalConfirm: getDefaultStateModalConfirm(),
     mask: {
       text: getDefaultTextMask(),
       show: false
@@ -44,6 +52,15 @@ export const ui: Module<StateUi, RootStore> = {
     closeDialog (state) {
       state.modal = getDefaultStateModal()
     },
+    openDialogConfirm (state, { text }) {
+      state.modalConfirm = {
+        text: text,
+        open: true
+      }
+    },
+    closeDialogConfirm (state) {
+      state.modalConfirm = getDefaultStateModal()
+    },
     toggleMenu (state) {
       state.menu.show = !state.menu.show
     },
@@ -67,6 +84,12 @@ export const ui: Module<StateUi, RootStore> = {
     closeDialog ({ commit }) {
       commit('closeDialog')
     },
+    openDialogConfirm ({ commit }, { text }) {
+      commit('openDialogConfirm', { text })
+    },
+    closeDialogConfirm ({ commit }) {
+      commit('closeDialogConfirm')
+    },
     toggleMenu ({ commit }) {
       commit('toggleMenu')
     },
@@ -83,6 +106,9 @@ export const ui: Module<StateUi, RootStore> = {
     },
     dialogInfo (state) {
       return state.modal
+    },
+    dialogConfirmInfo (state) {
+      return state.modalConfirm
     },
     menuInfo (state) {
       return state.menu

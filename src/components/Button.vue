@@ -4,7 +4,7 @@
     :class="{'primary-btn' : (primary&&!disabled),'primary-btn--disabled' : disabled, 'secondary-btn' : (secondary&&!disabled), 'primary-btn terciary' : (terciary&&!disabled)}"
     @click="!disabled&&$emit('click')"
   >
-    <div v-if="primary || terciary" :class="{'shine' : primary, 'shine terciary': terciary}" />
+    <div v-if="primary" :class="{'shine' : primary, 'shine terciary': terciary}" />
     <slot />
   </button>
 </template>
