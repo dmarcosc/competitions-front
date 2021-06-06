@@ -15,6 +15,9 @@
         :items-per-page="itemsPerPage"
         class="elevation-1"
       />
+      <Button terciary class="detail-button" @click="toProfile">
+        {{ $t('buttons.back') }}
+      </Button>
     </div>
   </div>
 </template>
@@ -22,12 +25,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
+import Button from '@/components/Button.vue'
 import i18n from '@/i18n'
 
 export default Vue.extend({
   name: 'Detail',
   components: {
-    NavMenu
+    NavMenu,
+    Button
   },
   data () {
     return {
@@ -77,6 +82,9 @@ export default Vue.extend({
       this.$store.dispatch('ui/openDialog', {
         text: this.$t('info.detail')
       })
+    },
+    toProfile () {
+      this.$router.push('/profile').catch((err: string) => { return err })
     }
   }
 })
@@ -162,10 +170,17 @@ $primary-color: #4974a5;
   width:90px;
   font-size: 12px;
 }
+.detail-button{
+  margin: 2em 0em;
+  width:100%;
+}
 @media (min-width: 750px) {
   .detail{
     height: 100vh;
   }
+  .detail-button{
+  width:160px;
+}
 }
 
 </style>

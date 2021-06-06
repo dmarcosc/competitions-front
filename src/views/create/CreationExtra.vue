@@ -12,19 +12,19 @@
       <br>
       <div class="creation-extra-tfdiv">
         <label class="creation-extra-label">{{ $t('create.extraOfficial') }}</label>
-        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
+        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
         <label class="creation-extra-label">{{ $t('create.extraExperience') }}</label>
-        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
+        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
         <label class="creation-extra-label">{{ $t('create.extraPunctual') }}</label>
-        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
+        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-tfdiv">
         <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
-        <ComboBox :label="$t('create.weight')" :items="weight" class="creation-extra-cb" />
+        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
       </div>
       <div class="creation-extra-div-button">
         <Button terciary class="creation-extra-button" @click="toCreationSkills">
@@ -43,19 +43,14 @@
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
-import ComboBox from '@/components/ComboBox.vue'
+import TextField from '@/components/TextField.vue'
 
 export default Vue.extend({
   name: 'CreationExtra',
   components: {
     Button,
-    ComboBox,
+    TextField,
     NavMenuHome
-  },
-  data () {
-    return {
-      weight: ['1', '2', '3']
-    }
   },
   methods: {
     toCreationSkills () {

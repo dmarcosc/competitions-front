@@ -1,4 +1,4 @@
-import store from '@/store/index.ts'
+import store from '@/store/index'
 /**
  * Nos devuelve el objeto parámetro completo junto con sus campos valor y código
  * a partir de uno de estos dos campos

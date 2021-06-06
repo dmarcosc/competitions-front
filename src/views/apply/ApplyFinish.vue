@@ -215,7 +215,19 @@ export default Vue.extend({
   },
   methods: {
     toProfile () {
-      this.$router.push('/profile').catch((err: string) => { return err })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        (element as any).style.setProperty('--relocation-distanceX', -150 + 'px')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        (element as any).style.setProperty('--relocation-distanceY', -150 + 'px')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        (element as any).style.setProperty('transition', '.7' + 's')
+      })
+      document.querySelectorAll('[id=ball]').forEach(element => {
+        (element as any).style.setProperty('transform', 'scale(0.7)')
+      })
+      setTimeout(() => this.$router.push('/profile').catch((err: string) => { return err }), 500)
     },
     toHome () {
       document.querySelectorAll('[id=ball]').forEach(element => {
