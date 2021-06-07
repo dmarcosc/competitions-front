@@ -10,10 +10,7 @@
       <br>
       <br>
       <TextField :label="$t('create.company')" class="general-tf" />
-      <ComboBox :label="$t('create.field')" class="general-tf"
-                :items="items"
-                vmodel="selected"
-      />
+      <TextField :label="$t('create.field')" class="general-tf" />
       <DateField :label="$t('create.dueDate')" class="general-tf" :min-date="new Date().toISOString()" />
       <TextField :label="$t('create.vacancies')" class="general-tf" />
       <TextArea :label="$t('create.description')" class="general-tf" />
@@ -35,7 +32,6 @@ import Button from '@/components/Button.vue'
 import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
-import ComboBox from '@/components/ComboBox.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 
 export default Vue.extend({
@@ -45,7 +41,6 @@ export default Vue.extend({
     TextField,
     DateField,
     TextArea,
-    ComboBox,
     NavMenuHome
   },
   data () {
