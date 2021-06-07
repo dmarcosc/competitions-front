@@ -135,6 +135,7 @@
         "dueDate": "Due date",
         "vacancies":"Number of vacancies",
         "description":"Description",
+        "titlePlaceholder":"Title",
         "weight":"Weight",
         "extraOfficial":"Any extra official title",
         "extraExperience":"Any extra experience merit",

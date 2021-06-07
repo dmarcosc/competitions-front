@@ -11,67 +11,115 @@
       <br>
       <br>
       <div class="creation-skills-tfdiv">
-        <TextField :label="$t('merits.official')" class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField :label="$t('merits.official')" :placeholder="$t('create.titlePlaceholder')" class="creation-skills-tf" />
+          <TextArea class="creation-skills-tf" :placeholder="$t('create.description')" />
+        </span>
         <AddButton plus :disabled="count==3" @click="duplicateRow" />
       </div>
       <div v-if="count >= 1" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRow" />
       </div>
       <div v-if="count >= 2" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRow" />
       </div>
       <div v-if="count >= 3" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRow" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField :label="$t('merits.experience')" class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField :label="$t('merits.experience')" :placeholder="$t('create.titlePlaceholder')" class="creation-skills-tf" />
+          <TextArea class="creation-skills-tf" :placeholder="$t('create.description')" />
+        </span>
         <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
       </div>
       <div v-if="expCounter >= 1" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowExp" />
       </div>
       <div v-if="expCounter >= 2" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowExp" />
       </div>
       <div v-if="expCounter >= 3" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowExp" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField :label="$t('merits.punctual')" class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField :label="$t('merits.punctual')" :placeholder="$t('create.titlePlaceholder')" class="creation-skills-tf" />
+          <TextArea class="creation-skills-tf" :placeholder="$t('create.description')" />
+        </span>
         <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
       </div>
       <div v-if="punctCounter >= 1" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowPunctual" />
       </div>
       <div v-if="punctCounter >= 2" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowPunctual" />
       </div>
       <div v-if="punctCounter >= 3" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowPunctual" />
       </div>
       <div class="creation-skills-tfdiv">
-        <TextField :label="$t('merits.knowledge')" class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField :label="$t('merits.knowledge')" :placeholder="$t('create.titlePlaceholder')" class="creation-skills-tf" />
+          <TextArea class="creation-skills-tf" :placeholder="$t('create.description')" />
+        </span>
         <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
       </div>
       <div v-if="knowCounter >= 1" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowKnow" />
       </div>
       <div v-if="knowCounter >= 2" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowKnow" />
       </div>
       <div v-if="knowCounter >= 3" class="creation-skills-tfdiv duplicate">
-        <TextField class="creation-skills-tf" />
+        <span class="required-official-span">
+          <TextField class="creation-skills-tf" />
+          <TextArea class="creation-requirements-tf" />
+        </span>
         <AddButton class="creation-skills-minus" minus @click="deleteRowKnow" />
       </div>
       <div class="creation-skills-div-button">
@@ -93,6 +141,7 @@ import Button from '@/components/Button.vue'
 import TextField from '@/components/TextField.vue'
 import AddButton from '@/components/AddButton.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
+import TextArea from '@/components/TextArea.vue'
 
 export default Vue.extend({
   name: 'CreationSkills',
@@ -100,7 +149,8 @@ export default Vue.extend({
     Button,
     TextField,
     NavMenuHome,
-    AddButton
+    AddButton,
+    TextArea
   },
   data () {
     return {
@@ -199,12 +249,18 @@ $primary-color: #4974a5;
 .creation-skills-tf{
 margin-right:1em;
 }
+.required-official-span{
+  display: flex;
+  flex-direction: column;
+  margin-right:1em;
+
+}
 .creation-skills-minus{
   margin-top:14px;
 }
 .creation-skills-tfdiv{
   display:flex;
-  align-items: center;
+  align-items: flex-start;
   &.duplicate{
   align-items: flex-start;
 }
@@ -227,7 +283,7 @@ margin-right:1em;
   height: 20rem;
   z-index: 6;
   position: absolute;
-  top:40%;
+  top:16%;
   left:50%;
 }
 @media (min-width: 580px) {
@@ -247,7 +303,7 @@ margin-right:1em;
   }
 }
 @media (min-width: 850px) {
-  .tf-div.creation-skills-tf{
+.required-official-span{
     width:40%;
   }
   .creation-skills-img{

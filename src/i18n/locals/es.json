@@ -135,6 +135,7 @@
         "dueDate": "Fecha límite",
         "vacancies":"Número de vacantes",
         "description":"Descripción",
+        "titlePlaceholder":"Título",
         "weight":"Valoración",
         "extraOfficial":"Cualquier título oficial extra",
         "extraExperience":"Cualquier experiencia extra",
