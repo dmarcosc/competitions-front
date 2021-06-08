@@ -114,7 +114,11 @@
         "secondName":"Second name",
         "dateBirth":"Date of birth",
         "phone":"Phone number",
-        "country": "Country"
+        "country": "Country",
+        "grade": "Grade point average",
+        "date": "Date of completion ",
+        "time": "Duration",
+        "months": "Months"
     },
     "create":{
         "title":"Creation process",

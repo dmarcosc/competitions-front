@@ -52,6 +52,9 @@ export default Vue.extend({
     TextField,
     NavMenuHome
   },
+  mounted () {
+    window.scrollTo(0, 0)
+  },
   methods: {
     toCreationSkills () {
       this.$router.push('/create/skills').catch((err: string) => { return err })

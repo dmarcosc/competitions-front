@@ -9,150 +9,233 @@
       {{ $t('apply.subtitleExtra') }}
       <hr>
       <br>
-      <br>
-      <div class="apply-extra-tfdiv">
-        <TextField :label="$t('merits.official')" class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton plus :disabled="count==3" @click="duplicateRow" />
-        </span>
+      <div>
+        <div class="apply-extra-tfdiv">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <AddButton plus :disabled="count==3" @click="duplicateRow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="count >= 1" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="count >= 2" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="count >= 3" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div class="apply-extra-tfdiv exp">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
+          </div>
+          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField
+            type="number"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-requirements-field"
+          />
+          <TextArea :label="$t('create.description')" />
+        </div>
+        <div v-if="expCounter >= 1" class="apply-extra-tfdiv exp">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
+          </div>
+          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField
+            type="number"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-requirements-field"
+          />
+          <TextArea :label="$t('create.description')" />
+        </div>
+        <div v-if="expCounter >= 2" class="apply-extra-tfdiv exp">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
+          </div>
+          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField
+            type="number"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-requirements-field"
+          />
+          <TextArea :label="$t('create.description')" />
+        </div>
+        <div v-if="expCounter >= 3" class="apply-extra-tfdiv exp">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
+          </div>
+          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField
+            type="number"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-requirements-field"
+          />
+          <TextArea :label="$t('create.description')" />
+        </div>
       </div>
-      <div v-if="count >= 1" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRow" />
-        </span>
-      </div>
-      <div v-if="count >= 2" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRow" />
-        </span>
-      </div>
-      <div v-if="count >= 3" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRow" />
-        </span>
-      </div>
-      <div class="apply-extra-tfdiv">
-        <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
-        </span>
-      </div>
-      <div v-if="expCounter >= 1" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
-        </span>
-      </div>
-      <div v-if="expCounter >= 2" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
-        </span>
-      </div>
-      <div v-if="expCounter >= 3" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
-        </span>
-      </div>
-      <div class="apply-extra-tfdiv">
-        <TextField :label="$t('merits.punctual')" class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
-        </span>
-      </div>
-      <div v-if="punctCounter >= 1" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
-        </span>
-      </div>
-      <div v-if="punctCounter >= 2" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
-        </span>
-      </div>
-      <div v-if="punctCounter >= 3" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
-        </span>
-      </div>
-      <div class="apply-extra-tfdiv">
-        <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
-        </span>
-      </div>
-      <div v-if="knowCounter >= 1" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
-        </span>
-      </div>
-      <div v-if="knowCounter >= 2" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
-        </span>
-      </div>
-      <div v-if="knowCounter >= 3" class="apply-extra-tfdiv duplicate">
-        <TextField class="apply-extra-tf" />
-        <span class="apply-extra-span">
-          <Button secondary class="apply-extra-upload dup">
-            {{ $t('buttons.upload') }}
-          </Button>
-          <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
-        </span>
+      <div>
+        <div class="apply-extra-tfdiv">
+          <div class="apply-extra-duplicatediv">
+            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
+          </div>
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="punctCounter >= 1" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
+          </div>
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="punctCounter >= 2" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
+          </div>
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="punctCounter >= 3" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
+          </div>
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div class="apply-extra-tfdiv">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="knowCounter >= 1" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="knowCounter >= 2" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-if="knowCounter >= 3" class="apply-extra-tfdiv duplicate">
+          <div class="apply-extra-duplicatediv">
+            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
+          </div>
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-extra-field"
+          />
+          <Input id="fileUpload" class="apply-extra-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
       </div>
       <div class="apply-extra-div-button">
         <Button terciary class="apply-extra-button" @click="toSkills">
@@ -163,22 +246,29 @@
         </Button>
       </div>
     </div>
+    <img class="apply-extra-img" src="@/assets/images/data_points.svg" alt="extra skills image">
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Button from '@/components/Button.vue'
-import TextField from '@/components/TextField.vue'
-import AddButton from '@/components/AddButton.vue'
+import Input from '@/components/Input.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
+import TextField from '@/components/TextField.vue'
+import DateField from '@/components/DateField.vue'
+import TextArea from '@/components/TextArea.vue'
+import AddButton from '@/components/AddButton.vue'
 
 export default Vue.extend({
   name: 'ApplyExtra',
   components: {
     Button,
-    TextField,
     NavMenuHome,
+    Input,
+    DateField,
+    TextField,
+    TextArea,
     AddButton
   },
   data () {
@@ -188,6 +278,9 @@ export default Vue.extend({
       punctCounter: 0,
       knowCounter: 0
     }
+  },
+  mounted () {
+    window.scrollTo(0, 0)
   },
   methods: {
     toSkills () {
@@ -227,6 +320,10 @@ export default Vue.extend({
       this.$store.dispatch('ui/openDialog', {
         text: this.$t('info.applyExtra')
       })
+    },
+    chooseFiles () {
+      const aux = document.getElementById('fileUpload')
+      if (aux) aux.click()
     }
   }
 })
@@ -280,6 +377,7 @@ $primary-color: #4974a5;
 }
 .apply-extra-tf{
 margin-right:1em;
+width:90%;
 }
 .apply-extra-minus{
   margin-top:14px;
@@ -287,10 +385,20 @@ margin-right:1em;
 .apply-extra-tfdiv{
   flex-direction: column;
   display:flex;
-  align-items: flex-start;
-  margin-bottom: 2em;
-  &.duplicate{
-  align-items: flex-start;
+  max-width: 400px;
+  max-height: 380px;
+  margin-bottom: 1.5em;
+  margin-top:1.5em;
+  &.exp {
+    max-height: 490px;
+  }
+  // align-items: flex-start;
+}
+.apply-extra-duplicatediv{
+  display:flex;
+}
+.apply-extra-duplicatespan{
+  margin:0;
 }
 .apply-extra-span{
 display:flex;
@@ -299,13 +407,12 @@ align-items: center;
 min-width:205px;
 height:60px;
 }
-}
 .apply-extra-img{
   display: none;
   height: 20rem;
   z-index: 6;
   position: absolute;
-  top:40%;
+  top:16%;
   left:50%;
 }
 .apply-extra-upload{
@@ -347,8 +454,6 @@ height:60px;
     width: 160px !important;
   }
   .apply-extra-tfdiv{
-    flex-direction: row;
-    align-items: center;
     margin-bottom: 0px;
   }
   ::v-deep
@@ -356,12 +461,9 @@ height:60px;
   display:block
 }
 }
-@media (min-width: 850px) {
+@media (min-width: 1050px) {
   .apply-extra-img{
     display: block;
-  }
-  .tf-div.apply-extra-tf{
-    width:40%;
   }
 }
 @media (min-width: 1500px) {

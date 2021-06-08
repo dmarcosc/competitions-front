@@ -160,6 +160,9 @@ export default Vue.extend({
       knowCounter: 0
     }
   },
+  mounted () {
+    window.scrollTo(0, 0)
+  },
   methods: {
     toRequirements () {
       this.$router.push('/create/requirements').catch((err: string) => { return err })
