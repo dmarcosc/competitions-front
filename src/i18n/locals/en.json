@@ -53,6 +53,16 @@
         "upload": "Upload file",
         "createContest": "Create contest"
     },
+    "validations": {
+        "required": "Required",
+        "max40": "Max 40 characters",
+        "max200": "Max 200 characters",
+        "between010": "Value between 0-10",
+        "between0100": "Value between 0-100",
+        "positive": "Must be positive",
+        "cellphone": "Invalid cellphone",
+        "alpha":"Only alphabetic characters"
+    },
     "merits":{
         "official":"Official Title",
         "experience":"Experience Merit",

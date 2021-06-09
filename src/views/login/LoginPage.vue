@@ -6,20 +6,29 @@
         <BlueBall medium class="ball2" />
         <BlueBall small class="ball3" />
         <div class="signin-signup">
-          <form class="sign-in-form" @click.prevent>
+          <form id="app" class="sign-in-form" @click.prevent>
             <h2 class="titles">
               {{ $t('login.title') }}
             </h2>
-            <div class="input-field">
+            <div :class="{ 'input-field inv' : emailInvalid, 'input-field' : !emailInvalid }">
               <i class="fas fa-envelope" />
-              <input type="text" :placeholder="$t('register.email')">
+              <input v-model="email" type="email"
+                     :placeholder="$t('register.email')"
+                     @input="validateEmail()"
+              >
             </div>
-            <div class="input-field">
+            <div :class="{ 'input-field inv' : passInvalid, 'input-field' : !passInvalid }">
               <i class="fas fa-lock" />
-              <input type="password" :placeholder="$t('register.password')">
+              <input v-model="password" type="password"
+                     :placeholder="$t('register.password')"
+                     @input="validatePass()"
+              >
             </div>
             <div class="form-buttons">
-              <Button primary @click="onContinue">
+              <Button primary
+                      :disabled="handleLogin()"
+                      @click="onContinue()"
+              >
                 {{ $t('login.title') }}
               </Button>
             </div>
@@ -45,16 +54,22 @@
             <h2 class="titles">
               {{ $t('register.title') }}
             </h2>
-            <div class="input-field">
+            <div :class="{ 'input-field inv' : emailRegisterInvalid, 'input-field' : !emailRegisterInvalid }">
               <i class="fas fa-envelope" />
-              <input type="email" :placeholder="$t('register.email')">
+              <input v-model="emailRegister" type="email"
+                     :placeholder="$t('register.email')"
+                     @input="validateEmailRegister()"
+              >
             </div>
-            <div class="input-field">
+            <div :class="{ 'input-field inv' : passRegisterInvalid, 'input-field' : !passRegisterInvalid }">
               <i class="fas fa-lock" />
-              <input type="password" :placeholder="$t('register.password')">
+              <input v-model="passwordRegister" type="password"
+                     :placeholder="$t('register.password')"
+                     @input="validatePassRegister()"
+              >
             </div>
             <div class="form-buttons">
-              <Button primary @click="onContinue">
+              <Button primary :disabled="handleRegister()" @click="onContinue">
                 {{ $t('buttons.signup') }}
               </Button>
             </div>
@@ -119,7 +134,7 @@
 <script>
 import Button from '@/components/Button.vue'
 import BlueBall from '@/components/BlueBall.vue'
-
+import { validateEmail } from '@/utils/validations'
 export default {
   name: 'LoginPage',
   components: {
@@ -128,15 +143,65 @@ export default {
   },
   data () {
     return {
-      signUpMode: false
+      signUpMode: false,
+      password: '',
+      email: '',
+      passwordRegister: '',
+      emailRegister: '',
+      emailInvalid: false,
+      passInvalid: false,
+      passRegisterInvalid: false,
+      emailRegisterInvalid: false
     }
   },
   methods: {
+    validateEmail () {
+      if (!validateEmail(this.email)) {
+        this.emailInvalid = true
+      } else {
+        this.emailInvalid = false
+      }
+    },
+    validatePass () {
+      if (this.password.length < 6) {
+        this.passInvalid = true
+      } else {
+        this.passInvalid = false
+      }
+    },
+    validateEmailRegister () {
+      if (!validateEmail(this.emailRegister)) {
+        this.emailRegisterInvalid = true
+      } else {
+        this.emailRegisterInvalid = false
+      }
+    },
+    validatePassRegister () {
+      if (this.passwordRegister.length < 6) {
+        this.passRegisterInvalid = true
+      } else {
+        this.passRegisterInvalid = false
+      }
+    },
     onContinue () {
       this.$store.dispatch('ui/showMask', {
         text: this.$t('main.retrievingData')
       })
       window.setTimeout(() => { this.$router.push('/dashboard').catch((err) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
+    },
+    handleLogin () {
+      if (!this.email || !this.password) {
+        return true
+      } if (this.emailInvalid || this.passInvalid) {
+        return true
+      } else return false
+    },
+    handleRegister () {
+      if (!this.emailRegister || !this.passwordRegister) {
+        return true
+      } if (this.emailRegisterInvalid || this.passRegisterInvalid) {
+        return true
+      } else return false
     }
   }
 }
@@ -243,6 +308,10 @@ form.sign-in-form {
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
   position: relative;
+  border:none;
+  &.inv {
+    border: 1px solid red;
+  }
 }
 
 .input-field i {

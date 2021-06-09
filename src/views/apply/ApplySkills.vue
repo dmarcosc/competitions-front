@@ -9,60 +9,68 @@
       {{ $t('apply.subtitleSkills') }}
       <hr>
       <br>
-      <div v-for="{ title, description } in Omerits" :key="title" class="apply-skills-tfdiv">
-        <label class="apply-skills-label"> {{ title }} </label>
-        <label class="apply-skills-desc"> {{ description }} </label>
-        <DateField :label="$t('apply.date')" class="apply-skills-field" :min-date="new Date().toISOString()" />
-        <TextField placeholder="0-10"
-                   type="number"
-                   :label="$t('apply.grade')"
-                   class="apply-skills-field"
-        />
-        <Input id="fileUpload" class="apply-skills-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
-      <div v-for="{ title, description } in Emerits" :key="title" class="apply-skills-tfdiv">
-        <label class="apply-skills-label"> {{ title }} </label>
-        <label class="apply-skills-desc"> {{ description }} </label>
-        <TextField :label="$t('create.company')" class="apply-skills-field" :min-date="new Date().toISOString()" />
-        <TextField
-          type="number"
-          :label="$t('apply.time')"
-          :placeholder="$t('apply.months')"
-          class="apply-skills-field"
-        />
-        <TextArea :label="$t('create.description')" />
-      </div>
-      <div v-for="{ title, description } in Pmerits" :key="title" class="apply-skills-tfdiv">
-        <label class="apply-skills-label"> {{ title }} </label>
-        <label class="apply-skills-desc"> {{ description }} </label>
-        <TextArea :label="$t('create.description')" />
-        <Input id="fileUpload" class="apply-skills-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
-      <div v-for="{ title, description } in Kmerits" :key="title" class="apply-skills-tfdiv">
-        <label class="apply-skills-label"> {{ title }} </label>
-        <label class="apply-skills-desc"> {{ description }} </label>
-        <DateField :label="$t('apply.date')" class="apply-skills-field" :min-date="new Date().toISOString()" />
-        <TextField placeholder="0-10"
-                   type="number"
-                   :label="$t('apply.grade')"
-                   class="apply-skills-field"
-        />
-        <Input id="fileUpload" class="apply-skills-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
+      <v-form v-model="isFormValid" @click.prevent>
+        <div v-for="{ title, description } in Omerits" :key="title" class="apply-skills-tfdiv">
+          <label class="apply-skills-label"> {{ title }} </label>
+          <label class="apply-skills-desc"> {{ description }} </label>
+          <DateField :label="$t('apply.date')" class="apply-skills-field" :max-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :rules="[rules.max]"
+                     :label="$t('apply.grade')"
+                     class="apply-skills-field"
+          />
+          <Input id="fileUpload" class="apply-skills-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-for="{ title, description } in Emerits" :key="title" class="apply-skills-tfdiv">
+          <label class="apply-skills-label"> {{ title }} </label>
+          <label class="apply-skills-desc"> {{ description }} </label>
+          <TextField :label="$t('create.company')" class="apply-skills-field" :rules="[rules.counter]" />
+          <TextField
+            type="number"
+            :rules="[rules.negative]"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-skills-field"
+          />
+          <TextArea :label="$t('create.description')" :rules="[rules.counterDesc]" />
+        </div>
+        <div v-for="{ title, description } in Pmerits" :key="title" class="apply-skills-tfdiv">
+          <label class="apply-skills-label"> {{ title }} </label>
+          <label class="apply-skills-desc"> {{ description }} </label>
+          <TextArea :label="$t('create.description')" :rules="[rules.counterDesc]" />
+          <Input id="fileUpload" class="apply-skills-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-for="{ title, description } in Kmerits" :key="title" class="apply-skills-tfdiv">
+          <label class="apply-skills-label"> {{ title }} </label>
+          <label class="apply-skills-desc"> {{ description }} </label>
+          <DateField :label="$t('apply.date')" class="apply-skills-field" :max-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :rules="[rules.max]"
+                     :label="$t('apply.grade')"
+                     class="apply-skills-field"
+          />
+          <Input id="fileUpload" class="apply-skills-input"
+                 type="file"
+                 @click="chooseFiles()"
+          />
+        </div>
+      </v-form>
       <div class="apply-skills-div-button">
         <Button terciary class="apply-skills-button" @click="toRequirements">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="apply-skills-button" @click="toExtra">
+        <Button primary class="apply-skills-button"
+                :disabled="!isFormValid"
+                @click="toExtra"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -116,7 +124,14 @@ export default Vue.extend({
       Kmerits: [{
         title: 'Conocimientos de Adobe',
         description: 'imprescindible saber trabajar con Adobe'
-      }]
+      }],
+      isFormValid: false,
+      rules: {
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40'),
+        counterDesc: (value: any) => value.length <= 200 || this.$t('validations.max200'),
+        max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010'),
+        negative: (value: any) => (value >= 0) || this.$t('validations.positive')
+      }
     }
   },
   mounted () {
@@ -189,14 +204,14 @@ $primary-color: #4974a5;
   }
 }
 .apply-skills-field{
-  height:90px;
+  height:100px;
   &.area {
     height:130px;
   }
 }
 ::v-deep
 .v-text-field__details{
-  display:none
+  //display:none
 }
 .apply-skills-input{
   margin-top:.9em;

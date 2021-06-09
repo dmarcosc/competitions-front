@@ -15,12 +15,15 @@
             <TextField :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton plus :disabled="count==3" @click="duplicateRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -31,12 +34,15 @@
             <TextField :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -47,12 +53,15 @@
             <TextField :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -63,12 +72,15 @@
             <TextField :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -79,13 +91,16 @@
             <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
             <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField
-            type="number"
-            :label="$t('apply.time')"
-            :placeholder="$t('apply.months')"
-            class="apply-requirements-field"
-          />
+          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField
+              type="number"
+              :label="$t('apply.time')"
+              :rules="[rules.negative]"
+              :placeholder="$t('apply.months')"
+              class="apply-requirements-field"
+            />
+          </v-form>
           <TextArea :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 1" class="apply-extra-tfdiv exp">
@@ -93,13 +108,16 @@
             <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField
-            type="number"
-            :label="$t('apply.time')"
-            :placeholder="$t('apply.months')"
-            class="apply-requirements-field"
-          />
+          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField
+              type="number"
+              :label="$t('apply.time')"
+              :rules="[rules.negative]"
+              :placeholder="$t('apply.months')"
+              class="apply-requirements-field"
+            />
+          </v-form>
           <TextArea :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 2" class="apply-extra-tfdiv exp">
@@ -107,13 +125,16 @@
             <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField
-            type="number"
-            :label="$t('apply.time')"
-            :placeholder="$t('apply.months')"
-            class="apply-requirements-field"
-          />
+          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField
+              type="number"
+              :label="$t('apply.time')"
+              :rules="[rules.negative]"
+              :placeholder="$t('apply.months')"
+              class="apply-requirements-field"
+            />
+          </v-form>
           <TextArea :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 3" class="apply-extra-tfdiv exp">
@@ -121,13 +142,16 @@
             <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField
-            type="number"
-            :label="$t('apply.time')"
-            :placeholder="$t('apply.months')"
-            class="apply-requirements-field"
-          />
+          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField
+              type="number"
+              :label="$t('apply.time')"
+              :rules="[rules.negative]"
+              :placeholder="$t('apply.months')"
+              class="apply-requirements-field"
+            />
+          </v-form>
           <TextArea :label="$t('create.description')" />
         </div>
       </div>
@@ -177,12 +201,15 @@
             <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -193,12 +220,15 @@
             <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -209,12 +239,15 @@
             <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -225,12 +258,15 @@
             <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :min-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
-                     type="number"
-                     :label="$t('apply.grade')"
-                     class="apply-extra-field"
-          />
+          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <v-form v-model="isFormValid" @click.prevent>
+            <TextField placeholder="0-10"
+                       type="number"
+                       :rules="[rules.max]"
+                       :label="$t('apply.grade')"
+                       class="apply-extra-field"
+            />
+          </v-form>
           <Input id="fileUpload" class="apply-extra-input"
                  type="file"
                  @click="chooseFiles()"
@@ -241,7 +277,10 @@
         <Button terciary class="apply-extra-button" @click="toSkills">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="apply-extra-button" @click="toFinish">
+        <Button primary class="apply-extra-button"
+                :disabled="!isFormValid"
+                @click="toFinish"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -276,7 +315,15 @@ export default Vue.extend({
       count: 0,
       expCounter: 0,
       punctCounter: 0,
-      knowCounter: 0
+      knowCounter: 0,
+      isFormValid: false,
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40'),
+        counterDesc: (value: any) => value.length <= 200 || this.$t('validations.max200'),
+        max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010'),
+        negative: (value: any) => (value > 0) || this.$t('validations.positive')
+      }
     }
   },
   mounted () {
@@ -386,7 +433,7 @@ width:90%;
   flex-direction: column;
   display:flex;
   max-width: 400px;
-  max-height: 380px;
+  max-height: 385px;
   margin-bottom: 1.5em;
   margin-top:1.5em;
   &.exp {
@@ -436,7 +483,7 @@ height:60px;
   }
 ::v-deep
   .v-text-field__details{
-  display:none
+  // display:none
 }
 @media (min-width: 580px) {
   .apply-extra{

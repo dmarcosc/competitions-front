@@ -53,6 +53,16 @@
         "upload": "Subir fichero",
         "createContest": "Crear concurso"
     },
+    "validations": {
+        "required": "Requerido",
+        "max40": "Máximo 40 caracteres",
+        "max200": "Máximo 200 caracteres",
+        "between010": "Valor entre 0-10",
+        "between0100": "Valor entre 0-100",
+        "positive": "Debe ser positivo",
+        "cellphone": "Teléfono inválido",
+        "alpha":"Solo caracteres alfabéticos"
+    },
     "merits":{
         "official":"Título oficial",
         "experience":"Mérito de experiencia",

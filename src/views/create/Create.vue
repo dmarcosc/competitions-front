@@ -7,8 +7,16 @@
         <span class="create-info" @click="openDialog"><i class="fas fa-info-circle "> info</i></span>
       </div>
       <hr>
-      <TextField :label="$t('create.name')" class="create-tf" />
-      <Button primary class="create-button" @click="toGeneralParams">
+      <v-form v-model="isFormValid" @click.prevent>
+        <TextField v-model="title"
+                   :rules="[rules.required, rules.counter]"
+                   :label="$t('create.name')" class="create-tf"
+        />
+      </v-form>
+      <Button primary :disabled="!isFormValid"
+              class="create-button"
+              @click="toGeneralParams"
+      >
         {{ $t('buttons.start') }}
       </Button>
       <img class="create-img" src="@/assets/images/build.svg">
@@ -21,6 +29,7 @@ import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import TextField from '@/components/TextField.vue'
+import { textWhiteSpaces } from '@/utils/validations'
 
 export default Vue.extend({
   name: 'Create',
@@ -28,6 +37,17 @@ export default Vue.extend({
     Button,
     TextField,
     NavMenu
+  },
+  data () {
+    return {
+      title: '',
+      isFormValid: false,
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40')
+        // textWhiteSpaces: (value: any) => textWhiteSpaces(value) || 'Alpha'
+      }
+    }
   },
   methods: {
     toGeneralParams () {

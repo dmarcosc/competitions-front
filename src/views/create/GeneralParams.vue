@@ -9,16 +9,37 @@
       <hr>
       <br>
       <br>
-      <TextField :label="$t('create.company')" class="general-tf" />
-      <TextField :label="$t('create.field')" class="general-tf" />
-      <DateField :label="$t('create.dueDate')" class="general-tf" :min-date="new Date().toISOString()" />
-      <TextField :label="$t('create.vacancies')" class="general-tf" />
-      <TextArea :label="$t('create.description')" class="general-tf" />
+      <v-form v-model="isFormValid" @click.prevent>
+        <TextField :vmodel="company" :rules="[rules.required, rules.counter]"
+                   :label="$t('create.company')"
+                   class="general-tf"
+        />
+        <TextField :vmodel="field" :label="$t('create.field')"
+                   :rules="[rules.required, rules.counter]"
+                   class="general-tf"
+        />
+        <DateField :vmodel="dueDate" :label="$t('create.dueDate')"
+                   class="general-tf"
+                   :min-date="new Date().toISOString()"
+        />
+        <TextField :vmodel="vacancies" type="number"
+                   :label="$t('create.vacancies')"
+                   :rules="[rules.max]"
+                   class="general-tf"
+        />
+        <TextArea :vmodel="description" :label="$t('create.description')"
+                  :rules="[rules.required, rules.counterDesc]"
+                  class="general-tf"
+        />
+      </v-form>
       <div class="general-div-buttons">
         <Button terciary class="general-button" @click="toCreate">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="general-button" @click="toMinRequirements">
+        <Button primary :disabled="!isFormValid"
+                class="general-button"
+                @click="toMinRequirements"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -45,8 +66,21 @@ export default Vue.extend({
   },
   data () {
     return {
+      isFormValid: false,
       items: ['Software Development', 'Computer Science', 'Machine Learning', 'Web Development'],
-      selected: ''
+      selected: '',
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40'),
+        counterDesc: (value: any) => value.length <= 200 || this.$t('validations.max200'),
+        max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010')
+        // textWhiteSpaces: (value: any) => textWhiteSpaces(value) || 'Alpha'
+      },
+      company: '',
+      field: '',
+      dueDate: '',
+      vacancies: 0,
+      description: ''
     }
   },
   methods: {

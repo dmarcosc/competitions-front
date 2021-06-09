@@ -1,5 +1,6 @@
 
 import moment from 'moment'
+import store from '@/store'
 
 /*  returns:
   /*      0 - NIF
@@ -68,7 +69,7 @@ export const validateDocument = (document: string) => {
     }
     return false // -1
   }
-  return false // -1
+  return true // -1
 }
 
 /*  returns:
@@ -87,7 +88,7 @@ export const validateCellphone = (phone: string) => {
       return false // -1
     }
   }
-  return false // -2
+  return true // -2
 }
 
 /*  returns:
@@ -112,7 +113,7 @@ export const validatePhone = (phone: string) => {
 // validar email.
 export const validateEmail = (email: string) => {
   if (email) {
-    const emailRexp = /^(([^<>ñ()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/
+    const emailRexp = /^(([^<>ñ()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/
     const str = email.toString()
     if (emailRexp.test(str)) {
       return true
@@ -120,33 +121,46 @@ export const validateEmail = (email: string) => {
       return false
     }
   }
-  return false
+  return true
 }
-// validar textfiel del nombre, apellido y nombre de la empresa.
-export const clientDataValidation = (name: string) => {
-  if (name) {
+
+export const textWhiteSpaces = (text: string) => {
+  if (text) {
     const nombreRex = /^[ a-zA-ZÀ-ÿ\u00f1\u00d1]*$/g
-    const str = name.toString()
+    const str = text.toString()
     if (nombreRex.test(str)) {
       return true
     } else {
       return false
     }
   }
-  return false
+  return true
 }
-// validar textfiel del nombre, apellido y nombre de la empresa
-export const validateCompanyName = (name: string) => {
-  if (name) {
-    const companyNameRex = /^[A-Za-z0-9\u00f1\u00d1-\s]+$/g
-    const str = name.toString()
+
+export const alphaNumericWhiteSpaces = (text: string) => {
+  if (text) {
+    const companyNameRex = /^[ A-Za-z0-9\u00f1\u00d1-\s]+$/g
+    const str = text.toString()
     if (companyNameRex.test(str)) {
       return true
     } else {
       return false
     }
   }
-  return false
+  return true
+}
+
+export const companyName = (text: string) => {
+  if (text) {
+    const companyNameRex = /^[ A-Za-z0-9.,/-\u00f1\u00d1-\s]+$/g
+    const str = text.toString()
+    if (companyNameRex.test(str)) {
+      return true
+    } else {
+      return false
+    }
+  }
+  return true
 }
 
 const obtenerDC = (entidad: string, oficina: string, cuenta: string) => {
@@ -205,6 +219,15 @@ export const separatePhoneNumber = (phone: string) => {
 }
 
 export const validateIBAN = (IBAN: string) => {
+  // Para los casos en los que recibimos un IBAN del servicio, estos datos tienen que poder pasar
+  if (store.getters['session/datosPersonales']?.datosCuentaBanco?.iban && IBAN.indexOf('*') !== -1) {
+    const savedIBAN = store.getters['session/datosPersonales'].datosCuentaBanco.iban
+
+    if (IBAN === savedIBAN) {
+      return true
+    }
+  }
+
   const NUMERO_MAGICO = 97
   const LONGITUD_OK = 24
   const ASCII_0 = 48

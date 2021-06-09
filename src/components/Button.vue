@@ -1,7 +1,7 @@
 <template>
   <button
     v-bind="$attrs"
-    :class="{'primary-btn' : (primary&&!disabled),'primary-btn--disabled' : disabled, 'secondary-btn' : (secondary&&!disabled), 'primary-btn terciary' : (terciary&&!disabled)}"
+    :class="{'primary-btn' : (primary&&!disabled),'primary-btn disabled' : disabled, 'secondary-btn' : (secondary&&!disabled), 'primary-btn terciary' : (terciary&&!disabled)}"
     @click="!disabled&&$emit('click')"
   >
     <div v-if="primary" :class="{'shine' : primary, 'shine terciary': terciary}" />
@@ -64,6 +64,10 @@ export default {
         background: #fff !important;
         color: #4974a5 !important;
         border: 2px solid #4974a5;
+      }
+      &.disabled{
+        background-color:rgb(156, 154, 154);
+        background-image: none;
       }
     }
 .shine {

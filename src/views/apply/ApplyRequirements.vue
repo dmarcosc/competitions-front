@@ -9,60 +9,71 @@
       {{ $t('apply.subtitleRequirements') }}
       <hr>
       <br>
-      <div v-for="{ title, description } in Omerits" :key="title" class="apply-requirements-tfdiv">
-        <label class="apply-requirements-label"> {{ title }} </label>
-        <label class="apply-requirements-desc"> {{ description }} </label>
-        <DateField :label="$t('apply.date')" class="apply-requirements-field" :min-date="new Date().toISOString()" />
-        <TextField placeholder="0-10"
-                   type="number"
-                   :label="$t('apply.grade')"
-                   class="apply-requirements-field"
-        />
-        <Input id="fileUpload" class="apply-requirements-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
-      <div v-for="{ title, description } in Emerits" :key="title" class="apply-requirements-tfdiv">
-        <label class="apply-requirements-label"> {{ title }} </label>
-        <label class="apply-requirements-desc"> {{ description }} </label>
-        <TextField :label="$t('create.company')" class="apply-requirements-field" :min-date="new Date().toISOString()" />
-        <TextField
-          type="number"
-          :label="$t('apply.time')"
-          :placeholder="$t('apply.months')"
-          class="apply-requirements-field"
-        />
-        <TextArea :label="$t('create.description')" />
-      </div>
-      <div v-for="{ title, description } in Pmerits" :key="title" class="apply-requirements-tfdiv">
-        <label class="apply-requirements-label"> {{ title }} </label>
-        <label class="apply-requirements-desc"> {{ description }} </label>
-        <TextArea :label="$t('create.description')" />
-        <Input id="fileUpload" class="apply-requirements-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
-      <div v-for="{ title, description } in Kmerits" :key="title" class="apply-requirements-tfdiv">
-        <label class="apply-requirements-label"> {{ title }} </label>
-        <label class="apply-requirements-desc"> {{ description }} </label>
-        <DateField :label="$t('apply.date')" class="apply-requirements-field" :min-date="new Date().toISOString()" />
-        <TextField placeholder="0-10"
-                   type="number"
-                   :label="$t('apply.grade')"
-                   class="apply-requirements-field"
-        />
-        <Input id="fileUpload" class="apply-requirements-input"
-               type="file"
-               @click="chooseFiles()"
-        />
-      </div>
+      <v-form v-model="isFormValid" @click.prevent>
+        <div v-for="{ title, description } in Omerits" :key="title" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ title }} </label>
+          <label class="apply-requirements-desc"> {{ description }} </label>
+          <DateField :label="$t('apply.date')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :label="$t('apply.grade')"
+                     class="apply-requirements-field"
+                     :rules="[rules.required, rules.max]"
+          />
+          <Input id="fileUpload" class="apply-requirements-input"
+                 type="file"
+                 :rules="[rules.required]"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-for="{ title, description } in Emerits" :key="title" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ title }} </label>
+          <label class="apply-requirements-desc"> {{ description }} </label>
+          <TextField :label="$t('create.company')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
+          <TextField
+            type="number"
+            :label="$t('apply.time')"
+            :placeholder="$t('apply.months')"
+            class="apply-requirements-field"
+            :rules="[rules.required, rules.negative]"
+          />
+          <TextArea :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
+        </div>
+        <div v-for="{ title, description } in Pmerits" :key="title" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ title }} </label>
+          <label class="apply-requirements-desc"> {{ description }} </label>
+          <TextArea :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
+          <Input id="fileUpload" class="apply-requirements-input"
+                 type="file"
+                 :rules="[rules.required]"
+                 @click="chooseFiles()"
+          />
+        </div>
+        <div v-for="{ title, description } in Kmerits" :key="title" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ title }} </label>
+          <label class="apply-requirements-desc"> {{ description }} </label>
+          <DateField :label="$t('apply.date')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
+          <TextField placeholder="0-10"
+                     type="number"
+                     :rules="[rules.required, rules.max]"
+                     :label="$t('apply.grade')"
+                     class="apply-requirements-field"
+          />
+          <Input id="fileUpload" class="apply-requirements-input"
+                 type="file"
+                 :rules="[rules.required]"
+                 @click="chooseFiles()"
+          />
+        </div>
+      </v-form>
       <div class="apply-requirements-div-button">
         <Button terciary class="apply-requirements-button" @click="toPersonalData">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="apply-requirements-button" @click="toSkills">
+        <Button primary class="apply-requirements-button"
+                :disabled="!isFormValid"
+                @click="toSkills()"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -92,6 +103,14 @@ export default Vue.extend({
   },
   data () {
     return {
+      isFormValid: false,
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40'),
+        counterDesc: (value: any) => value.length <= 200 || this.$t('validations.max200'),
+        max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010'),
+        negative: (value: any) => (value > 0) || this.$t('validations.positive')
+      },
       Omerits: [{
         title: 'Grado Informatica',
         description: 'se debe tener el grado en informatica blabla'
@@ -188,14 +207,14 @@ $primary-color: #4974a5;
   }
 }
 .apply-requirements-field{
-  height:90px;
+  height:100px;
   &.area {
     height:130px;
   }
 }
 ::v-deep
 .v-text-field__details{
-  display:none
+  //display:none
 }
 .apply-requirements-input{
   margin-top:.9em;

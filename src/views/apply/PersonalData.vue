@@ -9,19 +9,38 @@
       <hr>
       <br>
       <br>
-      <TextField :label="$t('apply.firstName')" class="personalData-tf" />
-      <TextField :label="$t('apply.secondName')" class="personalData-tf" />
-      <DateField :label="$t('apply.dateBirth')" class="personalData-tf datefield" :max-date="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString()" />
-      <TextField :label="$t('apply.phone')" class="personalData-tf" />
-      <ComboBox :label="$t('apply.country')" class="personalData-tf"
-                :items="items"
-                vmodel="selected"
-      />
+      <v-form v-model="isFormValid" @click.prevent>
+        <TextField :v-model="name" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
+                   :label="$t('apply.firstName')"
+                   class="personalData-tf"
+        />
+        <TextField :v-model="secondName" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
+                   :label="$t('apply.secondName')"
+                   class="personalData-tf"
+        />
+        <DateField :v-model="birthDate" :label="$t('apply.dateBirth')"
+                   class="personalData-tf datefield"
+                   :max-date="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString()"
+        />
+        <TextField :v-model="mobile" :rules="[rules.required, rules.mobile]"
+                   :label="$t('apply.phone')"
+                   class="personalData-tf"
+        />
+        <ComboBox :v-model="country" :rules="[rules.required]"
+                  :label="$t('apply.country')"
+                  class="personalData-tf"
+                  :items="items"
+                  vmodel="selected"
+        />
+      </v-form>
       <div class="personalData-div-button">
         <Button terciary class="personalData-button" @click="toApply">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="personalData-button" @click="toMinRequirements">
+        <Button primary class="personalData-button"
+                :disabled="!isFormValid"
+                @click="toMinRequirements"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -36,6 +55,7 @@ import TextField from '@/components/TextField.vue'
 import ComboBox from '@/components/ComboBox.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import DateField from '@/components/DateField.vue'
+import { textWhiteSpaces, validateCellphone } from '@/utils/validations'
 
 export default Vue.extend({
   name: 'PersonalData',
@@ -49,7 +69,19 @@ export default Vue.extend({
   data () {
     return {
       items: ['Spain', 'France', 'Germany', 'Italy'],
-      selected: ''
+      selected: '',
+      isFormValid: false,
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => value.length <= 40 || this.$t('validations.max40'),
+        textWhiteSpaces: (value: any) => textWhiteSpaces(value) || this.$t('validations.alpha'),
+        mobile: (value: any) => validateCellphone(value) || this.$t('validations.cellphone')
+      },
+      name: '',
+      secondName: '',
+      birthDate: '',
+      mobile: '',
+      country: ''
     }
   },
   methods: {

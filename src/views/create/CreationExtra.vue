@@ -10,27 +10,48 @@
       <hr>
       <br>
       <br>
-      <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">{{ $t('create.extraOfficial') }}</label>
-        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
-      </div>
-      <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">{{ $t('create.extraExperience') }}</label>
-        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
-      </div>
-      <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">{{ $t('create.extraPunctual') }}</label>
-        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
-      </div>
-      <div class="creation-extra-tfdiv">
-        <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
-        <TextField placeholder="0-100" :label="$t('create.weight')" class="creation-extra-cb" />
-      </div>
+      <v-form v-model="isFormValid" @click.prevent>
+        <div class="creation-extra-tfdiv">
+          <label class="creation-extra-label">{{ $t('create.extraOfficial') }}</label>
+          <TextField placeholder="0-100" type="number"
+                     :label="$t('create.weight')"
+                     class="creation-extra-cb"
+                     :rules="[rules.required, rules.counter]"
+          />
+        </div>
+        <div class="creation-extra-tfdiv">
+          <label class="creation-extra-label">{{ $t('create.extraExperience') }}</label>
+          <TextField placeholder="0-100" type="number"
+                     :label="$t('create.weight')"
+                     class="creation-extra-cb"
+                     :rules="[rules.required, rules.counter]"
+          />
+        </div>
+        <div class="creation-extra-tfdiv">
+          <label class="creation-extra-label">{{ $t('create.extraPunctual') }}</label>
+          <TextField placeholder="0-100" type="number"
+                     :label="$t('create.weight')"
+                     class="creation-extra-cb"
+                     :rules="[rules.required, rules.counter]"
+          />
+        </div>
+        <div class="creation-extra-tfdiv">
+          <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
+          <TextField placeholder="0-100" type="number"
+                     :label="$t('create.weight')"
+                     class="creation-extra-cb"
+                     :rules="[rules.required, rules.counter]"
+          />
+        </div>
+      </v-form>
       <div class="creation-extra-div-button">
         <Button terciary class="creation-extra-button" @click="toCreationSkills">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary class="creation-extra-button" @click="toFinish">
+        <Button primary :disabled="!isFormValid"
+                class="creation-extra-button"
+                @click="toFinish"
+        >
           {{ $t('buttons.continue') }}
         </Button>
       </div>
@@ -51,6 +72,15 @@ export default Vue.extend({
     Button,
     TextField,
     NavMenuHome
+  },
+  data () {
+    return {
+      isFormValid: false,
+      rules: {
+        required: (value: any) => !!value || this.$t('validations.required'),
+        counter: (value: any) => (value <= 100 && value >= 0) || this.$t('validations.between0100')
+      }
+    }
   },
   mounted () {
     window.scrollTo(0, 0)

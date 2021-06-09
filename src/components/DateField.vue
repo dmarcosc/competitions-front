@@ -3,6 +3,7 @@
     <label class="tf-label">{{ label }}</label>
     <v-menu
       v-model="fromDateMenu"
+      v-bind="$attrs"
       :close-on-content-click="false"
       :nudge-right="40"
       transition="scale-transition"
@@ -21,6 +22,7 @@
       </template>
       <v-date-picker
         v-model="valueData"
+        v-bind="$attrs"
         locale="en-in"
         :min="minDate"
         :max="maxDate"
