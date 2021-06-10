@@ -6,6 +6,9 @@
       v-bind="$attrs"
       class="myCombobox"
       solo
+      @input="e => $emit('input', e)"
+      @search="e => $emit('search', e)"
+      @blur="e => $emit('blur', e)"
     />
   </div>
 </template>
@@ -60,20 +63,9 @@ export default Vue.extend({
       }
     }
   },
-  computed: {
-    anyValue () {
-      const bool = this.valueData !== ''
-      return bool
-    }
-  },
   watch: {
     value (newVal) {
       this.valueData = newVal
-    }
-  },
-  methods: {
-    clearValue () {
-      this.valueData = ''
     }
   }
 })

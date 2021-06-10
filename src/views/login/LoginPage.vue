@@ -27,7 +27,7 @@
             <div class="form-buttons">
               <Button primary
                       :disabled="handleLogin()"
-                      @click="onContinue()"
+                      @click="onLogin()"
               >
                 {{ $t('login.title') }}
               </Button>
@@ -69,7 +69,7 @@
               >
             </div>
             <div class="form-buttons">
-              <Button primary :disabled="handleRegister()" @click="onContinue">
+              <Button primary :disabled="handleRegister()" @click="onRegister()">
                 {{ $t('buttons.signup') }}
               </Button>
             </div>
@@ -135,6 +135,7 @@
 import Button from '@/components/Button.vue'
 import BlueBall from '@/components/BlueBall.vue'
 import { validateEmail } from '@/utils/validations'
+import { API } from '@/api/index.ts'
 export default {
   name: 'LoginPage',
   components: {
@@ -183,11 +184,63 @@ export default {
         this.passRegisterInvalid = false
       }
     },
-    onContinue () {
+    async onLogin () {
       this.$store.dispatch('ui/showMask', {
         text: this.$t('main.retrievingData')
       })
-      window.setTimeout(() => { this.$router.push('/dashboard').catch((err) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
+      try {
+        const resp = await API.user.login(this.email, this.password)
+        if (resp?.status === 200) {
+          resp?.data?.token ? window.localStorage.setItem('tokenClient', JSON.stringify(resp.data.token)) : console.log('Error saving login credentials')
+          this.$router.push('/dashboard').catch((err) => { return err })
+        } else {
+          this.$router.push({
+            name: 'Error404',
+            params: {
+              errorType: 'Login error'
+            }
+          }).catch((err) => { return err })
+        }
+      } catch (err) {
+        console.log(err)
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Login error'
+          }
+        }).catch((err) => { return err })
+      } finally {
+        this.$store.dispatch('ui/hideMask')
+      }
+    },
+    async onRegister () {
+      this.$store.dispatch('ui/showMask', {
+        text: this.$t('main.retrievingData')
+      })
+      try {
+        const resp = await API.user.register(this.emailRegister, this.passwordRegister)
+        if (resp?.status === 201) {
+          resp?.data?.token ? window.localStorage.setItem('tokenClient', JSON.stringify(resp.data.token)) : console.log('Error saving login credentials')
+          this.$router.push('/dashboard').catch((err) => { return err })
+        } else {
+          this.$router.push({
+            name: 'Error404',
+            params: {
+              errorType: 'Login error'
+            }
+          }).catch((err) => { return err })
+        }
+      } catch (err) {
+        console.log(err)
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Login error'
+          }
+        }).catch((err) => { return err })
+      } finally {
+        this.$store.dispatch('ui/hideMask')
+      }
     },
     handleLogin () {
       if (!this.email || !this.password) {

@@ -10,27 +10,26 @@
       <br>
       <br>
       <v-form v-model="isFormValid" @click.prevent>
-        <TextField :v-model="name" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
+        <TextField v-model="name" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
                    :label="$t('apply.firstName')"
                    class="personalData-tf"
         />
-        <TextField :v-model="secondName" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
+        <TextField v-model="secondName" :rules="[rules.required, rules.counter, rules.textWhiteSpaces]"
                    :label="$t('apply.secondName')"
                    class="personalData-tf"
         />
-        <DateField :v-model="birthDate" :label="$t('apply.dateBirth')"
+        <DateField v-model="birthDate" :label="$t('apply.dateBirth')"
                    class="personalData-tf datefield"
                    :max-date="new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString()"
         />
-        <TextField :v-model="mobile" :rules="[rules.required, rules.mobile]"
+        <TextField v-model="mobile" :rules="[rules.required, rules.mobile]"
                    :label="$t('apply.phone')"
                    class="personalData-tf"
         />
-        <ComboBox :v-model="country" :rules="[rules.required]"
+        <ComboBox v-model="country" :rules="[rules.required]"
                   :label="$t('apply.country')"
                   class="personalData-tf"
                   :items="items"
-                  vmodel="selected"
         />
       </v-form>
       <div class="personalData-div-button">
@@ -56,6 +55,8 @@ import ComboBox from '@/components/ComboBox.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import DateField from '@/components/DateField.vue'
 import { textWhiteSpaces, validateCellphone } from '@/utils/validations'
+import { API } from '@/api'
+import CountriesJSON from '@/assets/mock/countries.json'
 
 export default Vue.extend({
   name: 'PersonalData',
@@ -67,8 +68,9 @@ export default Vue.extend({
     NavMenuHome
   },
   data () {
+    const countries = CountriesJSON
     return {
-      items: ['Spain', 'France', 'Germany', 'Italy'],
+      items: countries,
       selected: '',
       isFormValid: false,
       rules: {
@@ -84,12 +86,69 @@ export default Vue.extend({
       country: ''
     }
   },
+  async mounted () {
+    this.$store.dispatch('ui/showMask', {
+      text: this.$t('main.retrievingData')
+    })
+    try {
+      const resp: any = await API.user.getUserInfo()
+      if (resp?.status === 200) {
+        resp?.data?.name ? this.name = resp.data.name : this.name = ''
+        resp?.data?.secondName ? this.secondName = resp.data.secondName : this.secondName = ''
+        resp?.data?.birthDate ? this.birthDate = resp.data.birthDate.split('/').reverse().join('-') : this.birthDate = ''
+        resp?.data?.mobile ? this.mobile = resp.data.mobile : this.mobile = ''
+        resp?.data?.country ? this.country = resp.data.country : this.country = ''
+      } else {
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error retrieving user data'
+          }
+        }).catch((err) => { return err })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$router.push({
+        name: 'Error404',
+        params: {
+          errorType: 'Error retrieving user data'
+        }
+      }).catch((err) => { return err })
+    } finally {
+      this.$store.dispatch('ui/hideMask')
+    }
+  },
   methods: {
     toApply () {
       this.$router.push('/apply').catch((err: string) => { return err })
     },
-    toMinRequirements () {
-      this.$router.push('/apply/requirements').catch((err: string) => { return err })
+    async toMinRequirements () {
+      this.$store.dispatch('ui/showMask', {
+        text: this.$t('main.retrievingData')
+      })
+      try {
+        const resp = await API.user.updateUser(this.name, this.secondName, this.birthDate?.split('-').reverse().join('/'), this.mobile, this.country)
+        if (resp?.status === 201) {
+          this.$router.push('/apply/requirements').catch((err: string) => { return err })
+        } else {
+          this.$router.push({
+            name: 'Error404',
+            params: {
+              errorType: 'Error updating user info'
+            }
+          }).catch((err) => { return err })
+        }
+      } catch (err) {
+        console.log(err)
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error updating user info'
+          }
+        }).catch((err) => { return err })
+      } finally {
+        this.$store.dispatch('ui/hideMask')
+      }
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {

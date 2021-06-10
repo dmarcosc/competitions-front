@@ -27,7 +27,8 @@
         :min="minDate"
         :max="maxDate"
         no-title
-        @input="fromDateMenu = false"
+        @input="e => $emit('input', e)"
+        @blur="e => $emit('blur', e)"
       />
     </v-menu>
   </v-layout>

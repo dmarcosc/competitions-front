@@ -2,305 +2,83 @@ import { Module } from 'vuex'
 import { StateSession } from './types'
 import { RootStore } from '@/store/rootStore'
 
-const getDefaultStateBorrador = () => {
+const getDefaultStateContest = () => {
   return {
-    datosPersonales: {
-      nombre: '',
-      tratamiento: { codigo: '', valor: '' },
-      apellidos: '',
-      telefonoMovil: '',
-      email: '',
-      tipoDocumento: { codigo: '', valor: '' },
-      documento: '',
-      fechaNacimiento: '',
-      fechaCaducidad: '',
-      nacionalidad: { codigo: '', valor: '' },
-      estadoCivil: { codigo: '', valor: '' },
-      numPersonasCargo: 0,
-      tipoVivienda: { codigo: '', valor: '' },
-      antVivienda: '',
-      tipoResidencia: { codigo: '', valor: '' },
-      pais: { codigo: '', valor: '' },
-      paisNacimiento: { codigo: '', valor: '' },
-      familiaNumerosa: 0,
-      datosCuentaBanco: { iban: '', anyoApertura: '' }
+    name: '',
+    field: '',
+    dueDate: '',
+    employer: '',
+    vacancies: 0,
+    description: '',
+    requirements: {
+      OMerit: [] as any,
+      EMerit: [] as any,
+      PMerit: [] as any,
+      KMerit: [] as any
     },
-    domicilio: {
-      tipoVia: { codigo: '', valor: '' },
-      direccion: '',
-      codPostal: '',
-      provincia: { codigo: '', valor: '' },
-      localidad: '',
-      telefono: ''
+    skills: {
+      OMerit: [] as any,
+      EMerit: [] as any,
+      PMerit: [] as any,
+      KMerit: [] as any
     },
-    datosProfesionales: {
-      tipoContrato: { codigo: '', valor: '' },
-      antContrato: '',
-      ingresos: 0,
-      profesion: { codigo: '', valor: '' },
-      cnae: { codigo: '', valor: '' },
-      otrosIngresos: 0,
-      gastosVivienda: 0,
-      gastosCoche: '',
-      gastosOtros: 0,
-      tipoTrabajo: { codigo: '', valor: '' },
-      empresa: '',
-      direccion: {
-        tipoVia: { codigo: '', valor: '' },
-        direccion: '',
-        codPostal: '',
-        provincia: { codigo: '', valor: '' },
-        localidad: '',
-        telefono: ''
-      },
-      fechaHastContrato: ''
+    extra: {
+      OMerit: 0,
+      EMerit: 0,
+      PMerit: 0,
+      KMerit: 0
     },
-    producto: {
-      tipo: '',
-      revisar: '',
-      datosPrestamo: {
-        tin: 0,
-        tae: 0,
-        importePrestamo: 0,
-        importeNeto: 0,
-        importeTotalAdeudadoEur: 0,
-        fechaPrimerVencimiento: '',
-        fechaUltimaVencimiento: '',
-        importeSeguro: 0,
-        interesesEuros: 0,
-        comisionFormalizacion: 0,
-        comisionFormalizacionPorc: '',
-        comisionCancelacion: '',
-        swSeguro: '',
-        seguroPorcentaje: 0,
-        seguroMes: 0,
-        numeroMensualidades: 0,
-        importeMensualidad: 0,
-        sumaInteresesApertura: 0,
-        codigoSeguro: '',
-        importeYRVigor: 0,
-        importePropuesto: 0,
-        finalidad: '',
-        swCancelaYRVigor: '',
-        modoFinanciacion: ''
-      },
-      grupoVendedor: {
-        codigo: ''
-      },
-      vendedor: {
-        numVendedor: 0,
-        codCentro: '',
-        centroElectro: '',
-        grupo: ''
-      },
-      tipoSubproducto: {
-        codigo: ''
-      },
-      campana: '',
-      baremo: ''
-    },
-    datosBorrador: {
-      paso: '',
-      descripcionPaso: ''
-    },
-    aceptos: []
-  }
-}
-
-const getDefaultStatePropuestaComercial = () => {
-  return {
-    codSolicitud: '',
-    importeMaximoGenerico: 0,
-    importeMaximoPrecon: 0,
-    importeMinimoGenerico: 0,
-    importeMinimoPrecon: 0,
-    tieneGenerico: false,
-    tinGenerico: 0,
-    tinPrecon: 0
-  }
-}
-
-const getDefaultStateSimuladorData = () => {
-  return {
-    importe: 0,
-    meses: 0,
-    maxImporte: 0,
-    minImporte: 0,
-    maxMeses: 0,
-    minMeses: 0,
-    arrayLineas: [],
-    lastImporte: 0,
-    lastMeses: 0,
-    curLineaFinanciacion: {
-      tin: '',
-      tae: '',
-      importePrestamo: '',
-      importe: '',
-      importeTotal: '',
-      importeNeto: '',
-      importeTotalAdeudadoEur: '',
-      fechaPrimerVencimiento: '',
-      fechaUltimoVencimiento: '',
-      seguroImporte: '',
-      interesesImporte: '',
-      comisionApertura: '',
-      comisionFormalizacion: '',
-      comisionFormalizacionPorc: '',
-      comisionCancelacion: '',
-      seguro: '',
-      swSeguro: '',
-      codigoSeguro: '',
-      seguroPorcentaje: '',
-      seguroMes: '',
-      duracion: '',
-      cuota: '',
-      interesesApertura: '',
-      importePropuesto: '',
-      importeYRVigor: '',
-      tipoProducto: '',
-      seguroObligatorio: '',
-      nivel: '',
-      prioridad: '',
-      preferencia: '',
-      intereses: '',
-      ofertaComercial: '',
-      literalPromocion: '',
-      idPromocion: '',
-      prima: '',
-      baremo: ''
-    }
-  }
-}
-
-const getDefaultStateINE = () => {
-  return {
-    ineCreated: false
+    participations: [] as any
   }
 }
 
 export const session: Module<StateSession, RootStore> = {
   namespaced: true,
   state: {
-    borrador: getDefaultStateBorrador(),
-    propuestaComercial: getDefaultStatePropuestaComercial(),
-    simuladorData: getDefaultStateSimuladorData(),
-    statusINE: getDefaultStateINE()
+    contest: getDefaultStateContest()
   },
   mutations: {
-    updateDatosPersonales (state, { datosPersonales }) {
-      datosPersonales.datosCuentaBanco = { ...state.borrador.datosPersonales.datosCuentaBanco, ...datosPersonales.datosCuentaBanco }
-      state.borrador.datosPersonales = { ...state.borrador.datosPersonales, ...datosPersonales }
-    },
-    updateDomicilio (state, { domicilio }) {
-      state.borrador.domicilio = { ...state.borrador.domicilio, ...domicilio }
-    },
-    updateDatosProfesionales (state, { datosProfesionales }) {
-      datosProfesionales.direccion = { ...state.borrador.datosProfesionales.direccion, ...datosProfesionales.direccion }
-      state.borrador.datosProfesionales = { ...state.borrador.datosProfesionales, ...datosProfesionales }
-    },
-    updateProducto (state, { producto }) {
-      producto.datosPrestamo = { ...state.borrador.producto.datosPrestamo, ...producto.datosPrestamo }
-      state.borrador.producto = { ...state.borrador.producto, ...producto }
-    },
-    updateDatosBorrador (state, { datosBorrador }) {
-      state.borrador.datosBorrador = { ...state.borrador.datosBorrador, ...datosBorrador }
-    },
-    updateAceptos (state, { aceptos }) {
-      if (aceptos) {
-        aceptos.forEach((element: { codigo: string; valor: string }) => {
-          const aceptoYaGuardado = state.borrador.aceptos.find(acepto => acepto.codigo === element.codigo)
-          if (aceptoYaGuardado) {
-            aceptoYaGuardado.valor = element.valor
-          } else {
-            state.borrador.aceptos.push(element)
-          }
-        })
+    updateContest (state, { contest }) {
+      if (contest?.name) {
+        state.contest.name = contest.name
       }
-    },
-    savePropuestaComercial (state, { propuestaComercial }) {
-      state.propuestaComercial = propuestaComercial
-    },
-    saveSimuladorData (state, { simuladorData }) {
-      state.simuladorData = { ...state.simuladorData, ...simuladorData }
-    },
-    resetSession (state) {
-      state.borrador = getDefaultStateBorrador()
-      state.propuestaComercial = getDefaultStatePropuestaComercial()
-      state.simuladorData = getDefaultStateSimuladorData()
-      state.statusINE = getDefaultStateINE()
-    },
-    setINE (state, { status }) {
-      state.statusINE.ineCreated = status
+      if (contest?.field) {
+        state.contest.field = contest.field
+      }
+      if (contest?.dueDate) {
+        state.contest.dueDate = contest.dueDate
+      }
+      if (contest?.employer) {
+        state.contest.employer = contest.employer
+      }
+      if (contest?.vacancies) {
+        state.contest.vacancies = contest.vacancies
+      }
+      if (contest?.description) {
+        state.contest.description = contest.description
+      }
+      if (contest?.requirements) {
+        state.contest.requirements = contest.requirements
+      }
+      if (contest?.skills) {
+        state.contest.skills = contest.skills
+      }
+      if (contest?.extra) {
+        state.contest.extra = contest.extra
+      }
+      if (contest?.participations) {
+        state.contest.participations = contest.participations
+      }
     }
   },
   actions: {
-    updateBorrador ({ commit }, { borrador }) {
-      const { datosPersonales, domicilio, datosProfesionales, producto, datosBorrador, aceptos } = borrador
-      if (datosPersonales) {
-        commit('updateDatosPersonales', { datosPersonales })
-      }
-      if (domicilio) {
-        commit('updateDomicilio', { domicilio })
-      }
-      if (datosProfesionales) {
-        commit('updateDatosProfesionales', { datosProfesionales })
-      }
-      if (producto) {
-        commit('updateProducto', { producto })
-      }
-      if (datosBorrador) {
-        commit('updateDatosBorrador', { datosBorrador })
-      }
-      if (aceptos) {
-        commit('updateAceptos', { aceptos })
-      }
-    },
-    savePropuestaComercial ({ commit }, { propuestaComercial }) {
-      commit('savePropuestaComercial', { propuestaComercial })
-    },
-    saveSimuladorData ({ commit }, { simuladorData }) {
-      commit('saveSimuladorData', { simuladorData })
-    },
-    resetSession ({ commit }) {
-      commit('resetSession')
-    },
-    setINETrue ({ commit }) {
-      commit('setINE', { status: true })
-    },
-    setINEFalse ({ commit }) {
-      commit('setINE', { status: false })
+    updateContest ({ commit }, { contest }) {
+      commit('updateContest', { contest })
     }
   },
   getters: {
-    borrador (state) {
-      return state.borrador
-    },
-    datosPersonales (state) {
-      return state.borrador.datosPersonales
-    },
-    domicilio (state) {
-      return state.borrador.domicilio
-    },
-    datosProfesionales (state) {
-      return state.borrador.datosProfesionales
-    },
-    producto (state) {
-      return state.borrador.producto
-    },
-    datosBorrador (state) {
-      return state.borrador.datosBorrador
-    },
-    aceptos (state) {
-      return state.borrador.aceptos
-    },
-    propuestaComercial (state) {
-      return state.propuestaComercial
-    },
-    simuladorData (state) {
-      return state.simuladorData
-    },
-    statusINE (state) {
-      return state.statusINE.ineCreated
+    contest (state) {
+      return state.contest
     }
   }
 }
