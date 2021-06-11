@@ -27,12 +27,19 @@ import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
 import i18n from '@/i18n'
+import { API } from '@/api'
 
 export default Vue.extend({
   name: 'Detail',
   components: {
     NavMenu,
     Button
+  },
+  props: {
+    contestId: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {
@@ -49,35 +56,36 @@ export default Vue.extend({
       contestants: [] as any
     }
   },
-  created () {
-    this.initialize()
-  },
-
-  methods: {
-    initialize () {
-      this.contestants = [
-        {
-          name: 'Doe, John',
-          score: '98%',
-          status: true
-        },
-        {
-          name: 'Graham, Perkins',
-          score: '55%',
-          status: false
-        },
-        {
-          name: 'García, Carlos',
-          score: '70%',
-          status: false
-        },
-        {
-          name: 'Casablanca, Joe',
-          score: '82%',
-          status: true
+  async mounted () {
+    this.$store.dispatch('ui/showMask', {
+      text: this.$t('main.retrievingData')
+    })
+    try {
+      const resp = await API.contest.getContestsDetail(this.contestId)
+      if (resp?.status === 200) {
+        // this.contestants = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+        // .map((x: any) => { x.dueDate: x.dueDate?.slice(0, -14)})
+      } else {
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error retrieving data'
+          }
+        }).catch((err) => { return err })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$router.push({
+        name: 'Error404',
+        params: {
+          errorType: 'Error retrieving data'
         }
-      ]
-    },
+      }).catch((err) => { return err })
+    } finally {
+      this.$store.dispatch('ui/hideMask')
+    }
+  },
+  methods: {
     openDialog () {
       this.$store.dispatch('ui/openDialog', {
         text: this.$t('info.detail')

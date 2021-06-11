@@ -12,113 +12,125 @@
       <br>
       <div class="creation-tfdiv">
         <span class="required-official-span">
-          <TextField :label="$t('merits.official')" :placeholder="$t('create.titlePlaceholder')" class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" :placeholder="$t('create.description')" />
+          <TextField v-model="OMTitle1" :label="$t('merits.official')"
+                     :placeholder="$t('create.titlePlaceholder')"
+                     class="creation-requirements-tf"
+          />
+          <TextArea v-model="OMDesc1" class="creation-requirements-tf" :placeholder="$t('create.description')" />
         </span>
         <AddButton plus :disabled="count==3" @click="duplicateRow" />
       </div>
       <div v-if="count >= 1" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="OMTitle2" class="creation-requirements-tf" />
+          <TextArea v-model="OMDesc2" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRow" />
       </div>
       <div v-if="count >= 2" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="OMTitle3" class="creation-requirements-tf" />
+          <TextArea v-model="OMDesc3" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRow" />
       </div>
       <div v-if="count >= 3" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="OMTitle4" class="creation-requirements-tf" />
+          <TextArea v-model="OMDesc4" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRow" />
       </div>
       <div class="creation-tfdiv">
         <span class="required-official-span">
-          <TextField :label="$t('merits.experience')" :placeholder="$t('create.titlePlaceholder')" class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" :placeholder="$t('create.description')" />
+          <TextField v-model="EMTitle1" :label="$t('merits.experience')"
+                     :placeholder="$t('create.titlePlaceholder')"
+                     class="creation-requirements-tf"
+          />
+          <TextArea v-model="EMDesc1" class="creation-requirements-tf" :placeholder="$t('create.description')" />
         </span>
         <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
       </div>
       <div v-if="expCounter >= 1" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="EMTitle2" class="creation-requirements-tf" />
+          <TextArea v-model="EMDesc2" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
       <div v-if="expCounter >= 2" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="EMTitle3" class="creation-requirements-tf" />
+          <TextArea v-model="EMDesc3" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
       <div v-if="expCounter >= 3" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="EMTitle4" class="creation-requirements-tf" />
+          <TextArea v-model="EMDesc3" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
       <div class="creation-tfdiv">
         <span class="required-official-span">
-          <TextField :label="$t('merits.punctual')" :placeholder="$t('create.titlePlaceholder')" class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" :placeholder="$t('create.description')" />
+          <TextField v-model="PMTitle1" :label="$t('merits.punctual')"
+                     :placeholder="$t('create.titlePlaceholder')"
+                     class="creation-requirements-tf"
+          />
+          <TextArea v-model="PMDesc1" class="creation-requirements-tf" :placeholder="$t('create.description')" />
         </span>
         <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
       </div>
       <div v-if="punctCounter >= 1" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="PMTitle2" class="creation-requirements-tf" />
+          <TextArea v-model="PMDesc2" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
       </div>
       <div v-if="punctCounter >= 2" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="PMTitle3" class="creation-requirements-tf" />
+          <TextArea v-model="PMDesc3" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
       </div>
       <div v-if="punctCounter >= 3" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="PMTitle4" class="creation-requirements-tf" />
+          <TextArea v-model="PMDesc4" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowPunctual" />
       </div>
       <div class="creation-tfdiv">
         <span class="required-official-span">
-          <TextField :label="$t('merits.knowledge')" :placeholder="$t('create.titlePlaceholder')" class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" :placeholder="$t('create.description')" />
+          <TextField v-model="KMTitle1" :label="$t('merits.knowledge')"
+                     :placeholder="$t('create.titlePlaceholder')"
+                     class="creation-requirements-tf"
+          />
+          <TextArea v-model="KMDesc1" class="creation-requirements-tf" :placeholder="$t('create.description')" />
         </span>
         <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
       </div>
       <div v-if="knowCounter >= 1" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="KMTitle2" class="creation-requirements-tf" />
+          <TextArea v-model="KMDesc2" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
       <div v-if="knowCounter >= 2" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="KMTitle3" class="creation-requirements-tf" />
+          <TextArea v-model="KMDesc3" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
       <div v-if="knowCounter >= 3" class="creation-tfdiv duplicate">
         <span class="required-official-span">
-          <TextField class="creation-requirements-tf" />
-          <TextArea class="creation-requirements-tf" />
+          <TextField v-model="KMTitle4" class="creation-requirements-tf" />
+          <TextArea v-model="KMDesc4" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowKnow" />
       </div>
@@ -141,6 +153,7 @@ import TextField from '@/components/TextField.vue'
 import AddButton from '@/components/AddButton.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextArea from '@/components/TextArea.vue'
+import ContestDTO from '@/api/models/contest'
 
 export default Vue.extend({
   name: 'CreationRequirements',
@@ -156,7 +169,39 @@ export default Vue.extend({
       count: 0,
       expCounter: 0,
       punctCounter: 0,
-      knowCounter: 0
+      knowCounter: 0,
+      OMTitle1: '',
+      OMDesc1: '',
+      OMTitle2: '',
+      OMDesc2: '',
+      OMTitle3: '',
+      OMDesc3: '',
+      OMTitle4: '',
+      OMDesc4: '',
+      EMTitle1: '',
+      EMDesc1: '',
+      EMTitle2: '',
+      EMDesc2: '',
+      EMTitle3: '',
+      EMDesc3: '',
+      EMTitle4: '',
+      EMDesc4: '',
+      PMTitle1: '',
+      PMDesc1: '',
+      PMTitle2: '',
+      PMDesc2: '',
+      PMTitle3: '',
+      PMDesc3: '',
+      PMTitle4: '',
+      PMDesc4: '',
+      KMTitle1: '',
+      KMDesc1: '',
+      KMTitle2: '',
+      KMDesc2: '',
+      KMTitle3: '',
+      KMDesc3: '',
+      KMTitle4: '',
+      KMDesc4: ''
     }
   },
   mounted () {
@@ -164,6 +209,115 @@ export default Vue.extend({
   },
   methods: {
     toCreationSkills () {
+      const OMerit = []
+      if (this.OMTitle1 && this.OMDesc1) {
+        OMerit.push({
+          title: this.OMTitle1,
+          description: this.OMDesc1
+        })
+      }
+      if (this.OMTitle2 && this.OMDesc2) {
+        OMerit.push({
+          title: this.OMTitle2,
+          description: this.OMDesc2
+        })
+      }
+      if (this.OMTitle3 && this.OMDesc3) {
+        OMerit.push({
+          title: this.OMTitle3,
+          description: this.OMDesc3
+        })
+      }
+      if (this.OMTitle4 && this.OMDesc4) {
+        OMerit.push({
+          title: this.OMTitle4,
+          description: this.OMDesc4
+        })
+      }
+      const EMerit = []
+      if (this.EMTitle1 && this.EMDesc1) {
+        EMerit.push({
+          title: this.EMTitle1,
+          description: this.EMDesc1
+        })
+      }
+      if (this.EMTitle2 && this.EMDesc2) {
+        EMerit.push({
+          title: this.EMTitle2,
+          description: this.EMDesc2
+        })
+      }
+      if (this.EMTitle3 && this.EMDesc3) {
+        EMerit.push({
+          title: this.EMTitle3,
+          description: this.EMDesc3
+        })
+      }
+      if (this.EMTitle4 && this.EMDesc4) {
+        EMerit.push({
+          title: this.EMTitle4,
+          description: this.EMDesc4
+        })
+      }
+      const PMerit = []
+      if (this.PMTitle1 && this.PMDesc1) {
+        PMerit.push({
+          title: this.PMTitle1,
+          description: this.PMDesc1
+        })
+      }
+      if (this.PMTitle2 && this.PMDesc2) {
+        PMerit.push({
+          title: this.PMTitle2,
+          description: this.PMDesc2
+        })
+      }
+      if (this.PMTitle3 && this.PMDesc3) {
+        PMerit.push({
+          title: this.PMTitle3,
+          description: this.PMDesc3
+        })
+      }
+      if (this.PMTitle4 && this.PMDesc4) {
+        PMerit.push({
+          title: this.PMTitle4,
+          description: this.PMDesc4
+        })
+      }
+      const KMerit = []
+      if (this.KMTitle1 && this.KMDesc1) {
+        KMerit.push({
+          title: this.KMTitle1,
+          description: this.KMDesc1
+        })
+      }
+      if (this.KMTitle2 && this.KMDesc2) {
+        KMerit.push({
+          title: this.KMTitle2,
+          description: this.KMDesc2
+        })
+      }
+      if (this.KMTitle3 && this.KMDesc3) {
+        KMerit.push({
+          title: this.KMTitle3,
+          description: this.KMDesc3
+        })
+      }
+      if (this.KMTitle4 && this.KMDesc4) {
+        KMerit.push({
+          title: this.KMTitle4,
+          description: this.KMDesc4
+        })
+      }
+      const contest: ContestDTO = {
+        requirements: {
+          OMerit,
+          EMerit,
+          PMerit,
+          KMerit
+        }
+      }
+      this.$store.dispatch('session/updateContest', { contest })
       this.$router.push('/create/skills').catch((err: string) => { return err })
     },
     duplicateRow () {

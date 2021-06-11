@@ -10,24 +10,24 @@
       <br>
       <br>
       <v-form v-model="isFormValid" @click.prevent>
-        <TextField :vmodel="company" :rules="[rules.required, rules.counter]"
+        <TextField v-model="company" :rules="[rules.required, rules.counter]"
                    :label="$t('create.company')"
                    class="general-tf"
         />
-        <TextField :vmodel="field" :label="$t('create.field')"
+        <TextField v-model="field" :label="$t('create.field')"
                    :rules="[rules.required, rules.counter]"
                    class="general-tf"
         />
-        <DateField :vmodel="dueDate" :label="$t('create.dueDate')"
+        <DateField v-model="dueDate" :label="$t('create.dueDate')"
                    class="general-tf"
                    :min-date="new Date().toISOString()"
         />
-        <TextField :vmodel="vacancies" type="number"
+        <TextField v-model="vacancies" type="number"
                    :label="$t('create.vacancies')"
                    :rules="[rules.max]"
                    class="general-tf"
         />
-        <TextArea :vmodel="description" :label="$t('create.description')"
+        <TextArea v-model="description" :label="$t('create.description')"
                   :rules="[rules.required, rules.counterDesc]"
                   class="general-tf"
         />
@@ -54,6 +54,7 @@ import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
+import ContestDTO from '@/api/models/contest'
 
 export default Vue.extend({
   name: 'GeneralParams',
@@ -79,7 +80,7 @@ export default Vue.extend({
       company: '',
       field: '',
       dueDate: '',
-      vacancies: 0,
+      vacancies: '',
       description: ''
     }
   },
@@ -88,6 +89,14 @@ export default Vue.extend({
       this.$router.push('/create').catch((err: string) => { return err })
     },
     toMinRequirements () {
+      const contest: ContestDTO = {
+        employer: this.company,
+        field: this.field,
+        dueDate: this.dueDate?.split('-').reverse().join('/'),
+        vacancies: +this.vacancies,
+        description: this.description
+      }
+      this.$store.dispatch('session/updateContest', { contest })
       this.$router.push('/create/requirements').catch((err: string) => { return err })
     },
     openDialog () {

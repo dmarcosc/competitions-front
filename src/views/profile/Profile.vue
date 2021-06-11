@@ -9,7 +9,7 @@
       <hr>
       <v-data-table
         :headers="headers"
-        :items="contests"
+        :items="created"
         sort-by="dueDate"
         :sort-desc="true"
         :items-per-page="itemsPerPage"
@@ -33,7 +33,7 @@
       <hr>
       <v-data-table
         :headers="headers"
-        :items="contests"
+        :items="participated"
         :items-per-page="itemsPerPage"
         sort-by="dueDate"
         :sort-desc="true"
@@ -58,6 +58,7 @@ import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
 import i18n from '@/i18n'
+import { API } from '@/api'
 export default Vue.extend({
   name: 'Profile',
   components: {
@@ -77,42 +78,67 @@ export default Vue.extend({
         { value: 'actions', sortable: false, align: 'start' }
       ],
       itemsPerPage: 5,
-      contests: [] as any
+      created: [] as any,
+      participated: [] as any
     }
   },
-  created () {
-    this.initialize()
-  },
-
-  methods: {
-    initialize () {
-      this.contests = [
-        {
-          name: 'Senior Product Owner',
-          field: 'Software Development',
-          dueDate: '2021/07/02'
-        },
-        {
-          name: 'English Teacher',
-          field: 'Teaching',
-          dueDate: '2021/09/11'
-        },
-        {
-          name: 'Junior Java Developer',
-          field: 'Software Development',
-          dueDate: '2021/12/21'
-        },
-        {
-          name: 'Python Developer',
-          field: 'Computer Science',
-          dueDate: '2021/10/01'
+  async mounted () {
+    this.$store.dispatch('ui/showMask', {
+      text: this.$t('main.retrievingData')
+    })
+    try {
+      const resp = await API.contest.getContestsByCreator()
+      if (resp?.status === 200) {
+        this.created = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+        // .map((x: any) => { x.dueDate: x.dueDate?.slice(0, -14)})
+      } else {
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error retrieving data'
+          }
+        }).catch((err) => { return err })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$router.push({
+        name: 'Error404',
+        params: {
+          errorType: 'Error retrieving data'
         }
-      ]
-    },
-
-    contestDetail (item: never) {
-      console.log(item)
-      this.$router.push('/profile/detail').catch((err: string) => { return err })
+      }).catch((err) => { return err })
+    } try {
+      const resp = await API.contest.getContestsByParticipant()
+      if (resp?.status === 200) {
+        this.participated = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+      } else {
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error retrieving data'
+          }
+        }).catch((err) => { return err })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$router.push({
+        name: 'Error404',
+        params: {
+          errorType: 'Error retrieving data'
+        }
+      }).catch((err) => { return err })
+    } finally {
+      this.$store.dispatch('ui/hideMask')
+    }
+  },
+  methods: {
+    contestDetail (item: any) {
+      this.$router.push({
+        name: 'Detail',
+        params: {
+          contestId: item.id
+        }
+      }).catch((err) => { return err })
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {

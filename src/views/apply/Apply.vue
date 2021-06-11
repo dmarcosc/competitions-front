@@ -42,6 +42,7 @@
 import Vue from 'vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import Button from '@/components/Button.vue'
+import { API } from '@/api'
 
 export default Vue.extend({
   name: 'Apply',
@@ -63,43 +64,40 @@ export default Vue.extend({
         { value: 'actions', sortable: false, align: 'start' }
       ],
       itemsPerPage: 5,
-      contests: [] as any
+      contests: [] as any,
+      creator: ''
     }
   },
-  created () {
-    this.initialize()
-  },
-
-  methods: {
-    initialize () {
-      this.contests = [
-        {
-          name: 'Senior Product Owner',
-          field: 'Software Development',
-          dueDate: '2021/07/02',
-          description: 'As a Product Owner, you will play a critical and active role in the day-to-day operations. This is an excellent opportunity to be one of the key members of our Product Team and position yourself for unique career growth opportunities'
-        },
-        {
-          name: 'English Teacher',
-          field: 'Teaching',
-          dueDate: '2021/09/11',
-          description: 'We are looking for a qualified Secondary School English Teacher to join our School. We offer a permanent contract for the next academic year. Full time position. '
-        },
-        {
-          name: 'Junior Java Developer',
-          field: 'Software Development',
-          dueDate: '2021/12/21',
-          description: 'We are looking for developers willing to work in challenging projects, with creative minds and people who enjoy working in collaborative teams'
-        },
-        {
-          name: 'Python Developer',
-          field: 'Computer Science',
-          dueDate: '2021/10/01',
-          description: 'We are looking for a Developer Evangelist Architect to join our Global Product Management team and lead our inbound and outbound strategy targeting our software developer audience'
+  async mounted () {
+    this.$store.dispatch('ui/showMask', {
+      text: this.$t('main.retrievingData')
+    })
+    try {
+      const resp = await API.contest.getAllContests()
+      if (resp?.status === 200) {
+        this.contests = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+        // .map((x: any) => { x.dueDate: x.dueDate?.slice(0, -14)})
+      } else {
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error retrieving data'
+          }
+        }).catch((err) => { return err })
+      }
+    } catch (err) {
+      console.log(err)
+      this.$router.push({
+        name: 'Error404',
+        params: {
+          errorType: 'Error retrieving data'
         }
-      ]
-    },
-
+      }).catch((err) => { return err })
+    } finally {
+      this.$store.dispatch('ui/hideMask')
+    }
+  },
+  methods: {
     contestApply (item: never) {
       console.log(item)
       this.$router.push('/apply/personalData').catch((err: string) => { return err })

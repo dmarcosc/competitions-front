@@ -29,7 +29,7 @@ import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenu from '@/components/NavMenu/NavMenu.vue'
 import TextField from '@/components/TextField.vue'
-import { textWhiteSpaces } from '@/utils/validations'
+import ContestDTO from '@/api/models/contest'
 
 export default Vue.extend({
   name: 'Create',
@@ -51,6 +51,10 @@ export default Vue.extend({
   },
   methods: {
     toGeneralParams () {
+      const contest: ContestDTO = {
+        name: this.title
+      }
+      this.$store.dispatch('session/updateContest', { contest })
       this.$router.push('/create/generalParams').catch((err: string) => { return err })
     },
     openDialog () {

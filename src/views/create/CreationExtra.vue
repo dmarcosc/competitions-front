@@ -13,7 +13,8 @@
       <v-form v-model="isFormValid" @click.prevent>
         <div class="creation-extra-tfdiv">
           <label class="creation-extra-label">{{ $t('create.extraOfficial') }}</label>
-          <TextField placeholder="0-100" type="number"
+          <TextField v-model="OMerit" placeholder="0-100"
+                     type="number"
                      :label="$t('create.weight')"
                      class="creation-extra-cb"
                      :rules="[rules.required, rules.counter]"
@@ -21,7 +22,8 @@
         </div>
         <div class="creation-extra-tfdiv">
           <label class="creation-extra-label">{{ $t('create.extraExperience') }}</label>
-          <TextField placeholder="0-100" type="number"
+          <TextField v-model="EMerit" placeholder="0-100"
+                     type="number"
                      :label="$t('create.weight')"
                      class="creation-extra-cb"
                      :rules="[rules.required, rules.counter]"
@@ -29,7 +31,8 @@
         </div>
         <div class="creation-extra-tfdiv">
           <label class="creation-extra-label">{{ $t('create.extraPunctual') }}</label>
-          <TextField placeholder="0-100" type="number"
+          <TextField v-model="PMerit" placeholder="0-100"
+                     type="number"
                      :label="$t('create.weight')"
                      class="creation-extra-cb"
                      :rules="[rules.required, rules.counter]"
@@ -37,7 +40,8 @@
         </div>
         <div class="creation-extra-tfdiv">
           <label class="creation-extra-label">{{ $t('create.extraKnowledge') }}</label>
-          <TextField placeholder="0-100" type="number"
+          <TextField v-model="KMerit" placeholder="0-100"
+                     type="number"
                      :label="$t('create.weight')"
                      class="creation-extra-cb"
                      :rules="[rules.required, rules.counter]"
@@ -65,6 +69,8 @@ import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextField from '@/components/TextField.vue'
+import ContestDTO from '@/api/models/contest'
+import { API } from '@/api'
 
 export default Vue.extend({
   name: 'CreationExtra',
@@ -79,7 +85,11 @@ export default Vue.extend({
       rules: {
         required: (value: any) => !!value || this.$t('validations.required'),
         counter: (value: any) => (value <= 100 && value >= 0) || this.$t('validations.between0100')
-      }
+      },
+      OMerit: '',
+      EMerit: '',
+      PMerit: '',
+      KMerit: ''
     }
   },
   mounted () {
@@ -89,11 +99,42 @@ export default Vue.extend({
     toCreationSkills () {
       this.$router.push('/create/skills').catch((err: string) => { return err })
     },
-    toFinish () {
+    async toFinish () {
+      const contest: ContestDTO = {
+        extra: {
+          OMerit: +this.OMerit,
+          EMerit: +this.EMerit,
+          PMerit: +this.PMerit,
+          KMerit: +this.KMerit
+        }
+      }
+      this.$store.dispatch('session/updateContest', { contest })
       this.$store.dispatch('ui/showMask', {
         text: this.$t('main.retrievingData')
       })
-      window.setTimeout(() => { this.$router.push('/create/finish').catch((err: string) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
+      try {
+        const resp = await API.contest.updateUser()
+        if (resp?.status === 201) {
+          this.$router.push('/create/finish').catch((err: string) => { return err })
+        } else {
+          this.$router.push({
+            name: 'Error404',
+            params: {
+              errorType: 'Error creating contest'
+            }
+          }).catch((err) => { return err })
+        }
+      } catch (err) {
+        console.log(err)
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error creating contest'
+          }
+        }).catch((err) => { return err })
+      } finally {
+        this.$store.dispatch('ui/hideMask')
+      }
     },
     openDialog () {
       this.$store.dispatch('ui/openDialog', {

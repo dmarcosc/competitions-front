@@ -24,7 +24,8 @@ const routes: Array<RouteConfig> = [
   {
     path: '/profile/detail',
     name: 'Detail',
-    component: () => import('../views/profile/Detail.vue')
+    component: () => import('../views/profile/Detail.vue'),
+    props: true
   },
   {
     path: '/apply',
