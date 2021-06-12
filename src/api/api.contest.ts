@@ -10,7 +10,7 @@ export default {
   /**
    * Endpoint create a contest
    */
-  async updateUser () {
+  async createContest () {
     const url = '/api/contests'
     let token
     window.localStorage.getItem('tokenClient') ? token = window.localStorage.getItem('tokenClient')?.replace(/['"]+/g, '') : token = ''
@@ -76,6 +76,18 @@ export default {
       Authorization: `Bearer ${token}`
     }
     return xhr.get(url, { headers })
+  },
+
+  async createParticipation () {
+    const url = '/api/contests/'
+    let token
+    window.localStorage.getItem('tokenClient') ? token = window.localStorage.getItem('tokenClient')?.replace(/['"]+/g, '') : token = ''
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+    const body = store.getters['session/participation']
+    return xhr.put(url, body, { headers })
   }
 
 }

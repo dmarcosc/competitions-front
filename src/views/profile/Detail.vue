@@ -61,10 +61,18 @@ export default Vue.extend({
       text: this.$t('main.retrievingData')
     })
     try {
-      const resp = await API.contest.getContestsDetail(this.contestId)
+      const resp: any = await API.contest.getContestsDetail(this.contestId)
       if (resp?.status === 200) {
-        // this.contestants = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
-        // .map((x: any) => { x.dueDate: x.dueDate?.slice(0, -14)})
+        let scores = (resp?.data?.participations as any).map((obj: any) => (obj.score)).sort((a: any, b: any) => a - b)
+        const vacancies = resp.data.vacancies * -1
+        scores = scores.slice(vacancies)
+        this.contestants = (resp?.data.participations as any).map((obj: any) => {
+          return {
+            score: obj.score.toFixed(),
+            name: `${obj.user.name} ${obj.user.secondName}`,
+            status: obj.score >= scores[0] ? 'Accepted' : 'Rejected'
+          }
+        })
       } else {
         this.$router.push({
           name: 'Error404',

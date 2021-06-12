@@ -170,7 +170,7 @@
           :radius="50"
           :stroke-width="10"
           stroke-color="#F42A61"
-          value="84.2"
+          :value="score.toFixed()"
           style="color: #3F3D56;"
         />
         <Button
@@ -200,18 +200,15 @@ export default Vue.extend({
     Progress
   },
   props: {
-    status: {
-      type: String,
-      default: 'KO'
+    score: {
+      type: Number,
+      default: 0
     }
   },
   data () {
     return {
       imgfinish
     }
-  },
-  mounted () {
-    console.log('jaja')
   },
   methods: {
     toProfile () {

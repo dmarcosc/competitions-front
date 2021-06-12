@@ -69,7 +69,7 @@ import Vue from 'vue'
 import Button from '@/components/Button.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextField from '@/components/TextField.vue'
-import ContestDTO from '@/api/models/contest'
+import ContestDTO from '@/api/models/Contest'
 import { API } from '@/api'
 
 export default Vue.extend({
@@ -113,7 +113,7 @@ export default Vue.extend({
         text: this.$t('main.retrievingData')
       })
       try {
-        const resp = await API.contest.updateUser()
+        const resp = await API.contest.createContest()
         if (resp?.status === 201) {
           this.$router.push('/create/finish').catch((err: string) => { return err })
         } else {

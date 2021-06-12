@@ -37,7 +37,7 @@
           {{ $t('buttons.back') }}
         </Button>
         <Button primary class="personalData-button"
-                :disabled="!isFormValid"
+                :disabled="!isFormValid || !birthDate"
                 @click="toMinRequirements"
         >
           {{ $t('buttons.continue') }}
@@ -95,7 +95,7 @@ export default Vue.extend({
       if (resp?.status === 200) {
         resp?.data?.name ? this.name = resp.data.name : this.name = ''
         resp?.data?.secondName ? this.secondName = resp.data.secondName : this.secondName = ''
-        resp?.data?.birthDate ? this.birthDate = resp.data.birthDate.split('/').reverse().join('-') : this.birthDate = ''
+        resp?.data?.birthDate ? this.birthDate = resp.data.birthDate.split('/').join('-') : this.birthDate = ''
         resp?.data?.mobile ? this.mobile = resp.data.mobile : this.mobile = ''
         resp?.data?.country ? this.country = resp.data.country : this.country = ''
       } else {
@@ -127,7 +127,7 @@ export default Vue.extend({
         text: this.$t('main.retrievingData')
       })
       try {
-        const resp = await API.user.updateUser(this.name, this.secondName, this.birthDate?.split('-').reverse().join('/'), this.mobile, this.country)
+        const resp = await API.user.updateUser(this.name, this.secondName, this.birthDate?.split('-').join('/'), this.mobile, this.country)
         if (resp?.status === 201) {
           this.$router.push('/apply/requirements').catch((err: string) => { return err })
         } else {

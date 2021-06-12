@@ -30,7 +30,7 @@ export default interface ContestDTO {
       requirements: {
           OMerit: [
               {
-                  string: string;
+                  date: string;
                   grade: number;
                   file: string;
               }
@@ -50,8 +50,8 @@ export default interface ContestDTO {
           ];
           KMerit: [
               {
-              string: string;
               grade: number;
+              date: string;
               file: string;
               }
           ];
@@ -59,7 +59,7 @@ export default interface ContestDTO {
       skills: {
           OMerit: [
               {
-                  string: string;
+                  date: string;
                   grade: number;
                   file: string;
               }
@@ -79,7 +79,7 @@ export default interface ContestDTO {
           ];
           KMerit: [
               {
-              string: string;
+              date: string;
               grade: number;
               file: string;
               }
@@ -89,7 +89,7 @@ export default interface ContestDTO {
           OMerit: [
               {
                   title: string;
-                  string: string;
+                  date: string;
                   grade: number;
                   file: string;
               }
@@ -110,7 +110,7 @@ export default interface ContestDTO {
           KMerit: [
               {
               title: string;
-              string: string;
+              date: string;
               grade: number;
               file: string;
               }

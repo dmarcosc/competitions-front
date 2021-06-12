@@ -68,7 +68,7 @@
       <div v-if="expCounter >= 3" class="creation-tfdiv duplicate">
         <span class="required-official-span">
           <TextField v-model="EMTitle4" class="creation-requirements-tf" />
-          <TextArea v-model="EMDesc3" class="creation-requirements-tf" />
+          <TextArea v-model="EMDesc4" class="creation-requirements-tf" />
         </span>
         <AddButton class="creation-requirements-minus" minus @click="deleteRowExp" />
       </div>
@@ -153,7 +153,7 @@ import TextField from '@/components/TextField.vue'
 import AddButton from '@/components/AddButton.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextArea from '@/components/TextArea.vue'
-import ContestDTO from '@/api/models/contest'
+import ContestDTO from '@/api/models/Contest'
 
 export default Vue.extend({
   name: 'CreationRequirements',

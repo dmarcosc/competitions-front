@@ -10,50 +10,62 @@
       <hr>
       <br>
       <v-form v-model="isFormValid" @click.prevent>
-        <div v-for="{ title, description } in Omerits" :key="title" class="apply-requirements-tfdiv">
-          <label class="apply-requirements-label"> {{ title }} </label>
-          <label class="apply-requirements-desc"> {{ description }} </label>
-          <DateField :label="$t('apply.date')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
+        <div v-for="(item, i) in Omerits" :key="item._id" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ item.title }} </label>
+          <label class="apply-requirements-desc"> {{ item.description }} </label>
+          <DateField v-model="ODates[i]" :label="$t('apply.date')"
+                     class="apply-requirements-field"
+                     :max-date="new Date().toISOString()"
+          />
+          <TextField v-model="OGrades[i]" placeholder="0-10"
                      type="number"
                      :label="$t('apply.grade')"
                      class="apply-requirements-field"
                      :rules="[rules.required, rules.max]"
           />
-          <Input id="fileUpload" class="apply-requirements-input"
+          <Input id="fileUpload"
+                 class="apply-requirements-input"
                  type="file"
                  :rules="[rules.required]"
                  @click="chooseFiles()"
           />
         </div>
-        <div v-for="{ title, description } in Emerits" :key="title" class="apply-requirements-tfdiv">
-          <label class="apply-requirements-label"> {{ title }} </label>
-          <label class="apply-requirements-desc"> {{ description }} </label>
-          <TextField :label="$t('create.company')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
+        <div v-for="(item, i) in Emerits" :key="item._id" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ item.title }} </label>
+          <label class="apply-requirements-desc"> {{ item.description }} </label>
+          <TextField v-model="ECompanies[i]" :label="$t('create.company')"
+                     class="apply-requirements-field"
+                     :max-date="new Date().toISOString()"
+          />
           <TextField
+            v-model="ETime[i]"
             type="number"
             :label="$t('apply.time')"
             :placeholder="$t('apply.months')"
             class="apply-requirements-field"
             :rules="[rules.required, rules.negative]"
           />
-          <TextArea :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
+          <TextArea v-model="EDesc[i]" :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
         </div>
-        <div v-for="{ title, description } in Pmerits" :key="title" class="apply-requirements-tfdiv">
-          <label class="apply-requirements-label"> {{ title }} </label>
-          <label class="apply-requirements-desc"> {{ description }} </label>
-          <TextArea :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
+        <div v-for="(item, i) in Pmerits" :key="item._id" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ item.title }} </label>
+          <label class="apply-requirements-desc"> {{ item.description }} </label>
+          <TextArea v-model="PDesc[i]" :label="$t('create.description')" :rules="[rules.required, rules.counterDesc]" />
           <Input id="fileUpload" class="apply-requirements-input"
                  type="file"
                  :rules="[rules.required]"
                  @click="chooseFiles()"
           />
         </div>
-        <div v-for="{ title, description } in Kmerits" :key="title" class="apply-requirements-tfdiv">
-          <label class="apply-requirements-label"> {{ title }} </label>
-          <label class="apply-requirements-desc"> {{ description }} </label>
-          <DateField :label="$t('apply.date')" class="apply-requirements-field" :max-date="new Date().toISOString()" />
-          <TextField placeholder="0-10"
+        <div v-for="(item, i) in Kmerits" :key="item._id" class="apply-requirements-tfdiv">
+          <label class="apply-requirements-label"> {{ item.title }} </label>
+          <label class="apply-requirements-desc"> {{ item.description }} </label>
+          <DateField v-model="KDates[i]" :label="$t('apply.date')"
+                     class="apply-requirements-field"
+                     :max-date="new Date().toISOString()"
+          />
+          <TextField v-model="KGrades[i]"
+                     placeholder="0-10"
                      type="number"
                      :rules="[rules.required, rules.max]"
                      :label="$t('apply.grade')"
@@ -71,7 +83,7 @@
           {{ $t('buttons.back') }}
         </Button>
         <Button primary class="apply-requirements-button"
-                :disabled="!isFormValid"
+                :disabled="!isFormValid || validDates()"
                 @click="toSkills()"
         >
           {{ $t('buttons.continue') }}
@@ -90,6 +102,7 @@ import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
+import ParticipationDTO from '@/api/models/Participation'
 
 export default Vue.extend({
   name: 'ApplyRequirements',
@@ -111,40 +124,71 @@ export default Vue.extend({
         max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010'),
         negative: (value: any) => (value > 0) || this.$t('validations.positive')
       },
-      Omerits: [{
-        title: 'Grado Informatica',
-        description: 'se debe tener el grado en informatica blabla'
-      },
-      {
-        title: 'Grado Quimica',
-        description: 'se debe tener el grado en quimica blabla'
-      }],
-      Emerits: [{
-        title: 'Experiencia en consultorias web',
-        description: 'se requieren al menos 2 años de experiencia en una empresa de desarrollo web'
-      },
-      {
-        title: 'Experiencia trabajando en equipo',
-        description: 'se debe estar acostumbrado al trabajo en equipo'
-      }],
-      Pmerits: [{
-        title: 'Papers de investigación',
-        description: 'queremos trabajar con alguien con experiencia redactando papers de investigación'
-      }],
-      Kmerits: [{
-        title: 'Conocimientos de Adobe',
-        description: 'imprescindible saber trabajar con Adobe'
-      }]
+      contestId: '',
+      // Received Arrays
+      Omerits: [] as any,
+      Emerits: [] as any,
+      Pmerits: [] as any,
+      Kmerits: [] as any,
+      // Arrays to send
+      OGrades: [] as any,
+      ODates: [] as any,
+      EDesc: [] as any,
+      ECompanies: [] as any,
+      ETime: [] as any,
+      PDesc: [] as any,
+      KGrades: [] as any,
+      KDates: [] as any
     }
   },
   mounted () {
     window.scrollTo(0, 0)
+    const contest = this.$store.getters['session/contestItem']
+    this.contestId = contest?.item?.id
+    this.Omerits = contest?.item?.requirements?.OMerit
+    this.Emerits = contest?.item?.requirements?.EMerit
+    this.Pmerits = contest?.item?.requirements?.PMerit
+    this.Kmerits = contest?.item?.requirements?.KMerit
   },
   methods: {
+    validDates () {
+      if (this.Omerits.length !== this.ODates.length) {
+        return true
+      }
+      if (this.Kmerits.length !== this.KDates.length) {
+        return true
+      } else return false
+    },
     toPersonalData () {
       this.$router.push('/apply/personalData').catch((err: string) => { return err })
     },
     toSkills () {
+      const OMerit: Array<{grade: number; date: string; file: string}> = new Array(0)
+      for (let i = 0; i < this.OGrades.length; i++) {
+        OMerit.push({ grade: +this.OGrades[i], date: this.ODates[i]?.split('-').join('/'), file: '' })
+      }
+      const EMerit: Array<{time: number; description: string; company: string}> = new Array(0)
+      for (let i = 0; i < this.OGrades.length; i++) {
+        EMerit.push({ time: +this.ETime[i], description: this.EDesc[i], company: this.ECompanies[i] })
+      }
+      const PMerit: Array<{description: string; file: string}> = new Array(0)
+      for (let i = 0; i < this.PDesc.length; i++) {
+        PMerit.push({ description: this.PDesc[i], file: '' })
+      }
+      const KMerit: Array<{grade: number; date: string; file: string}> = new Array(0)
+      for (let i = 0; i < this.KGrades.length; i++) {
+        KMerit.push({ grade: +this.KGrades[i], date: this.KDates[i]?.split('-').join('/'), file: '' })
+      }
+      const participation: ParticipationDTO = {
+        contest: this.contestId,
+        requirements: {
+          OMerit,
+          EMerit,
+          PMerit,
+          KMerit
+        }
+      }
+      this.$store.dispatch('session/updateParticipation', { participation })
       this.$router.push('/apply/skills').catch((err: string) => { return err })
     },
     openDialog () {
@@ -211,10 +255,6 @@ $primary-color: #4974a5;
   &.area {
     height:130px;
   }
-}
-::v-deep
-.v-text-field__details{
-  //display:none
 }
 .apply-requirements-input{
   margin-top:.9em;

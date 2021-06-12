@@ -35,17 +35,20 @@ const routes: Array<RouteConfig> = [
   {
     path: '/apply/personalData',
     name: 'PersonalData',
-    component: () => import('../views/apply/PersonalData.vue')
+    component: () => import('../views/apply/PersonalData.vue'),
+    props: true
   },
   {
     path: '/apply/requirements',
     name: 'ApplyRequirements',
-    component: () => import('../views/apply/ApplyRequirements.vue')
+    component: () => import('../views/apply/ApplyRequirements.vue'),
+    props: true
   },
   {
     path: '/apply/skills',
     name: 'ApplySkills',
-    component: () => import('../views/apply/ApplySkills.vue')
+    component: () => import('../views/apply/ApplySkills.vue'),
+    props: true
   },
   {
     path: '/apply/extra',

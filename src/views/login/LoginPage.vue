@@ -194,6 +194,7 @@ export default {
           resp?.data?.token ? window.localStorage.setItem('tokenClient', JSON.stringify(resp.data.token)) : console.log('Error saving login credentials')
           this.$router.push('/dashboard').catch((err) => { return err })
         } else {
+          console.log(resp)
           this.$router.push({
             name: 'Error404',
             params: {
@@ -206,7 +207,7 @@ export default {
         this.$router.push({
           name: 'Error404',
           params: {
-            errorType: 'Login error'
+            errorType: 'Invalid credentials'
           }
         }).catch((err) => { return err })
       } finally {

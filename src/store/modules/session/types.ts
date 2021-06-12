@@ -55,7 +55,7 @@ export interface StateSession {
         requirements: {
             OMerit: [
                 {
-                    string: string;
+                    date: string;
                     grade: number;
                     file: string;
                 }
@@ -75,7 +75,7 @@ export interface StateSession {
             ];
             KMerit: [
                 {
-                string: string;
+                date: string;
                 grade: number;
                 file: string;
                 }
@@ -84,7 +84,7 @@ export interface StateSession {
         skills: {
             OMerit: [
                 {
-                    string: string;
+                    date: string;
                     grade: number;
                     file: string;
                 }
@@ -104,7 +104,7 @@ export interface StateSession {
             ];
             KMerit: [
                 {
-                string: string;
+                date: string;
                 grade: number;
                 file: string;
                 }
@@ -114,7 +114,7 @@ export interface StateSession {
             OMerit: [
                 {
                     title: string;
-                    string: string;
+                    date: string;
                     grade: number;
                     file: string;
                 }
@@ -135,7 +135,7 @@ export interface StateSession {
             KMerit: [
                 {
                 title: string;
-                string: string;
+                date: string;
                 grade: number;
                 file: string;
                 }
@@ -145,4 +145,102 @@ export interface StateSession {
         }
     ];
   };
+  // Object pass from the dashboard to the apply process the contest requirements and skills
+  contestItem: any;
+
+  participation:
+    {
+    user: string;
+    contest: string;
+    requirements: {
+        OMerit: [
+            {
+                date: string;
+                grade: number;
+                file: string;
+            }
+        ];
+        EMerit: [
+            {
+                description: string;
+                time: number; // meses
+                company: string;
+            }
+        ];
+        PMerit: [
+            {
+            description: string;
+            file: string;
+            }
+        ];
+        KMerit: [
+            {
+            date: string;
+            grade: number;
+            file: string;
+            }
+        ];
+    };
+    skills: {
+        OMerit: [
+            {
+                date: string;
+                grade: number;
+                file: string;
+            }
+        ];
+        EMerit: [
+            {
+                description: string;
+                time: number; // meses
+                company: string;
+            }
+        ];
+        PMerit: [
+            {
+            description: string;
+            file: string;
+            }
+        ];
+        KMerit: [
+            {
+            date: string;
+            grade: number;
+            file: string;
+            }
+        ];
+    };
+    extra: {
+        OMerit: [
+            {
+                title: string;
+                date: string;
+                grade: number;
+                file: string;
+            }
+        ];
+        EMerit: [
+            {
+                description: string;
+                time: number; // meses
+                company: string;
+            }
+        ];
+        PMerit: [
+            {
+            description: string;
+            file: string;
+            }
+        ];
+        KMerit: [
+            {
+            title: string;
+            date: string;
+            grade: number;
+            file: string;
+            }
+        ];
+    };
+    score: number;
+    };
 }

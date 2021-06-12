@@ -12,12 +12,15 @@
       <div>
         <div class="apply-extra-tfdiv">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <TextField v-model="OMTitle1" :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton plus :disabled="count==3" @click="duplicateRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="OMDate1" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="OMGrade1" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -31,12 +34,15 @@
         </div>
         <div v-if="count >= 1" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <TextField v-model="OMTitle2" :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="OMDate2" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="OMGrade2" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -50,12 +56,15 @@
         </div>
         <div v-if="count >= 2" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <TextField v-model="OMTitle3" :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="OMDate3" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="OMGrade3" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -69,12 +78,15 @@
         </div>
         <div v-if="count >= 3" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.official')" class="apply-extra-tf" />
+            <TextField v-model="OMTitle4" :label="$t('merits.official')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="OMDate4" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="OMGrade4" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -88,77 +100,73 @@
         </div>
         <div class="apply-extra-tfdiv exp">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <TextField v-model="EMCompany1" :label="$t('create.company')" class="apply-extra-tf" />
             <AddButton plus :disabled="expCounter==3" @click="duplicateRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField
-              type="number"
-              :label="$t('apply.time')"
-              :rules="[rules.negative]"
-              :placeholder="$t('apply.months')"
-              class="apply-requirements-field"
+            <TextField v-model="EMTime1"
+                       type="number"
+                       :label="$t('apply.time')"
+                       :rules="[rules.negative]"
+                       :placeholder="$t('apply.months')"
+                       class="apply-requirements-field"
             />
           </v-form>
-          <TextArea :label="$t('create.description')" />
+          <TextArea v-model="EMDesc1" :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 1" class="apply-extra-tfdiv exp">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <TextField v-model="EMCompany2" :label="$t('create.company')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField
-              type="number"
-              :label="$t('apply.time')"
-              :rules="[rules.negative]"
-              :placeholder="$t('apply.months')"
-              class="apply-requirements-field"
+            <TextField v-model="EMTime2"
+                       type="number"
+                       :label="$t('apply.time')"
+                       :rules="[rules.negative]"
+                       :placeholder="$t('apply.months')"
+                       class="apply-requirements-field"
             />
           </v-form>
-          <TextArea :label="$t('create.description')" />
+          <TextArea v-model="EMDesc2" :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 2" class="apply-extra-tfdiv exp">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <TextField v-model="EMCompany3" :label="$t('create.company')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField
-              type="number"
-              :label="$t('apply.time')"
-              :rules="[rules.negative]"
-              :placeholder="$t('apply.months')"
-              class="apply-requirements-field"
+            <TextField v-model="EMTime3"
+                       type="number"
+                       :label="$t('apply.time')"
+                       :rules="[rules.negative]"
+                       :placeholder="$t('apply.months')"
+                       class="apply-requirements-field"
             />
           </v-form>
-          <TextArea :label="$t('create.description')" />
+          <TextArea v-model="EMDesc3" :label="$t('create.description')" />
         </div>
         <div v-if="expCounter >= 3" class="apply-extra-tfdiv exp">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.experience')" class="apply-extra-tf" />
+            <TextField v-model="EMCompany4" :label="$t('create.company')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowExp" />
           </div>
-          <TextField :label="$t('create.company')" class="apply-extra-field" :max-date="new Date().toISOString()" />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField
-              type="number"
-              :label="$t('apply.time')"
-              :rules="[rules.negative]"
-              :placeholder="$t('apply.months')"
-              class="apply-requirements-field"
+            <TextField v-model="EMTime4"
+                       type="number"
+                       :label="$t('apply.time')"
+                       :rules="[rules.negative]"
+                       :placeholder="$t('apply.months')"
+                       class="apply-requirements-field"
             />
           </v-form>
-          <TextArea :label="$t('create.description')" />
+          <TextArea v-model="EMDesc4" :label="$t('create.description')" />
         </div>
       </div>
       <div>
         <div class="apply-extra-tfdiv">
           <div class="apply-extra-duplicatediv">
-            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <TextArea v-model="PMDesc1" :label="$t('merits.punctual')" class="apply-extra-tf" />
             <AddButton plus :disabled="punctCounter==3" @click="duplicateRowPunctual" />
           </div>
           <Input id="fileUpload" class="apply-extra-input"
@@ -168,7 +176,7 @@
         </div>
         <div v-if="punctCounter >= 1" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <TextArea v-model="PMDesc2" :label="$t('merits.punctual')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
           </div>
           <Input id="fileUpload" class="apply-extra-input"
@@ -178,7 +186,7 @@
         </div>
         <div v-if="punctCounter >= 2" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <TextArea v-model="PMDesc3" :label="$t('merits.punctual')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
           </div>
           <Input id="fileUpload" class="apply-extra-input"
@@ -188,7 +196,7 @@
         </div>
         <div v-if="punctCounter >= 3" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextArea :label="$t('merits.punctual')" class="apply-extra-tf" />
+            <TextArea v-model="PMDesc4" :label="$t('merits.punctual')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowPunctual" />
           </div>
           <Input id="fileUpload" class="apply-extra-input"
@@ -198,12 +206,15 @@
         </div>
         <div class="apply-extra-tfdiv">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <TextField v-model="KMTitle1" :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton plus :disabled="knowCounter==3" @click="duplicateRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="KMDate1" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="KMGrade1" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -217,12 +228,15 @@
         </div>
         <div v-if="knowCounter >= 1" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <TextField v-model="KMTitle2" :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="KMDate2" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="KMGrade2" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -236,12 +250,15 @@
         </div>
         <div v-if="knowCounter >= 2" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <TextField v-model="KMTitle3" :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="KMDate3" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="KMGrade3" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -255,12 +272,15 @@
         </div>
         <div v-if="knowCounter >= 3" class="apply-extra-tfdiv duplicate">
           <div class="apply-extra-duplicatediv">
-            <TextField :label="$t('merits.knowledge')" class="apply-extra-tf" />
+            <TextField v-model="KMTitle4" :label="$t('merits.knowledge')" class="apply-extra-tf" />
             <AddButton class="apply-extra-minus" minus @click="deleteRowKnow" />
           </div>
-          <DateField :label="$t('apply.date')" class="apply-extra-field" :max-date="new Date().toISOString()" />
+          <DateField v-model="KMDate4" :label="$t('apply.date')"
+                     class="apply-extra-field"
+                     :max-date="new Date().toISOString()"
+          />
           <v-form v-model="isFormValid" @click.prevent>
-            <TextField placeholder="0-10"
+            <TextField v-model="KMGrade4" placeholder="0-10"
                        type="number"
                        :rules="[rules.max]"
                        :label="$t('apply.grade')"
@@ -298,6 +318,8 @@ import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
 import AddButton from '@/components/AddButton.vue'
+import ParticipationDTO from '@/api/models/Participation'
+import { API } from '@/api'
 
 export default Vue.extend({
   name: 'ApplyExtra',
@@ -323,7 +345,59 @@ export default Vue.extend({
         counterDesc: (value: any) => value.length <= 200 || this.$t('validations.max200'),
         max: (value: any) => (value <= 10 && value >= 0) || this.$t('validations.between010'),
         negative: (value: any) => (value > 0) || this.$t('validations.positive')
-      }
+      },
+      OMTitle1: '',
+      OMDate1: '',
+      OMGrade1: '',
+      OMFile1: '',
+      OMTitle2: '',
+      OMDate2: '',
+      OMGrade2: '',
+      OMFile2: '',
+      OMTitle3: '',
+      OMDate3: '',
+      OMGrade3: '',
+      OMFile3: '',
+      OMTitle4: '',
+      OMDate4: '',
+      OMGrade4: '',
+      OMFile4: '',
+      EMCompany1: '',
+      EMTime1: '',
+      EMDesc1: '',
+      EMCompany2: '',
+      EMTime2: '',
+      EMDesc2: '',
+      EMCompany3: '',
+      EMTime3: '',
+      EMDesc3: '',
+      EMCompany4: '',
+      EMTime4: '',
+      EMDesc4: '',
+      PMDesc1: '',
+      PMFile1: '',
+      PMDesc2: '',
+      PMFile2: '',
+      PMDesc3: '',
+      PMFile3: '',
+      PMDesc4: '',
+      PMFile4: '',
+      KMTitle1: '',
+      KMDate1: '',
+      KMGrade1: '',
+      KMFile1: '',
+      KMTitle2: '',
+      KMDate2: '',
+      KMGrade2: '',
+      KMFile2: '',
+      KMTitle3: '',
+      KMDate3: '',
+      KMGrade3: '',
+      KMFile3: '',
+      KMTitle4: '',
+      KMDate4: '',
+      KMGrade4: '',
+      KMFile4: ''
     }
   },
   mounted () {
@@ -333,11 +407,155 @@ export default Vue.extend({
     toSkills () {
       this.$router.push('/apply/skills').catch((err: string) => { return err })
     },
-    toFinish () {
+    async toFinish () {
+      const OMerit = []
+      if (this.OMTitle1 && this.OMDate1 && this.OMGrade1) {
+        OMerit.push({
+          title: this.OMTitle1,
+          date: this.OMDate1,
+          grade: +this.OMGrade1
+        })
+      }
+      if (this.OMTitle2 && this.OMDate2 && this.OMGrade2) {
+        OMerit.push({
+          title: this.OMTitle2,
+          date: this.OMDate2,
+          grade: +this.OMGrade2
+        })
+      }
+      if (this.OMTitle3 && this.OMDate3 && this.OMGrade3) {
+        OMerit.push({
+          title: this.OMTitle3,
+          date: this.OMDate3,
+          grade: +this.OMGrade3
+        })
+      }
+      if (this.OMTitle4 && this.OMDate4 && this.OMGrade4) {
+        OMerit.push({
+          title: this.OMTitle4,
+          date: this.OMDate4,
+          grade: +this.OMGrade4
+        })
+      }
+      const EMerit = []
+      if (this.EMCompany1 && this.EMDesc1 && this.EMTime1) {
+        EMerit.push({
+          company: this.EMCompany1,
+          description: this.EMDesc1,
+          time: +this.EMTime1
+        })
+      }
+      if (this.EMCompany2 && this.EMDesc2 && this.EMTime2) {
+        EMerit.push({
+          company: this.EMCompany2,
+          description: this.EMDesc2,
+          time: +this.EMTime2
+        })
+      }
+      if (this.EMCompany3 && this.EMDesc3 && this.EMTime3) {
+        EMerit.push({
+          company: this.EMCompany3,
+          description: this.EMDesc3,
+          time: +this.EMTime3
+        })
+      }
+      if (this.EMCompany4 && this.EMDesc4 && this.EMTime4) {
+        EMerit.push({
+          company: this.EMCompany4,
+          description: this.EMDesc4,
+          time: +this.EMTime4
+        })
+      }
+      const PMerit = []
+      if (this.PMDesc1) {
+        PMerit.push({
+          description: this.PMDesc1
+        })
+      }
+      if (this.PMDesc2) {
+        PMerit.push({
+          description: this.PMDesc2
+        })
+      }
+      if (this.PMDesc3) {
+        PMerit.push({
+          description: this.PMDesc3
+        })
+      }
+      if (this.PMDesc4) {
+        PMerit.push({
+          description: this.PMDesc4
+        })
+      }
+      const KMerit = []
+      if (this.KMTitle1 && this.KMDate1 && this.KMGrade1) {
+        KMerit.push({
+          title: this.KMTitle1,
+          date: this.KMDate1,
+          grade: +this.KMGrade1
+        })
+      }
+      if (this.KMTitle2 && this.KMDate2 && this.KMGrade2) {
+        KMerit.push({
+          title: this.KMTitle2,
+          date: this.KMDate2,
+          grade: +this.KMGrade2
+        })
+      }
+      if (this.KMTitle3 && this.KMDate3 && this.KMGrade3) {
+        KMerit.push({
+          title: this.KMTitle3,
+          date: this.KMDate3,
+          grade: +this.KMGrade3
+        })
+      }
+      if (this.KMTitle4 && this.KMDate4 && this.KMGrade4) {
+        KMerit.push({
+          title: this.KMTitle4,
+          date: this.KMDate4,
+          grade: +this.KMGrade4
+        })
+      }
+      const participation: ParticipationDTO = {
+        extra: {
+          OMerit,
+          EMerit,
+          PMerit,
+          KMerit
+        }
+      }
+      this.$store.dispatch('session/updateParticipation', { participation })
       this.$store.dispatch('ui/showMask', {
         text: this.$t('main.retrievingData')
       })
-      window.setTimeout(() => { this.$router.push('/apply/finish').catch((err: string) => { return err }); this.$store.dispatch('ui/hideMask') }, 3000)
+      try {
+        const resp: any = await API.contest.createParticipation()
+        if (resp?.status === 201) {
+          this.$router.push({
+            name: 'ApplyFinish',
+            params: {
+              score: resp.data?.score
+            }
+          }).catch((err) => { return err })
+        } else {
+          this.$router.push({
+            name: 'Error404',
+            params: {
+              errorType: 'Error creating participation'
+            }
+          }).catch((err) => { return err })
+        }
+      } catch (err) {
+        console.log(err)
+        this.$router.push({
+          name: 'Error404',
+          params: {
+            errorType: 'Error creating participation'
+          }
+        }).catch((err) => { return err })
+      } finally {
+        this.$store.dispatch('ui/hideMask')
+      }
     },
     duplicateRow () {
       if (this.count < 3) this.count++
@@ -481,10 +699,6 @@ height:60px;
     width:100% !important;
     margin-bottom: 2em;
   }
-::v-deep
-  .v-text-field__details{
-  // display:none
-}
 @media (min-width: 580px) {
   .apply-extra{
     padding: 1em 8em;

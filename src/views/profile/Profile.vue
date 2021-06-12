@@ -110,7 +110,8 @@ export default Vue.extend({
     } try {
       const resp = await API.contest.getContestsByParticipant()
       if (resp?.status === 200) {
-        this.participated = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+        const aux = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }).contest)
+        this.participated = (aux as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
       } else {
         this.$router.push({
           name: 'Error404',

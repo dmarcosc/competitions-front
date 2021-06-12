@@ -1,3 +1,5 @@
-export default interface MeritDTO {
-  OMerit: Array<{title: string; description: string}>;
+export default interface OMeritDTO {
+  grade: string;
+  date: string;
+  file: string;
 }

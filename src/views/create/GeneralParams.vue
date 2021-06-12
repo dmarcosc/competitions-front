@@ -36,7 +36,7 @@
         <Button terciary class="general-button" @click="toCreate">
           {{ $t('buttons.back') }}
         </Button>
-        <Button primary :disabled="!isFormValid"
+        <Button primary :disabled="!isFormValid || !dueDate"
                 class="general-button"
                 @click="toMinRequirements"
         >
@@ -54,7 +54,7 @@ import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
 import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
-import ContestDTO from '@/api/models/contest'
+import ContestDTO from '@/api/models/Contest'
 
 export default Vue.extend({
   name: 'GeneralParams',
@@ -92,7 +92,7 @@ export default Vue.extend({
       const contest: ContestDTO = {
         employer: this.company,
         field: this.field,
-        dueDate: this.dueDate?.split('-').reverse().join('/'),
+        dueDate: this.dueDate?.split('-').join('/'),
         vacancies: +this.vacancies,
         description: this.description
       }

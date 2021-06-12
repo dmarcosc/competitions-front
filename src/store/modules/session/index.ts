@@ -32,12 +32,43 @@ const getDefaultStateContest = () => {
   }
 }
 
+const getDefaultStateParticipation = () => {
+  return {
+    user: '',
+    contest: '',
+    score: 0,
+    requirements: {
+      OMerit: [] as any,
+      EMerit: [] as any,
+      PMerit: [] as any,
+      KMerit: [] as any
+    },
+    skills: {
+      OMerit: [] as any,
+      EMerit: [] as any,
+      PMerit: [] as any,
+      KMerit: [] as any
+    },
+    extra: {
+      OMerit: [] as any,
+      EMerit: [] as any,
+      PMerit: [] as any,
+      KMerit: [] as any
+    }
+  }
+}
+
 export const session: Module<StateSession, RootStore> = {
   namespaced: true,
   state: {
-    contest: getDefaultStateContest()
+    contest: getDefaultStateContest(),
+    contestItem: null,
+    participation: getDefaultStateParticipation()
   },
   mutations: {
+    saveContestItem (state, param) {
+      state.contestItem = param
+    },
     updateContest (state, { contest }) {
       if (contest?.name) {
         state.contest.name = contest.name
@@ -69,16 +100,48 @@ export const session: Module<StateSession, RootStore> = {
       if (contest?.participations) {
         state.contest.participations = contest.participations
       }
+    },
+    updateParticipation (state, { participation }) {
+      if (participation?.user) {
+        state.participation.user = participation.user
+      }
+      if (participation?.contest) {
+        state.participation.contest = participation.contest
+      }
+      if (participation?.score) {
+        state.participation.score = participation.score
+      }
+      if (participation?.requirements) {
+        state.participation.requirements = participation.requirements
+      }
+      if (participation?.skills) {
+        state.participation.skills = participation.skills
+      }
+      if (participation?.extra) {
+        state.participation.extra = participation.extra
+      }
     }
   },
   actions: {
+    saveContestItem ({ commit }, param: any) {
+      commit('saveContestItem', param)
+    },
     updateContest ({ commit }, { contest }) {
       commit('updateContest', { contest })
+    },
+    updateParticipation ({ commit }, { participation }) {
+      commit('updateParticipation', { participation })
     }
   },
   getters: {
     contest (state) {
       return state.contest
+    },
+    contestItem: state => {
+      return state.contestItem
+    },
+    participation (state) {
+      return state.participation
     }
   }
 }

@@ -75,8 +75,8 @@ export default Vue.extend({
     try {
       const resp = await API.contest.getAllContests()
       if (resp?.status === 200) {
-        this.contests = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
-        // .map((x: any) => { x.dueDate: x.dueDate?.slice(0, -14)})
+        const aux = (resp.data as any).map(({ dueDate, ...rest }: any) => ({ ...rest, dueDate: dueDate?.slice(0, -14) }))
+        this.contests = aux.filter((contest: any) => Date.parse(contest.dueDate) > new Date().getTime())
       } else {
         this.$router.push({
           name: 'Error404',
@@ -98,8 +98,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    contestApply (item: never) {
-      console.log(item)
+    contestApply (item: any) {
+      this.$store.dispatch('session/saveContestItem', { item })
       this.$router.push('/apply/personalData').catch((err: string) => { return err })
     },
     openDialog () {
