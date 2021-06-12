@@ -96,7 +96,7 @@ import NavMenuHome from '@/components/NavMenu/NavMenuHome.vue'
 import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
-import ParticipationDTO from '@/api/models/Participation'
+import ParticipationDTO from '../../api/models/Participation'
 
 export default Vue.extend({
   name: 'ApplySkills',

@@ -318,7 +318,7 @@ import TextField from '@/components/TextField.vue'
 import DateField from '@/components/DateField.vue'
 import TextArea from '@/components/TextArea.vue'
 import AddButton from '@/components/AddButton.vue'
-import ParticipationDTO from '@/api/models/Participation'
+import ParticipationDTO from '../../api/models/Participation'
 import { API } from '@/api'
 
 export default Vue.extend({
