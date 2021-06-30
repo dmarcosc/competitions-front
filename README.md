@@ -1,4 +1,5 @@
 # competitions-front
+Front-end  project for a Merit-based competitions web
 
 ## Project setup
 ```
